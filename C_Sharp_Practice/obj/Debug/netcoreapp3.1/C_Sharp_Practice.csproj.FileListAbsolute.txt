@@ -1,0 +1,13 @@
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\bin\Debug\netcoreapp3.1\C_Sharp_Practice.exe
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\bin\Debug\netcoreapp3.1\C_Sharp_Practice.deps.json
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\bin\Debug\netcoreapp3.1\C_Sharp_Practice.runtimeconfig.json
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\bin\Debug\netcoreapp3.1\C_Sharp_Practice.runtimeconfig.dev.json
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\bin\Debug\netcoreapp3.1\C_Sharp_Practice.dll
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\bin\Debug\netcoreapp3.1\C_Sharp_Practice.pdb
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\obj\Debug\netcoreapp3.1\C_Sharp_Practice.csprojAssemblyReference.cache
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\obj\Debug\netcoreapp3.1\C_Sharp_Practice.csproj.CoreCompileInputs.cache
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\obj\Debug\netcoreapp3.1\C_Sharp_Practice.AssemblyInfoInputs.cache
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\obj\Debug\netcoreapp3.1\C_Sharp_Practice.AssemblyInfo.cs
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\obj\Debug\netcoreapp3.1\C_Sharp_Practice.dll
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\obj\Debug\netcoreapp3.1\C_Sharp_Practice.pdb
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\obj\Debug\netcoreapp3.1\C_Sharp_Practice.genruntimeconfig.cache
