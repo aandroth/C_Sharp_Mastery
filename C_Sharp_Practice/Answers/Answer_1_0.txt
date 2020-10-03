@@ -1,0 +1,24 @@
+﻿using System;
+
+namespace C_Sharp_Practice.Problems
+{
+    interface IExampleInterface
+    {
+        void sampleMethod(int i, string s);
+    }
+
+    class Problem_4_to_7 : IExampleInterface
+    {
+        void IExampleInterface.sampleMethod(int ii, string ss)
+        {
+            Console.WriteLine("We got the number " +ii+ " and the string " + ss);
+        }
+
+        public static void Problem_4_to_7_Main()
+        {
+            IExampleInterface obj = new Problem_4_to_7();
+
+            obj.sampleMethod(4, "weapons");
+        }
+    }
+}

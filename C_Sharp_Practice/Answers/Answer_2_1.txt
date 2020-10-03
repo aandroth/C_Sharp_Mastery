@@ -1,0 +1,35 @@
+﻿Longest common subarray in the given two arrays
+Given two arrays A[] and B[] of N and M integers respectively, the task is to find the maximum length of equal subarray or the longest common subarray between the two given array.
+Examples:
+Input: A[] = {1, 2, 8, 2, 1}, B[] = {8, 2, 1, 4, 7}
+Output: 3
+Explanation:
+The subarray that is common to both arrays are {8, 2, 1} and the length of the subarray is 3.
+Input: A[] = {1, 2, 3, 2, 1}, B[] = {8, 7, 6, 4, 7}
+Output: 0
+Explanation:
+There is no such subarrays which are equal in the array A[] and B[].
+
+int a_len=A.lenght();
+int b_len=B.Lenght();
+int count=0;
+int prev_count=0;
+for(int i=0;i<a_len;i++){
+    
+    for(int j=0;j<b_len;j++)
+    {
+        if (A[i]==B[j]){
+        count++;
+        break;}
+        
+        
+        else{
+        if (prev_count<count){
+        
+        prev_count=count;
+        count=0;
+        }
+        break;
+      }
+      }
+      return count;

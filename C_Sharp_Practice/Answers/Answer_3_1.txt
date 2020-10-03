@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Channels;
+
+namespace C_Sharp_Practice.Problems
+{
+    class Problem_3_0
+    {
+        static char mostCommonCharacterInString(string str)
+        {
+            char[] sortedStr = str.OrderBy(x => x).ToArray<char>();
+
+            Console.WriteLine(sortedStr);
+
+            int countMax = 0;
+            char maxChar = str[0];
+
+            int count = 1;
+            char a = str[0];
+
+            for(int ii=1; ii< sortedStr.Length; ++ii)
+            {
+                if (a != sortedStr[ii])
+                {
+                    if (count > countMax)
+                    {
+                        countMax = count;
+                        maxChar = a;
+                    }
+
+                    a = sortedStr[ii];
+                    count = 1;
+                }
+                else
+                {
+                    ++count;
+                }
+            }
+
+            return maxChar;
+        }
+
+        public static void Problem_3_0_Main()
+        {
+            Console.WriteLine("testedInYYYy: " + mostCommonCharacterInString("testedInYYYy"));
+            Console.WriteLine("amiableggg: " + mostCommonCharacterInString("amiableggg"));
+        }
+    }
+}

@@ -1,0 +1,13 @@
+﻿using System;
+
+namespace C_Sharp_Practice.Problems
+{
+
+    class Problem_4_to_8
+    {
+        public static void Problem_4_to_8_Main()
+        {
+
+        }
+    }
+}

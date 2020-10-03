@@ -1,0 +1,54 @@
+﻿using System;
+
+// https://www.tutlane.com/tutorial/csharp/csharp-polymorphism#:~:text=By%20using%20run%2Dtime%20polymorphism,late%20binding%20or%20dynamic%20binding.
+
+namespace C_Sharp_Practice.Problems
+{
+    /*
+     * In c#, polymorphism provides an ability for the classes to implement different methods that are called through the same name 
+     * and it also provides an ability to invoke the methods of a derived class through base class reference during runtime based on our requirements.
+     */
+
+    /*
+     * In c#, Run-Time Polymorphism means overriding a base class method in the derived class by creating a similar function 
+     * and this can be achieved by using override & virtual keywords along with inheritance principle.
+     */
+
+    class BaseClass
+    {
+        public virtual void outVirtualMethod()
+        {
+            Console.WriteLine("The base virtual method");
+        }
+    }
+
+    class DerivedClass : BaseClass
+    {
+        public override void outVirtualMethod()
+        {
+            Console.WriteLine("The derived method overriding the base virtual method");
+        }
+        public void derivedOnlyMethod()
+        {
+            Console.WriteLine("The derived method only in the derived class");
+        }
+    }
+
+    static class Problem_9_to_10
+    {
+        public static void Problem_9_to_10_Main()
+        {
+            BaseClass b = new BaseClass();
+            DerivedClass d = new DerivedClass();
+
+            b.outVirtualMethod();
+            d.outVirtualMethod();
+            d.derivedOnlyMethod();
+
+            BaseClass b_d = new DerivedClass();
+            b_d.outVirtualMethod(); // This does use the derived class version
+            // b_d.derivedOnlyMethod(); The base class object cannot access methods only in the derived class
+            // DerivedClass d_b = new BaseClass(); A derived class can't point to its base class
+        }
+    }
+}

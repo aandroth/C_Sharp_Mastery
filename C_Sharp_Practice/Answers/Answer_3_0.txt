@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+
+namespace C_Sharp_Practice.Problems
+{
+    class Problem_3_0
+    {
+        static int[] A = { 1, 2, 8, 2, 1 }, B = { 8, 2, 1, 4, 7 };
+        static int[] C = { 1, 2, 3, 2, 1 }, D = { 8, 7, 6, 4, 7 };
+
+        static int longestSubArrayBetweenArrays(int[] arr0, int[] arr1)
+        {
+            int a0 = 0, a1 = 0;
+            int longestSubArray = 0;
+
+            while(a0 < arr0.Length && a1 < arr1.Length)
+            {
+                if(arr0[a0] == arr1[a1])
+                {
+                    ++a0;
+                    ++a1;
+                    ++longestSubArray;
+                }
+                else if (arr0[a0] > arr1[a1])
+                {
+                    ++a1;
+                }
+                else // if (arr0[a0] < arr1[a1])
+                {
+                    ++a0;
+                }
+            }
+
+            return longestSubArray;
+        }
+
+        public static void Problem_3_0_Main()
+        {
+            A.OrderBy(x => x);
+            B.OrderBy(x => x);
+            C.OrderBy(x => x);
+            D.OrderBy(x => x);
+
+            Console.WriteLine("A and B: " + longestSubArrayBetweenArrays(A, B));
+            Console.WriteLine("C and D: " + longestSubArrayBetweenArrays(C, D));
+        }
+    }
+}

@@ -1,0 +1,46 @@
+﻿using System;
+
+namespace C_Sharp_Practice.Problems
+{
+    struct Humanoid
+    {
+        public static int arms = 2;
+        public static int legs = 2;
+        public static int heads = 1;
+    }
+    struct Tauric
+    {
+        public static int arms = 2;
+        public static int legs = 4;
+        public static int heads = 1;
+    }
+
+    interface ICreature<T>
+    {
+        String listAppendages();
+    }
+
+    class Problem_4_to_7 : ICreature<Humanoid>, ICreature<Tauric>
+    {
+
+
+        String ICreature<Humanoid>.listAppendages()
+        {
+            return "I have "+Humanoid.arms+" arms, " + Humanoid.legs+" legs, and " + Humanoid.heads + " head.";
+        }
+
+        String ICreature<Tauric>.listAppendages()
+        {
+            return "I have "+ Tauric.arms+" arms, " + Tauric.legs+" legs, and " + Tauric.heads + " head.";
+        }
+
+        public static void Problem_4_to_7_Main()
+        {
+            ICreature<Humanoid> humanoid = new Problem_4_to_7();
+            Console.WriteLine(humanoid.listAppendages());
+
+            ICreature<Tauric> tauric = new Problem_4_to_7();
+            Console.WriteLine(tauric.listAppendages());
+        }
+    }
+}

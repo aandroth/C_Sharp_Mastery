@@ -1,0 +1,28 @@
+﻿using System;
+
+// https://www.tutlane.com/tutorial/csharp/csharp-polymorphism#:~:text=By%20using%20run%2Dtime%20polymorphism,late%20binding%20or%20dynamic%20binding.
+
+namespace C_Sharp_Practice.Problems
+{
+    /*
+     * In c#, polymorphism provides an ability for the classes to implement different methods that are called through the same name 
+     * and it also provides an ability to invoke the methods of a derived class through base class reference during runtime based on our requirements.
+     */
+
+    /*
+     * In c#, Compile Time Polymorphism means defining multiple methods with the same name but with different parameters. 
+     * By using compile-time polymorphism, we can perform different tasks with the same method name by passing different parameters.
+     */
+
+    class Problem_9_to_10
+    {
+        public int addNumbers(int a, int b)
+        {
+            return 0;
+        }
+        public int addNumbers(string a, string b)
+        {
+            return Int32.Parse(a) + Int32.Parse(b);
+        }
+    }
+}

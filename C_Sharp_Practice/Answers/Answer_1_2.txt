@@ -1,0 +1,64 @@
+﻿using System;
+
+namespace C_Sharp_Practice.Problems
+{
+    interface ICreature
+    {
+        double takeNegativeEnergyDamage(double negativeEnergyDamage);
+    }
+    interface IUndead
+    {
+        double takeNegativeEnergyDamage(double negativeEnergyDamage);
+    }
+
+    class Problem_4_to_7 : ICreature, IUndead
+    {
+        static double healthMax = 10.0;
+        static double health = 6.0;
+        static bool isNotUndead = true;
+
+        double ICreature.takeNegativeEnergyDamage(double negativeEnergyDamage)
+        {
+            health -= negativeEnergyDamage;
+
+            if (health * 2 <= -(healthMax * 2))
+            {
+                isNotUndead = false;
+                health = -healthMax;
+            }
+
+            return health;
+        }
+
+        double IUndead.takeNegativeEnergyDamage(double negativeEnergyDamage)
+        {
+            health = ((health - negativeEnergyDamage) > -healthMax) ? health - negativeEnergyDamage : -healthMax;
+
+            return health;
+        }
+
+        static double takeNegativeEnergyDamage(double negativeEnergyDamage)
+        {
+            if (isNotUndead)
+            {
+                ICreature creature = new Problem_4_to_7();
+
+                return creature.takeNegativeEnergyDamage(negativeEnergyDamage);
+            }
+            else
+            {
+                IUndead undead = new Problem_4_to_7();
+
+                return undead.takeNegativeEnergyDamage(negativeEnergyDamage);
+            }
+        }
+
+        public static void Problem_4_to_7_Main()
+        {
+            Console.WriteLine("Hit with 2, Health: " + takeNegativeEnergyDamage(2.0));
+            Console.WriteLine("Hit with 3, Health: " + takeNegativeEnergyDamage(3.0));
+            Console.WriteLine("Hit with 30, Health: " + takeNegativeEnergyDamage(30.0));
+            Console.WriteLine("Hit with 5, Health: " + takeNegativeEnergyDamage(5.0));
+        }
+    }
+}

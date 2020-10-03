@@ -1,0 +1,17 @@
+﻿using System;
+
+namespace C_Sharp_Practice
+{
+    class Problem_0_to_3
+    {
+        static String[] strArr = new[] { "Axes", "Shields", "Swords", "Spears" };
+
+        public static void Problem_0_to_3_Main()
+        {
+            for(int ii=0; ii<strArr.Length; ++ii)
+            {
+                Console.WriteLine(strArr[ii]);
+            }
+        }
+    }
+}
