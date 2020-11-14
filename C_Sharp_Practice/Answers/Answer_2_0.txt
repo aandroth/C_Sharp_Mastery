@@ -24,5 +24,10 @@ namespace C_Sharp_Practice.Problems
         {
             return Int32.Parse(a) + Int32.Parse(b);
         }
+
+        static void Problem_9_to_10_Main(){
+            Console.WriteLine("addNumers(5, 2): " + addNumers(5, 2));
+            Console.WriteLine("addNumers("5", "2"): " + addNumers("5", "2"));
+        }
     }
 }

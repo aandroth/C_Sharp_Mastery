@@ -2,25 +2,43 @@
 
 namespace C_Sharp_Practice.Problems
 {
+    //"3_2: Write a method, isSubstring, which checks if one word is a substring of another (order must also be the same).Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one function call to isSubstring. Ex: \"waterbottle\" is a rotation of \"erbottlewat\"",
+                
+
     class Problem_3_0
     {
+        static private bool isSubstring(string str0, string str1)
+        {
+            string fullStr1 = str1 + str1;
+
+            if (str0.Length != str1.Length)
+                return false;
+
+            for (int ii=0; ii<fullStr1.Length; ++ii)
+            {
+                for (int jj = 0; jj < str0.Length; ++jj)
+                {
+                    if(str0[jj] != fullStr1[ii + jj])
+                    {
+                        break;
+                    }
+                    if (jj == str0.Length - 1)
+                        return true;
+                }
+                if (ii == fullStr1.Length * 0.5)
+                    return false;
+            }
+
+            return false;
+        }
+
         // Sort an array in descending order
         public static void Problem_3_0_Main()
         {
-            int[] arr = { 2, 3, 1, 5, 7, 2, 4, 1, 6, 4, 7 };
-
-            Array.Sort(arr);
-            Array.Reverse(arr);
-
-            // OR
-
-            //arr = arr.OrderByDescending(x => x).ToArray();
-
-            for (int ii = 0; ii < arr.Length; ++ii)
-            {
-                Console.Write(arr[ii] + ", ");
-            }
-            Console.WriteLine("");
+            Console.WriteLine("water and terwa: " + isSubstring("water", "terwa"));
+            Console.WriteLine("water and terwat: " + isSubstring("water", "terwat"));
+            Console.WriteLine("  and terwat: " + isSubstring("", "terwat"));
+            Console.WriteLine("waterbottle and erbottlewat: " + isSubstring("waterbottle", "erbottlewat"));
         }
     }
 }

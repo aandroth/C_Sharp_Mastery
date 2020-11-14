@@ -1,0 +1,138 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice.Problems
+{
+    // "3_3: Write an algorithm such that if an element in an MxN matrix is zero, its entire row and column are set to 0. Then eturn the total of all non-zero elements.",
+                
+    class Problem_3_0
+    {
+        static private int matrixTotalExceptColsAndRowsWithZeros(int[,] matrix, int width, int height)
+        {
+            HashSet<int> rowSet = new HashSet<int>();
+            HashSet<int> colSet = new HashSet<int>();
+
+            for (int ii = 0; ii < height; ++ii)
+            {
+                for (int jj = 0; jj < width; ++jj)
+                {
+                    Console.Write(matrix[ii, jj] + ", ");
+                }
+                Console.WriteLine("");
+            }
+            Console.WriteLine("");
+            for (int ii = 0; ii < height; ++ii)
+            {
+                for (int jj = 0; jj < width; ++jj)
+                {
+                    if (matrix[ii, jj] == 0)
+                    {
+                        rowSet.Add(ii);
+                        colSet.Add(jj);
+                    }
+                }
+            }
+            int total = 0;
+            for (int ii = 0; ii < height; ++ii)
+            {
+                for (int jj = 0; jj < width; ++jj)
+                {
+                    if (!rowSet.Contains(ii) && !colSet.Contains(jj))
+                    {
+                        total += matrix[ii,jj];
+                    }
+                }
+            }
+            //for (int ii = 0; ii < height; ++ii)
+            //{
+            //    for (int jj = 0; jj < width; ++jj)
+            //    {
+            //        Console.Write(matrix[ii, jj] + ", ");
+            //    }
+            //    Console.WriteLine("");
+            //}
+            //Console.WriteLine("");       
+            Console.WriteLine("rowSet:");
+            Console.WriteLine(String.Join(", ", rowSet));  
+            Console.WriteLine("colSet:");
+            Console.WriteLine(String.Join(", ", colSet));
+
+            return total;
+        }
+        static private int[,] zeroOutRowsAndCols(int[,] matrix, int width, int height, int col, int row)
+        {
+            for(int ii=0; ii < col; ++ii)
+            {
+                matrix[ii, col] = 0;
+            }
+
+            Console.WriteLine("Zero out col: " + col);
+            for (int ii = 0; ii < height; ++ii)
+            {
+                for (int jj = 0; jj < width; ++jj)
+                {
+                    Console.Write(matrix[ii, jj] + ", ");
+                }
+                Console.WriteLine("");
+            }
+            Console.WriteLine("");
+
+            for (int ii=0; ii < row; ++ii)
+            {
+                matrix[row, ii] = 0;
+            }
+
+            Console.WriteLine("Zero out row: "+row);
+            for (int ii = 0; ii < height; ++ii)
+            {
+                for (int jj = 0; jj < width; ++jj)
+                {
+                    Console.Write(matrix[ii, jj] + ", ");
+                }
+                Console.WriteLine("");
+            }
+            Console.WriteLine("");
+
+            return matrix;
+        }
+
+        // Sort an array in descending order
+        public static void Problem_3_0_Main()
+        {
+            int[,] m0 = new int[,]
+            {
+                {0, 1, 2, 3},
+                {1, 1, 2, 3},
+                {0, 1, 0, 3},
+                {0, 1, 2, 3},
+            };
+            int[,] m1 = new int[,]
+            {
+                {0, 1, 2, 3},
+                {1, 0, 2, 3},
+                {0, 1, 0, 3},
+                {0, 1, 2, 0},
+            };
+            int[,] m2 = new int[,]
+            {
+                {0, 1, 2, 3},
+                {1, 1, 0, 3},
+                {0, 1, 0, 3},
+                {0, 1, 2, 3},
+            };
+            int[,] m3 = new int[,]
+            {
+                {0, 1, 2, 3},
+                {1, 1, 2, 3},
+                {0, 1, 4, 3},
+                {0, 1, 2, 3},
+            };
+
+            Console.WriteLine("m0: " + matrixTotalExceptColsAndRowsWithZeros(m0, 4, 4));
+            Console.WriteLine("m1: " + matrixTotalExceptColsAndRowsWithZeros(m1, 4, 4));
+            Console.WriteLine("m2: " + matrixTotalExceptColsAndRowsWithZeros(m2, 4, 4));
+            Console.WriteLine("m3: " + matrixTotalExceptColsAndRowsWithZeros(m3, 4, 4));
+        }
+    }
+}

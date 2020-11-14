@@ -25,6 +25,18 @@ namespace C_Sharp_Practice.Problems
         protected override void F2() { Console.WriteLine("Z.F2"); }
     }
 
+    sealed class A
+    {
+
+    }
+
+    // Throws an error because a sealed class cannot be inherited from
+    /* class B : A
+    {
+
+    }*/
+
+
     class Problem_2_0
     {
         // Sort an array in descending order

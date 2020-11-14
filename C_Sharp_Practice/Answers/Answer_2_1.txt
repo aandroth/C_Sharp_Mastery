@@ -1,35 +1,38 @@
-﻿Longest common subarray in the given two arrays
-Given two arrays A[] and B[] of N and M integers respectively, the task is to find the maximum length of equal subarray or the longest common subarray between the two given array.
-Examples:
-Input: A[] = {1, 2, 8, 2, 1}, B[] = {8, 2, 1, 4, 7}
-Output: 3
-Explanation:
-The subarray that is common to both arrays are {8, 2, 1} and the length of the subarray is 3.
-Input: A[] = {1, 2, 3, 2, 1}, B[] = {8, 7, 6, 4, 7}
-Output: 0
-Explanation:
-There is no such subarrays which are equal in the array A[] and B[].
+﻿using System;
 
-int a_len=A.lenght();
-int b_len=B.Lenght();
-int count=0;
-int prev_count=0;
-for(int i=0;i<a_len;i++){
-    
-    for(int j=0;j<b_len;j++)
+// Polymorphism:
+// Polymorphsm is the ability of code to 
+
+namespace C_Sharp_Practice.Problems
+{
+    /*
+     * In c#, polymorphism provides an ability for the classes to implement different methods that are called through the same name 
+     * and it also provides an ability to invoke the methods of a derived class through base class reference during runtime based on our requirements.
+     */
+
+    /*
+     * In c#, RunTime Polymorphism means overriding a base class method with a method in the child class. 
+     * This is done by using the override and virtual keywords.
+     */
+
+    class X
     {
-        if (A[i]==B[j]){
-        count++;
-        break;}
-        
-        
-        else{
-        if (prev_count<count){
-        
-        prev_count=count;
-        count=0;
+        protected virtual void F() { Console.WriteLine("X.F"); }
+        protected virtual void F2() { Console.WriteLine("X.F2"); }
+    }
+    class Y : X
+    {
+        protected virtual void F() { Console.WriteLine("X.F"); }
+        protected virtual void F2() { Console.WriteLine("X.F2"); }
+    }
+
+
+    class Problem_2_0
+    {
+        // Sort an array in descending order
+        public static void Problem_2_0_Main()
+        {
+            Console.WriteLine("");
         }
-        break;
-      }
-      }
-      return count;
+    }
+}
