@@ -1,46 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace C_Sharp_Practice.Problems
+namespace C_Sharp_Practice
 {
-    struct Humanoid
+    class Problem_0_to_3
     {
-        public static int arms = 2;
-        public static int legs = 2;
-        public static int heads = 1;
-    }
-    struct Tauric
-    {
-        public static int arms = 2;
-        public static int legs = 4;
-        public static int heads = 1;
-    }
-
-    interface ICreature<T>
-    {
-        String listAppendages();
-    }
-
-    class Problem_4_to_7 : ICreature<Humanoid>, ICreature<Tauric>
-    {
-
-
-        String ICreature<Humanoid>.listAppendages()
+        static String[,] strArr = new string[,]
         {
-            return "I have "+Humanoid.arms+" arms, " + Humanoid.legs+" legs, and " + Humanoid.heads + " head.";
-        }
+            { "a", "b", "c" },
+            { "a", "b", "c" },
+            { "a", "b", "c" },
+        };
 
-        String ICreature<Tauric>.listAppendages()
+        public static void Problem_0_to_3_Main()
         {
-            return "I have "+ Tauric.arms+" arms, " + Tauric.legs+" legs, and " + Tauric.heads + " head.";
-        }
-
-        public static void Problem_4_to_7_Main()
-        {
-            ICreature<Humanoid> humanoid = new Problem_4_to_7();
-            Console.WriteLine(humanoid.listAppendages());
-
-            ICreature<Tauric> tauric = new Problem_4_to_7();
-            Console.WriteLine(tauric.listAppendages());
+            int arrLength = 3;
+            for (int ii = 0; ii < arrLength; ++ii)
+            {
+                for (int jj = 0; jj < arrLength; ++jj)
+                {
+                    Console.Write(strArr[ii, jj]+",");
+                }
+                Console.WriteLine("");
+            }
         }
     }
 }

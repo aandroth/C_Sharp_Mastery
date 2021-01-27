@@ -1,47 +1,50 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+/*
+ * Polymorphism: Code that can dynamically change
+ * 
+ * Runtime Polymorphism: When an inheriting class changes its parent's function by overriding it
+ * 
+ * Compiletime Polymorphism: When a class has multiple definitions for the same function but different inputs to determine which one gets called
+ */
 
 namespace C_Sharp_Practice.Problems
 {
-    interface ICompareTo<T>
-    {
-        public bool equalTo(T obj);
-        public bool greaterTo(T obj);
-        public bool lesserTo(T obj);
-    }
-
-    class ValuedObj : ICompareTo<ValuedObj>
-    {
-        int value;
-
-        bool ICompareTo<ValuedObj>.equalTo(ValuedObj obj)
-        {
-            return value == obj.value;
-        }
-        bool ICompareTo<ValuedObj>.greaterTo(ValuedObj obj)
-        {
-            return value > obj.value;
-        }
-        bool ICompareTo<ValuedObj>.lesserTo(ValuedObj obj)
-        {
-            return value < obj.value;
-        }
-
-        public ValuedObj(int i)
-        {
-            value = i;
-        }
-    }
-
     class Problem_4_to_8
     {
         public static void Problem_4_to_8_Main()
         {
-            ICompareTo<ValuedObj> v0 = new ValuedObj(0);
-            ValuedObj v1 = new ValuedObj(4);
+            List<string> strList0 = new List<string>()
+            {
+                "blue book",
+                "blue billhook",
+                "black sword",
+                "black mace",
+                "red wand",
+                "drow billhook",
+                "blue axe",
+                "orcish axe",
+            };
+            List<string> strList1 = new List<string>()
+            {
+                "green tome",
+                "red billhook",
+                "silver sword",
+                "elven mace",
+                "drow wand",
+                "orcish billhook",
+                "dwarven axe",
+                "orcish axe",
+            };
 
-            Console.WriteLine("It is " +v0.equalTo(v1)+ " that v0 equals v1");
-            Console.WriteLine("It is " +v0.greaterTo(v1)+ " that v0 is greater than v1");
-            Console.WriteLine("It is " +v0.lesserTo(v1)+ " that v0 is less than v1");
+            var result = strList0.Join(strList1, s0 => s0[0], s1 => s1[0], (s0, s1) => new {s0,s1});
+
+            foreach(var r in result)
+            {
+                Console.WriteLine(r);
+            }
         }
     }
 }

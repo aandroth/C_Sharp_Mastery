@@ -1,0 +1,45 @@
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+
+// An abstract class is a class that cannot be instantiated by itself, it must be inherited to be used
+// In C++ this would be a pure virtual class
+
+namespace C_Sharp_Practice
+{
+
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+            // string collection
+            IList<string> stringList0 = new List<string>() {
+                "C# Tutorials",
+                "VB.NET Tutorials",
+                "Learn C++",
+                "MVC Tutorials" ,
+                "Java"
+            };
+            // string collection
+            IList<string> stringList1 = new List<string>() {
+                "C++ Tutorials",
+                "VB.NET Lessons",
+                "Learn C++",
+                "MVC In Practice" ,
+                "Java"
+            };
+
+            //Using linq,  
+            var result = from str0 in stringList0
+                          join str1 in stringList1
+                            on str0 equals str1
+                          select str0;
+
+            foreach (var r in result)
+            {
+                Console.WriteLine(r);
+            }
+        }
+    }
+}
+

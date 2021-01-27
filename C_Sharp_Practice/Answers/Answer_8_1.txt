@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+
+// 6_1: Create an alias for a specific library from inside of a namespace
+
+namespace C_Sharp_Practice
+{
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+        }
+    }
+}

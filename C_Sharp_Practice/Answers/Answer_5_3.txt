@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+
+// What are the four attributes of Structs' type, and how does this differ from classes?
+
+/*
+Structs are value types while classes are reference types.
+Structs are value types and are copied on assignment.
+A struct cannot be used as a nullable type and cannot be assigned a null value.
+Structs can be instantiated without using a new operator, but then their variables need to be public to be of any use, and that by itself is a bad idea.
+*/
+
+namespace C_Sharp_Practice
+{
+
+    struct StructSquare
+    {
+        int width;
+        public string tag;
+        public void setWidth(int x)
+        {
+            width = x;
+        }
+        public int getWidth()
+        {
+            return width;
+        }
+    }
+
+    class ClassSquare
+    {
+        int width = 0;
+        public string tag;
+        public void setWidth(int x)
+        {
+            width = x;
+        }
+        public int getWidth()
+        {
+            return width;
+        }
+    }
+
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+            StructSquare ss0 = new StructSquare();
+            ss0.setWidth(7);
+            StructSquare ss1 = ss0; // Structs are value-types that can be copied on assignment
+            Console.WriteLine("The width of ss1 is now " + ss1.getWidth());
+            ss0.setWidth(100);
+            Console.WriteLine("The width of ss0 was changed to 100, but the width of ss1 is still " + ss1.getWidth());
+
+            StructSquare ss2;
+            //ss2.getWidth(); // We can't call any fns
+            ss2.tag = "ss2"; // We can assign public variables
+
+            //BaseStruct ss3 = null; // A struct cannot be null
+
+            ClassSquare cs0 = new ClassSquare();
+            cs0.setWidth(7);
+            ClassSquare cs1 = cs0; // Classes are reference types, but can still be copied on assignment
+            Console.WriteLine("The width of cs1 is now " + cs1.getWidth());
+            cs0.setWidth(100);
+            Console.WriteLine("The width of cs0 was changed to 100, but now the width of cs1 is " + cs1.getWidth());
+
+            ClassSquare cs2;
+            //cs2.setWidth(7); // We can't call any fns
+            //cs2.tag = "cs2"; // We can't assign even public variables
+
+            ClassSquare css3 = null; // A class can be null
+        }
+    }
+}

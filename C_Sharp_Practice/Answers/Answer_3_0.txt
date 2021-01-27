@@ -1,50 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
-namespace C_Sharp_Practice.Problems
+namespace C_Sharp_Practice
 {
-    class Problem_3_0
+    class Practice_Problem
     {
-        static int[] A = { 1, 2, 8, 2, 1 }, B = { 8, 2, 1, 4, 7 };
-        static int[] C = { 1, 2, 3, 2, 1 }, D = { 8, 7, 6, 4, 7 };
-
-        static int longestSubArrayBetweenArrays(int[] arr0, int[] arr1)
+        static public T[] getLongestCommonSequence<T>(T[] arrA, T[] arrB)
         {
-            int a0 = 0, a1 = 0;
-            int longestSubArray = 0;
+            T[] arr = new T[0];
+            List<T> currList = new List<T>();
+            List<T> maxList = new List<T>();
 
-            while(a0 < arr0.Length && a1 < arr1.Length)
+            for (int ii = 0; ii < arrA.Length; ++ii)
             {
-                if(arr0[a0] == arr1[a1])
+                for (int jj = 0; jj < arrB.Length; ++jj)
                 {
-                    ++a0;
-                    ++a1;
-                    ++longestSubArray;
-                }
-                else if (arr0[a0] > arr1[a1])
-                {
-                    ++a1;
-                }
-                else // if (arr0[a0] < arr1[a1])
-                {
-                    ++a0;
+                    if (arrA[ii].Equals(arrB[jj]))
+                    {
+                        for (int kk = 0; (ii + kk) < arrA.Length && jj < arrB.Length; ++kk, ++jj)
+                        {
+                            if (arrA[ii + kk].Equals(arrB[jj]))
+                                currList.Add(arrB[jj]);
+
+                            if ((ii + kk) == (arrA.Length - 1) || jj == (arrB.Length - 1) ||
+                                !(arrA[ii + kk].Equals(arrB[jj])))
+                            {
+                                maxList = currList.Count > maxList.Count ? currList : maxList;
+                                currList = new List<T>();
+                            }
+                        }
+                    }
                 }
             }
-
-            return longestSubArray;
+            arr = maxList.ToArray();
+            return arr;
         }
 
-        public static void Problem_3_0_Main()
+        static void printArray<T>(T[] tArr)
         {
-            A.OrderBy(x => x);
-            B.OrderBy(x => x);
-            C.OrderBy(x => x);
-            D.OrderBy(x => x);
+            for (int ii = 0; ii < tArr.Length; ++ii)
+            {
+                Console.Write(tArr[ii] + ",");
+            }
+            Console.WriteLine();
+        }
 
-            Console.WriteLine("A and B: " + longestSubArrayBetweenArrays(A, B));
-            Console.WriteLine("C and D: " + longestSubArrayBetweenArrays(C, D));
+        public static void Practice_Problem_Main()
+        {
+            int[] A = { 1, 2, 8, 2, 1 }, B = { 8, 2, 1, 4, 7 };
+            int[] C = { 1, 2, 3, 2, 1 }, D = { 8, 7, 6, 4, 7 };
+            int[] E = { 2, 2, 7, 2, 2 }, F = { 2, 2, 3, 7, 2, 2, 7 };
+
+            char[] G = { 'a', 'b', 'c', 'd', 'e' };
+            char[] H = { 'a', 'd', 'e', 'b', 'c', 'd', 'a', 'd', };
+
+            printArray(getLongestCommonSequence(A, B));
+            printArray(getLongestCommonSequence(C, D));
+            printArray(getLongestCommonSequence(E, F));
+
+            printArray(getLongestCommonSequence(G, H));
         }
     }
 }

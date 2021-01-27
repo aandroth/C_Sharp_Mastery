@@ -1,0 +1,124 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+
+/*
+Structs share many features with classes but with the following limitations as compared to classes.
+
+Struct cannot have a default constructor (a constructor without parameters) or a destructor.
+
+A struct cannot inherit from another struct or class, and it cannot be the base of a class. All structs inherit directly from System.ValueType, 
+which inherits from System.Object.
+Struct cannot be a base class. So, Struct types cannot be abstract and are always implicitly sealed.
+Abstract and sealed modifiers are not allowed and struct member cannot be protected or protected internals.
+Function members in a struct cannot be abstract or virtual, and the override modifier is allowed only to the override methods inherited from System.ValueType.
+
+Struct does not allow the instance field declarations to include variable initializers. But, static fields of a struct are allowed to include variable initializers.
+A struct can implement interfaces.
+*/
+
+namespace C_Sharp_Practice
+{
+    /*sealed*/ /*abstract*/ struct SealedOrAbstractStruct // Structs cannot be sealed or abstract
+    {
+        public int x;
+    }
+    struct BaseStruct
+    {
+        public int x;
+    }
+    struct BaseClass
+    {
+        public int x;
+    }
+
+    interface I_B
+    {
+        public void foo()
+        {
+            Console.WriteLine("I_B foo");
+        }
+    }
+
+    struct StructSquare : I_B // : BaseClass // : BaseStruct // Structs cannot inherit other structs or classes, only interfaces
+    {
+        int width;// = 0; // Struct variables can't be initialized with data on creation
+        static int staticVariable = 0; // Unless they are static
+        public string tag;
+
+        //protected int protectedVariable; // Because Structs cannot be inherited from, the protected keyword isn't even allowed by the compiler
+
+        //public StructSquare() { }; // Structs can't have default constructors, aka, constructors with no parameters
+
+        //~StructSquare() { } // Structs cannot have destructors
+        //~StructSquare(int x) { } // default or otherwise
+
+        public StructSquare(int x) { width = x; tag = ""; }
+
+        public void setWidth(int x)
+        {
+            width = x;
+        }
+        public int getWidth()
+        {
+            return width;
+        }
+
+        //public abstract void foo_abstract(); // Structs are not allowed to have abstract members
+        //public virtual void foo_abstract(); // Structs are not allowed to have abstract members
+    }
+
+    class ClassSquare //: StructSquare // Structs are always imlicitly sealed and cannot be a base class
+    {
+        int width = 0; // Class variables 
+        static int staticVariable = 0;
+        public string tag;
+        protected int protectedVariable;
+
+        public ClassSquare() { width = 0; } // Classes can have default constructors
+        ~ClassSquare() { } // Classes can have destructors
+        public void setWidth(int x)
+        {
+            width = x;
+        }
+        public int getWidth()
+        {
+            return width;
+        }
+    }
+
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+            StructSquare ss0 = new StructSquare(7);
+            ss0.setWidth(7);
+            StructSquare ss1 = ss0; // Structs are value-types that can be copied on assignment
+            Console.WriteLine("The width of ss1 is now " + ss1.getWidth());
+            ss0.setWidth(100);
+            Console.WriteLine("The width of ss0 was changed to 100, but the width of ss1 is still " + ss1.getWidth());
+
+            StructSquare ss2;
+            //ss2.getWidth(); // We can't call any fns
+            ss2.tag = "ss2"; // We can assign public variables
+            I_B i_b = new StructSquare();
+            i_b.foo();
+
+            //BaseStruct ss3 = null; // A struct cannot be null
+
+            ClassSquare cs0 = new ClassSquare();
+            cs0.setWidth(7);
+            ClassSquare cs1 = cs0; // Classes are reference types, but can still be copied on assignment
+            Console.WriteLine("The width of cs1 is now " + cs1.getWidth());
+            cs0.setWidth(100);
+            Console.WriteLine("The width of cs0 was changed to 100, but now the width of cs1 is " + cs1.getWidth());
+
+            ClassSquare cs2;
+            //cs2.setWidth(7); // We can't call any fns
+            //cs2.tag = "cs2"; // We can't assign even public variables
+
+            ClassSquare css3 = null; // A class can be null
+        }
+    }
+}

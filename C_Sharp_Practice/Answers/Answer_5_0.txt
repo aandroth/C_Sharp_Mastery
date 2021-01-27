@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+
+namespace C_Sharp_Practice
+{
+    struct StructSquare
+    {
+        int width;
+        public string tag;
+
+        public int setWidth(int x)
+        {
+            return width = x;
+        }
+
+        public int getArea()
+        {
+            return width * width;
+        }
+        void inaccessibleFn()
+        {
+            Console.WriteLine("Can't be accessed due to default protection level of private");
+        }
+    }
+
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+            StructSquare ss = new StructSquare();
+
+            //ss.width = 7; // width is inaccessible due to its protection level (private)
+            //ss.inaccessibleFn(); // Also inaccessible due to its default protection level (private)
+            ss.setWidth(7);
+
+            Console.WriteLine("The struct's area is "+ss.getArea());
+            
+            ss.tag = "sleven"; // We can access public variables
+            Console.WriteLine("The struct's tag is "+ss.getArea());
+        }
+    }
+}

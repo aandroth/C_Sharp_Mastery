@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+
+namespace C_Sharp_Practice
+{
+    // Trick Question!
+    // We can't create a sealed abstract class because that would stop it from being inhertable, and the compiler will not let us.
+    //sealed abstract class AbstractClass
+    //{
+    //    public abstract void foo_abstract();
+    //}
+
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+        }
+    }
+}

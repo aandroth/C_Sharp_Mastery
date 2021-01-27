@@ -2,46 +2,63 @@
 
 namespace C_Sharp_Practice.Problems
 {
-    interface ICompareTo<T>
+    interface ICreature
     {
-        public bool equalTo(T obj);
-        public bool greaterTo(T obj);
-        public bool lesserTo(T obj);
+        double takeNegativeEnergyDamage(double negativeEnergyDamage);
+    }
+    interface IUndead
+    {
+        double takeNegativeEnergyDamage(double negativeEnergyDamage);
     }
 
-    class ValuedObj : ICompareTo<ValuedObj>
+    class Problem_4_to_7 : ICreature, IUndead
     {
-        int value;
+        static double healthMax = 10.0;
+        static double health = 6.0;
+        static bool isNotUndead = true;
 
-        bool ICompareTo<ValuedObj>.equalTo(ValuedObj obj)
+        double ICreature.takeNegativeEnergyDamage(double negativeEnergyDamage)
         {
-            return value == obj.value;
-        }
-        bool ICompareTo<ValuedObj>.greaterTo(ValuedObj obj)
-        {
-            return value > obj.value;
-        }
-        bool ICompareTo<ValuedObj>.lesserTo(ValuedObj obj)
-        {
-            return value < obj.value;
+            health -= negativeEnergyDamage;
+
+            if (health * 2 <= -(healthMax * 2))
+            {
+                isNotUndead = false;
+                health = -healthMax;
+            }
+
+            return health;
         }
 
-        public ValuedObj(int i)
+        double IUndead.takeNegativeEnergyDamage(double negativeEnergyDamage)
         {
-            value = i;
+            health = ((health - negativeEnergyDamage) > -healthMax) ? health - negativeEnergyDamage : -healthMax;
+
+            return health;
         }
-    }
 
-    class Problem_4_to_8
-    {
-        public static void Problem_4_to_8_Main()
+        static double takeNegativeEnergyDamage(double negativeEnergyDamage)
         {
-            ICompareTo<ValuedObj> v0 = new ValuedObj(0);
-            ValuedObj v1 = new ValuedObj(4);
+            if (isNotUndead)
+            {
+                ICreature creature = new Problem_4_to_7();
 
-            Console.WriteLine("It is " +v0.equalTo(v1)+ " that v0 equals v1");
-            Console.WriteLine("It is " +v0.greaterTo(v1)+ " that v0 is greater than v1");
-            Console.WriteLine("It is " +v0.lesserTo(v1)+ " that v0 is less than v1");
+                return creature.takeNegativeEnergyDamage(negativeEnergyDamage);
+            }
+            else
+            {
+                IUndead undead = new Problem_4_to_7();
+
+                return undead.takeNegativeEnergyDamage(negativeEnergyDamage);
+            }
+        }
+
+        public static void Problem_4_to_7_Main()
+        {
+            Console.WriteLine("Hit with 2, Health: " + takeNegativeEnergyDamage(2.0));
+            Console.WriteLine("Hit with 3, Health: " + takeNegativeEnergyDamage(3.0));
+            Console.WriteLine("Hit with 30, Health: " + takeNegativeEnergyDamage(30.0));
+            Console.WriteLine("Hit with 5, Health: " + takeNegativeEnergyDamage(5.0));
         }
     }
 }

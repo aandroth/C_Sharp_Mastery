@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+
+namespace C_Sharp_Practice
+{
+    abstract class Parent
+    {
+        public abstract void foo_abstract();
+        public virtual void foo_virtual()
+        {
+            Console.WriteLine("This is the virtual foo from the Parent class");
+        }
+    }
+
+    class Child : Parent
+    {
+        public override void foo_abstract()
+        {
+            Console.WriteLine("This is the abstract foo");
+        }
+        public new void foo_virtual()
+        {
+            Console.WriteLine("This is the virtual foo from the Child class");
+        }
+    }
+
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+            Child c = new Child();
+
+            c.foo_abstract();
+
+            c.foo_virtual();
+
+        }
+    }
+}

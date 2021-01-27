@@ -1,12 +1,49 @@
-﻿Abstraction allows making relevant information visible and encapsulation enables a programmer to implement the desired level of abstraction.
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
 
-Abstraction can be achieved using abstract classes in C#. 
-C# allows you to create abstract classes that are used to provide a partial class implementation of an interface. 
-Implementation is completed when a derived class inherits from it. Abstract classes contain abstract methods, which are implemented by the derived class. 
-The derived classes have more specialized functionality.
+// In C++ there are also abstract classes, but these are defined by containing at least one pure virtual fn, and have to have a deriving class instantiate
 
-The following are some of the key points:
+// In C#, the abstract class is defined by the "abstract" keyword, and also needs to be derived by another class
 
-You cannot create an instance of an abstract class
-You cannot declare an abstract method outside an abstract class
-When a class is declared sealed, it cannot be inherited, abstract classes cannot be declared sealed.
+namespace C_Sharp_Practice
+{
+    abstract class Undead
+    {
+        public abstract void foo_abstract();
+        public void foo_normal()
+        {
+            Console.WriteLine("Undead foo_normal");
+        }
+        public void foo_second()
+        {
+            Console.WriteLine("Undead foo_second");
+        }
+    }
+
+    class Skeleton : Undead
+    {
+        public override void foo_abstract() // The override keyword lets the compiler know that we are overriding the base class' abstract fn
+        {
+            Console.WriteLine("I am the foo_abstract scary skelly");
+        }
+        public new void foo_normal() // The new keyword lets the compiler know that we are overriding the base class' fn
+        {
+            Console.WriteLine("I am the foo_normal scary skelly");
+        }
+    }
+
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+            Skeleton s = new Skeleton();
+            s.foo_abstract();
+
+            s.foo_normal();
+
+            s.foo_second();
+        }
+    }
+}

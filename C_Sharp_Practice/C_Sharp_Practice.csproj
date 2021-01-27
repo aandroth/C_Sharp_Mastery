@@ -7,10 +7,18 @@
 
   <ItemGroup>
     <None Remove="ActiveQs.txt" />
+    <None Remove="ActiveQs_New.txt" />
+    <None Remove="Linq_Methods.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="ActiveQs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linq_Methods.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActiveQs_New.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

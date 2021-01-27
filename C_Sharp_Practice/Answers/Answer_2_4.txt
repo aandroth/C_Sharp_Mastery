@@ -12,17 +12,45 @@ namespace C_Sharp_Practice.Problems
     /*
      * In c#, Compile Time Polymorphism means defining multiple methods with the same name but with different parameters. 
      * By using compile-time polymorphism, we can perform different tasks with the same method name by passing different parameters.
+     *
+     * In c#, RunTime Polymorphism means overriding a base class method with a method in the child class. 
+     * This is done by using the override and virtual keywords.
      */
-
-    class Problem_9_to_10
+     
+    class XX
     {
-        public int addNumbers(int a, int b)
+        public virtual void foo()
         {
-            return 0;
+            Console.WriteLine("Fn foo from class XX");
         }
-        public int addNumbers(string a, string b)
+    }
+
+    class YY: XX
+    {
+        public override void foo()
         {
-            return Int32.Parse(a) + Int32.Parse(b);
+            Console.WriteLine("Fn foo from class YY");
+        }
+
+        public static void printNumber(int x)
+        {
+            Console.WriteLine("printing "+x + " from int");
+        }
+
+        public static void printNumber(String x)
+        {
+            Console.WriteLine("printing "+x+" from String");
+        }
+    }
+
+    class Problem_4_to_8
+    {
+        public static void Problem_4_to_8_Main()
+        {
+            YY yy = new YY();
+            yy.foo();
+            YY.printNumber(7777);
+            YY.printNumber("7777");
         }
     }
 }

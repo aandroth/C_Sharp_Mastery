@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections;
+
+// array:     System
+// ArrayList: System.Collections
+
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            ArrayList arrList = new ArrayList();
+            arrList.Add((double)0);
+            arrList.Add("one");
+            arrList.Add(2);
+            arrList.Add(3f);
+            arrList.Add('4');
+
+            // Still works even if do not bring in any libraries
+            int[] arrInt = new int[1];
+            arrInt[0] = 7;
+            Console.WriteLine(arrInt[0]);
+        }
+    }
+}

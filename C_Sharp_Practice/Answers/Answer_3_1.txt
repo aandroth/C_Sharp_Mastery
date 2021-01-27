@@ -1,51 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Channels;
+using System.Text;
 
-namespace C_Sharp_Practice.Problems
+namespace C_Sharp_Practice
 {
-    class Problem_3_0
+    class Practice_Problem
     {
-        static char mostCommonCharacterInString(string str)
+        public static char getMostCommonLetterInString(string str)
         {
-            char[] sortedStr = str.OrderBy(x => x).ToArray<char>();
+            char mcl = '-';
 
-            Console.WriteLine(sortedStr);
+            int mclCount = 0;
+            char currLetter = 'a';
+            int clCount = 0;
 
-            int countMax = 0;
-            char maxChar = str[0];
+            str = String.Concat(str.ToLower().OrderBy(x => x));
+            //Console.WriteLine("str: "+str);
 
-            int count = 1;
-            char a = str[0];
-
-            for(int ii=1; ii< sortedStr.Length; ++ii)
+            for(int ii=0; ii<str.Length; ++ii)
             {
-                if (a != sortedStr[ii])
+                if (currLetter != str[ii])
                 {
-                    if (count > countMax)
+                    if (clCount > mclCount)
                     {
-                        countMax = count;
-                        maxChar = a;
+                        mcl = currLetter;
+                        mclCount = clCount;
                     }
-
-                    a = sortedStr[ii];
-                    count = 1;
+                    if (97 <= str[ii] && str[ii] <= 122)
+                    {
+                        currLetter = str[ii];
+                        clCount = 0;
+                    }
+                    else
+                        continue;
                 }
                 else
                 {
-                    ++count;
+                    ++clCount;
+                }
+
+                if (ii == str.Length-1)
+                {
+                    if (clCount > mclCount)
+                    {
+                        mcl = currLetter;
+                    }
                 }
             }
 
-            return maxChar;
+            return mcl;
         }
 
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
-            Console.WriteLine("testedInYYYy: " + mostCommonCharacterInString("testedInYYYy"));
-            Console.WriteLine("amiableggg: " + mostCommonCharacterInString("amiableggg"));
+            List<string> strList = new List<string>
+            {
+                ".a.a.a.a......aa",
+                "ababababbbbBBBBa......aa",
+                "bbbbaaaaaa......aabbbbbbbb",
+                "zzzzzzzzzzzzzz......bbbbaaaaaa",
+                ",,,,,,......",
+                "The most common letter here is e",
+                "",
+                "    ",
+                "WWWWWWWWW               www"
+            };
+            for (int ii = 0; ii < strList.Count; ++ii)
+            {
+                Console.WriteLine(getMostCommonLetterInString(strList[ii]));
+            }
         }
     }
 }

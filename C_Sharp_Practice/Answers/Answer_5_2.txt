@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+
+
+
+namespace C_Sharp_Practice
+{
+    //abstract struct StructSquare{    } // // Structs cannot be abstract as they cannot be inheritted
+    //class Child : StructSquare{} // Structs are sealed automatically and cannot be abstract
+
+    //virtual struct StructSquare // Likewise, the virtual keyword is for allowing inheritted methods to be overridden, and the compiler won't allow it on a struct
+
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+        }
+    }
+}

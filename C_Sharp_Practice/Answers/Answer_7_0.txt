@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+
+// 6_0: Create a class inside of a namespace and use the using keyword to make it available. Use that class inside a different namespace
+
+namespace C_Sharp_Practice
+{
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+        }
+    }
+}

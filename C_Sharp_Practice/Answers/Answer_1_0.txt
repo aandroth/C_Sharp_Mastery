@@ -1,24 +1,51 @@
-﻿using System;
+﻿using C_Sharp_Practice.Problems;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace C_Sharp_Practice.Problems
+namespace C_Sharp_Practice
 {
-    interface IExampleInterface
+    interface IAddThing<A>
     {
-        void sampleMethod(int i, string s);
+        void AddThing(A a);
+    }
+    interface IGetThing<A> : IAddThing<A>
+    {
+        A GetThing(int idx);
     }
 
-    class Problem_4_to_7 : IExampleInterface
+    class SampleClass<A> : IGetThing<A>, IAddThing<A>
     {
-        void IExampleInterface.sampleMethod(int ii, string ss)
+        private List<A> arrA;
+
+        public void AddThing(A item)
         {
-            Console.WriteLine("We got the number " +ii+ " and the string " + ss);
+            arrA.Add(item);
         }
-
-        public static void Problem_4_to_7_Main()
+        public A GetThing(int idx)
         {
-            IExampleInterface obj = new Problem_4_to_7();
+            if(arrA.Count == 0)
+                return default(A);
 
-            obj.sampleMethod(4, "weapons");
+            if (idx < arrA.Count)
+                return arrA[idx];
+            else
+                return arrA[arrA.Count - 1];
+        }
+    }
+
+
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+            IGetThing<int> a = new SampleClass<int>();
+
+            Console.WriteLine("Printing: " + a.GetThing(10));
+
+            IGetThing<string> b = new SampleClass<string>();
+            b.AddThing("test");
+            Console.WriteLine("Printing: " + b.GetThing(10));
         }
     }
 }

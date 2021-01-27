@@ -1,0 +1,46 @@
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+
+// Import the System.Math library's static members
+
+namespace C_Sharp_Practice
+{
+
+    class Practice_Problem
+    {
+        public static void usingStringReader()
+        {
+string manyLines=@"This is line one
+This is line two
+Here is line three
+The penultimate line is line four
+This is the final, fifth line.";
+
+            var reader = new StringReader(manyLines);
+            using (reader)
+            {
+                string? item;
+                do {
+                    item = reader.ReadLine();
+                    Console.WriteLine(item);
+                } while(item != null);
+            }
+            try
+            {
+                Console.WriteLine("Peeking: " + reader.Peek());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+        }
+
+        public static void Practice_Problem_Main()
+        {
+            usingStringReader();
+        }
+    }
+}

@@ -1,64 +1,80 @@
 ﻿using System;
+using System.Security.Cryptography;
 
-namespace C_Sharp_Practice.Problems
+// array:     System
+// ArrayList: System.Collections
+
+
+namespace C_Sharp_Practice
 {
-    interface ICreature
+    interface ISoldier
     {
-        double takeNegativeEnergyDamage(double negativeEnergyDamage);
+        void confirmOrders(string direction, string destination);
+    }
+    class Soldier : ISoldier
+    {
+        public void confirmOrders(string direction, string destination)
+        {
+            Console.WriteLine("I go "+direction+" to " +destination+".");
+        }
     }
     interface IUndead
     {
-        double takeNegativeEnergyDamage(double negativeEnergyDamage);
+        int takeDamage(int amount, string type);
     }
-
-    class Problem_4_to_7 : ICreature, IUndead
+    class Undead : IUndead
     {
-        static double healthMax = 10.0;
-        static double health = 6.0;
-        static bool isNotUndead = true;
-
-        double ICreature.takeNegativeEnergyDamage(double negativeEnergyDamage)
+        public int takeDamage(int amount, string type)
         {
-            health -= negativeEnergyDamage;
-
-            if (health * 2 <= -(healthMax * 2))
+            if (type == "negative")
             {
-                isNotUndead = false;
-                health = -healthMax;
-            }
-
-            return health;
-        }
-
-        double IUndead.takeNegativeEnergyDamage(double negativeEnergyDamage)
-        {
-            health = ((health - negativeEnergyDamage) > -healthMax) ? health - negativeEnergyDamage : -healthMax;
-
-            return health;
-        }
-
-        static double takeNegativeEnergyDamage(double negativeEnergyDamage)
-        {
-            if (isNotUndead)
-            {
-                ICreature creature = new Problem_4_to_7();
-
-                return creature.takeNegativeEnergyDamage(negativeEnergyDamage);
+                Console.WriteLine("Healed for "+amount);
+                return amount;
             }
             else
             {
-                IUndead undead = new Problem_4_to_7();
-
-                return undead.takeNegativeEnergyDamage(negativeEnergyDamage);
+                Console.WriteLine("Damaged for "+amount);
+                return -amount;
             }
         }
+    }
 
-        public static void Problem_4_to_7_Main()
+    class SkeletonWarrior
+    {
+        int m_health;
+        int m_healthMax;
+
+        ISoldier i_s = new Soldier();
+        IUndead i_u = new Undead();
+
+        public SkeletonWarrior(int maxHealth)
         {
-            Console.WriteLine("Hit with 2, Health: " + takeNegativeEnergyDamage(2.0));
-            Console.WriteLine("Hit with 3, Health: " + takeNegativeEnergyDamage(3.0));
-            Console.WriteLine("Hit with 30, Health: " + takeNegativeEnergyDamage(30.0));
-            Console.WriteLine("Hit with 5, Health: " + takeNegativeEnergyDamage(5.0));
+            m_health = m_healthMax = maxHealth;
+
+        }
+
+        public void confirmOrders(string direction, string destination)
+        {
+            i_s.confirmOrders(direction, destination);
+        }
+
+        public void takeDamage(int amount, string type)
+        {
+            m_health = i_u.takeDamage(amount, type);
+            m_health = Math.Min(m_healthMax, m_health);
+            m_health = Math.Max(m_health, 0);
+        }
+    }
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            SkeletonWarrior sw = new SkeletonWarrior(7);
+
+            sw.confirmOrders("South", "LegoLand");
+            sw.takeDamage(3, "holy");
+            sw.takeDamage(10, "negative");
         }
     }
 }

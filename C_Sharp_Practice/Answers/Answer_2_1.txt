@@ -1,8 +1,5 @@
 ﻿using System;
 
-// Polymorphism:
-// Polymorphsm is the ability of code to 
-
 namespace C_Sharp_Practice.Problems
 {
     /*

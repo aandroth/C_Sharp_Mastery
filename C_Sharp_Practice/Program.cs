@@ -7,11 +7,12 @@ namespace C_Sharp_Practice
     {
         static void Main(string[] args)
         {
-            //_Question_Picker.chooseQ();
+            _Question_Picker.QuestionPicker_Main();
             //Problem_0_to_3.Problem_0_to_3_Main();
-            //Problem_4_to_8.Problem_4_to_8_Main();
+            //Research.Research_Main();
             //Problem_9_to_10.Problem_9_to_10_Main();
-            Problem_3_0.Problem_3_0_Main();
+            //Practice_Problem.Practice_Problem_Main();
+            //Hackerrank_Problem.Hackerrank_Problem_Main();
         }
     }
 }

@@ -1,127 +1,99 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-namespace C_Sharp_Practice.Problems
+namespace C_Sharp_Practice
 {
-    // "3_3: Write an algorithm such that if an element in an MxN matrix is zero, its entire row and column are set to 0. Then eturn the total of all non-zero elements.",
-                
-    class Problem_3_0
+    class Practice_Problem
     {
-        static private int matrixTotalExceptColsAndRowsWithZeros(int[,] matrix, int width, int height)
+        public static int findSumOfNonZeroColsAndRows(int[,] intTwoD, int width, int length)
         {
-            HashSet<int> rowSet = new HashSet<int>();
-            HashSet<int> colSet = new HashSet<int>();
+            HashSet<int> rows = new HashSet<int>();
+            HashSet<int> cols = new HashSet<int>();
+            int sum = 0;
 
-            for (int ii = 0; ii < height; ++ii)
+            for (int ii = 0; ii < width; ++ii)
             {
-                for (int jj = 0; jj < width; ++jj)
+                for (int jj = 0; jj < length; ++jj)
                 {
-                    Console.Write(matrix[ii, jj] + ", ");
-                }
-                Console.WriteLine("");
-            }
-            Console.WriteLine("");
-            for (int ii = 0; ii < height; ++ii)
-            {
-                for (int jj = 0; jj < width; ++jj)
-                {
-                    if (matrix[ii, jj] == 0)
+                    if (intTwoD[ii, jj] == 0)
                     {
-                        rowSet.Add(ii);
-                        colSet.Add(jj);
+                        if (!rows.Contains(ii))
+                            rows.Add(ii);
+                        if (!cols.Contains(jj))
+                            cols.Add(jj);
                     }
                 }
             }
-            int total = 0;
-            for (int ii = 0; ii < height; ++ii)
+
+            for (int ii = 0; ii < width; ++ii)
             {
-                for (int jj = 0; jj < width; ++jj)
+                for (int jj = 0; jj < length; ++jj)
                 {
-                    if (!rowSet.Contains(ii) && !colSet.Contains(jj))
+                    if (!rows.Contains(ii) && !cols.Contains(jj))
                     {
-                        total += matrix[ii,jj];
+                        sum += intTwoD[ii, jj];
                     }
                 }
             }
-            //for (int ii = 0; ii < height; ++ii)
-            //{
-            //    for (int jj = 0; jj < width; ++jj)
-            //    {
-            //        Console.Write(matrix[ii, jj] + ", ");
-            //    }
-            //    Console.WriteLine("");
-            //}
-            //Console.WriteLine("");       
-            Console.WriteLine("rowSet:");
-            Console.WriteLine(String.Join(", ", rowSet));  
-            Console.WriteLine("colSet:");
-            Console.WriteLine(String.Join(", ", colSet));
 
-            return total;
-        }
-        static private int[,] zeroOutRowsAndCols(int[,] matrix, int width, int height, int col, int row)
-        {
-            for(int ii=0; ii < col; ++ii)
-            {
-                matrix[ii, col] = 0;
-            }
-
-            Console.WriteLine("Zero out col: " + col);
-            for (int ii = 0; ii < height; ++ii)
-            {
-                for (int jj = 0; jj < width; ++jj)
-                {
-                    Console.Write(matrix[ii, jj] + ", ");
-                }
-                Console.WriteLine("");
-            }
-            Console.WriteLine("");
-
-            for (int ii=0; ii < row; ++ii)
-            {
-                matrix[row, ii] = 0;
-            }
-
-            Console.WriteLine("Zero out row: "+row);
-            for (int ii = 0; ii < height; ++ii)
-            {
-                for (int jj = 0; jj < width; ++jj)
-                {
-                    Console.Write(matrix[ii, jj] + ", ");
-                }
-                Console.WriteLine("");
-            }
-            Console.WriteLine("");
-
-            return matrix;
+            return sum;
         }
 
-        // Sort an array in descending order
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
-            int[,] m0 = new int[,]
+            int[,] A = new int[,] // 12
+            {
+                { 2, 3, 4, 5, 0 },
+                { 1, 1, 1, 1, 1 },
+                { 2, 3, 4, 5, 0 },
+                { 2, 2, 2, 2, 2 },
+                { 2, 3, 4, 5, 0 }
+            };
+            int[,] B = new int[,] // 14
+            {
+                { 2, 3, 4, 5, 0 },
+                { 1, 1, 1, 1, 1 },
+                { 2, 3, 4, 5, 1 },
+                { 2, 0, 2, 2, 2 },
+                { 2, 3, 4, 5, 0 }
+            };
+            int[,] C = new int[,] // 21
+            {
+                { 2, 3, 4, 5, 0 },
+                { 1, 1, 1, 1, 1 },
+                { 0, 3, 4, 5, 0 },
+                { 2, 2, 2, 2, 2 },
+                { 2, 3, 4, 5, 4 }
+            };
+
+            Console.WriteLine(findSumOfNonZeroColsAndRows(A, 5, 5));
+            Console.WriteLine(findSumOfNonZeroColsAndRows(B, 5, 5));
+            Console.WriteLine(findSumOfNonZeroColsAndRows(C, 5, 5));
+
+            int[,] m0 = new int[,] // 4
             {
                 {0, 1, 2, 3},
                 {1, 1, 2, 3},
                 {0, 1, 0, 3},
                 {0, 1, 2, 3},
             };
-            int[,] m1 = new int[,]
+            int[,] m1 = new int[,] // 0
             {
                 {0, 1, 2, 3},
                 {1, 0, 2, 3},
                 {0, 1, 0, 3},
                 {0, 1, 2, 0},
             };
-            int[,] m2 = new int[,]
+            int[,] m2 = new int[,] // 0
             {
                 {0, 1, 2, 3},
                 {1, 1, 0, 3},
                 {0, 1, 0, 3},
                 {0, 1, 2, 3},
             };
-            int[,] m3 = new int[,]
+            int[,] m3 = new int[,] // 6
             {
                 {0, 1, 2, 3},
                 {1, 1, 2, 3},
@@ -129,10 +101,10 @@ namespace C_Sharp_Practice.Problems
                 {0, 1, 2, 3},
             };
 
-            Console.WriteLine("m0: " + matrixTotalExceptColsAndRowsWithZeros(m0, 4, 4));
-            Console.WriteLine("m1: " + matrixTotalExceptColsAndRowsWithZeros(m1, 4, 4));
-            Console.WriteLine("m2: " + matrixTotalExceptColsAndRowsWithZeros(m2, 4, 4));
-            Console.WriteLine("m3: " + matrixTotalExceptColsAndRowsWithZeros(m3, 4, 4));
+            Console.WriteLine("m0: " + findSumOfNonZeroColsAndRows(m0, 4, 4));
+            Console.WriteLine("m1: " + findSumOfNonZeroColsAndRows(m1, 4, 4));
+            Console.WriteLine("m2: " + findSumOfNonZeroColsAndRows(m2, 4, 4));
+            Console.WriteLine("m3: " + findSumOfNonZeroColsAndRows(m3, 4, 4));
         }
     }
 }

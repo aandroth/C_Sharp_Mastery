@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+
+namespace C_Sharp_Practice
+{
+    abstract class Undead
+    {
+        public abstract void foo();
+    }
+
+    class Skeleton : Undead
+    {
+        public override void foo() // The override keyword lets the compiler know that we are overriding the base class' abstract fn
+        {
+            Console.WriteLine("I am the scary skelly");
+        }
+    }
+
+    class Ghost : Undead
+    {
+        public override void foo() // The override keyword lets the compiler know that we are overriding the base class' abstract fn
+        {
+            Console.WriteLine("I am the scary ghosty");
+        }
+    }
+
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
+        {
+            Skeleton s = new Skeleton();
+            s.foo();
+
+            Ghost g = new Ghost();
+            g.foo();
+
+            Undead u = new Skeleton();
+            u.foo(); // Trying to call the base class' abstract class through a child class just calls the child class' override of the fn
+        }
+    }
+}

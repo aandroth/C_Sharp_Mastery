@@ -2,38 +2,33 @@
 
 namespace C_Sharp_Practice.Problems
 {
-    interface ICreature
-    {
-        double takeDamage(double attack, double damage);
-    }
     interface IMagicUser
     {
-        double castDamageSpell();
+        void stateClassType();
+        void stateMagicType();
     }
 
-    class Problem_4_to_7 : ICreature, IMagicUser
+    class Wizard : IMagicUser
     {
-        static double defense = 3.0;
-        static double magicPower = 7.0;
-
-        double ICreature.takeDamage(double attack, double damage)
+        void IMagicUser.stateClassType()
         {
-            return (attack >= defense && (damage - defense) > 0) ? damage - defense : 0;
+            Console.WriteLine("I am a wizard!");
         }
 
-        double IMagicUser.castDamageSpell()
+        public void stateMagicType()
         {
-            return magicPower;
+            Console.WriteLine("I use arcane magic!");
         }
+    }
 
-        public static void Problem_4_to_7_Main()
+
+    class Problem_3_0
+    {
+        public static void Problem_3_0_Main()
         {
-            ICreature creature = new Problem_4_to_7();
-            Console.WriteLine("takeDamage: " + creature.takeDamage(4.0, 1.9));
-            Console.WriteLine("takeDamage: " + creature.takeDamage(3.0, 4.0));
-
-            IMagicUser magicUser = new Problem_4_to_7();
-            Console.WriteLine("castDamageSpell: " + magicUser.castDamageSpell());
+            IMagicUser i_mu = new Wizard();
+            i_mu.stateClassType();
+            i_mu.stateMagicType();
         }
     }
 }

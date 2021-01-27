@@ -1,0 +1,99 @@
+﻿using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+
+// Import the System.Math library's static members
+
+namespace C_Sharp_Practice
+{
+    class Problem_3_0
+    {
+        // Complete the countTriplets function below.
+        static long countTriplets(List<long> arr, long r)
+        {
+            long count = 0;
+            Dictionary<long, long> valuesR = new Dictionary<long, long>();
+
+            //Console.WriteLine("count: " + arr.Count);
+            for (int ii = 0; ii < arr.Count; ++ii)
+            {
+                if (arr[ii] % r != 0 && arr[ii] != 1)
+                    continue;
+
+                //Console.WriteLine("Adding " + arr[ii]);
+                if (valuesR.ContainsKey(arr[ii]))
+                    valuesR[arr[ii]] = valuesR[arr[ii]] + 1;
+                else
+                    valuesR.Add(arr[ii], 1);
+            }
+
+            if (r == 1)
+            {
+                foreach (KeyValuePair<long, long> entry in valuesR)
+                {
+                    long top = (valuesR[entry.Key] * (valuesR[entry.Key] - 1) * (valuesR[entry.Key] - 2));
+                    Console.WriteLine("top: " + top);
+
+                    Console.WriteLine(entry.Key + ": " + entry.Value);
+                    count += (top);
+                }
+                count = count / (6);
+            }
+            else
+            {
+                for (int ii = 0; ii < arr.Count; ++ii)
+                {
+                    if (arr[ii] % r != 0 && arr[ii] != 1)
+                        continue;
+                    //Console.WriteLine(arr[ii]);
+                    valuesR[arr[ii]] = valuesR[arr[ii]] - 1;
+                    if (valuesR.ContainsKey(arr[ii] * r) && valuesR.ContainsKey(arr[ii] * r * r))
+                    {
+                        count += valuesR[arr[ii] * r] * valuesR[arr[ii] * r * r];
+                    }
+                }
+            }
+
+            return count;
+        }
+
+        public static void Problem_3_0_Main()
+        {
+            Console.WriteLine("Reading lines");
+            string[] text = System.IO.File.ReadLines("input.txt").ToArray<string>();
+            Console.WriteLine("Finished reading.");
+
+            string[] nr = text[0].Split(' ');//.ToArray<string>();
+
+            int n = Convert.ToInt32(nr[0]);
+
+            long r = Convert.ToInt64(nr[1]);
+            Console.WriteLine("n: " + n + ", r: " + r + ", text.Length: " + text[1].Length);
+
+            string[] values = text[1].Split(' ');
+            Console.WriteLine("values.Length: " + values.Length);
+            List<long> arr = new List<long>();
+            for (int ii = 0; ii < values.Length; ++ii)
+            {
+                arr.Add(Convert.ToInt64(values[ii]));
+            }
+
+            long ans = countTriplets(arr, r);
+
+            Console.WriteLine(ans);
+            //1667018988625
+            //7957269827380
+        }
+    }
+}

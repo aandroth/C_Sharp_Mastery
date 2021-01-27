@@ -12,3 +12,5 @@ C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\obj\Debug\netcorea
 C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\obj\Debug\netcoreapp3.1\C_Sharp_Practice.pdb
 C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\obj\Debug\netcoreapp3.1\C_Sharp_Practice.genruntimeconfig.cache
 C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\bin\Debug\netcoreapp3.1\ActiveQs.txt
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\bin\Debug\netcoreapp3.1\Linq_Methods.txt
+C:\Users\Aquin\Source\Repos\C_Sharp_Practice\C_Sharp_Practice\bin\Debug\netcoreapp3.1\ActiveQs_New.txt
