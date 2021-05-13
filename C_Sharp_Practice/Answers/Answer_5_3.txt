@@ -54,7 +54,7 @@ namespace C_Sharp_Practice
             ss0.setWidth(100);
             Console.WriteLine("The width of ss0 was changed to 100, but the width of ss1 is still " + ss1.getWidth());
 
-            StructSquare ss2;
+            StructSquare ss2; // A struct with no assignment
             //ss2.getWidth(); // We can't call any fns
             ss2.tag = "ss2"; // We can assign public variables
 

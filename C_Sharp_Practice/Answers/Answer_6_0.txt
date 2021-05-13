@@ -1,16 +1,32 @@
 ﻿using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
-// 6_0: Create a class inside of a namespace and use the using keyword to make it available. Use that class inside a different namespace
+using SmallnameSpace;  // If we were to comment out this line, we couldn't use SmallClass in the C_Sharp_Practice namespace
+
+namespace SmallnameSpace
+{
+    class SmallClass
+    {
+        public int value;
+    }
+}
+
 
 namespace C_Sharp_Practice
 {
-    class Problem_3_0
+    class Practice_Problem
     {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
+            SmallClass sc = new SmallClass() { value = 7 };
+
+            Console.WriteLine(sc.value);
         }
     }
 }

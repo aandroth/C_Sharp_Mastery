@@ -15,41 +15,90 @@ I believe that this means, that a class is a Queryable class if it inherits the 
 
 
 */
+// Using ElementAtOrDefault
+//////////////////////////////////////////////////////////
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace C_Sharp_Practice
 {
-    class Pet
+    class Practice_Problem
     {
-        public string Name { get; set; }
-        public int Age { get; set; }
-    }
+        static List<int> list;
 
-    public static void OrderByEx1()
-    {
-        Pet[] pets = { new Pet { Name="Barley", Age=8 },
-                       new Pet { Name="Boots", Age=4 },
-                       new Pet { Name="Whiskers", Age=1 } };
-
-        IEnumerable<Pet> query = pets.OrderBy(pet => pet.Age);
-
-        foreach (Pet pet in query)
+        public static int getItemAt(int idx)
         {
-            Console.WriteLine("{0} - {1}", pet.Name, pet.Age);
+            if (list == null)
+                return -1;
+
+            return list.ElementAtOrDefault(idx);
         }
-    }
 
-    /*
-     This code produces the following output:
-
-     Whiskers - 1
-     Boots - 4
-     Barley - 8
-    */
-
-    class Problem_3_0
-    {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
+            int i = getItemAt(7);
+            Console.WriteLine(i);
+
+            list = new List<int>()
+            {
+                1, 2, 3, 4, 5, 6, 7, 8, 9
+            };
+            i = getItemAt(8);
+
+            Console.WriteLine(i);
+
+            i = getItemAt(-1);
+
+            Console.WriteLine(i);
         }
     }
 }
+////////////////////////////////////////////////////////////////
+
+// Zip
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            List<int> list0 = new List<int>() { 0, 1, 2, 3, 4 };
+            List<int> list1 = new List<int>() { 5, 6, 7, 8, 9 };
+
+            var list2 = list0.Zip(list1, (first, second) =>  first + second );
+
+            foreach(var li in list2)
+            {
+                Console.WriteLine(li);
+            }
+        }
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+// GroupBy
+//////////////////////////////////////////////////////////////////////////////////////////////
+        public static void Implement_GroupBy()
+        {
+            List<int> iL = new List<int>() {1, 2, 1, 12, 3, 3, 3, 4, 1, 2, 3, 1, 4, 12, 12};
+            var results = iL.GroupBy(x => x);
+
+            foreach(var r in results)
+            {
+                Console.WriteLine(r.Key + ": ");
+                foreach (int ii in r)
+                {
+                    Console.Write(ii + ", ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+//////////////////////////////////////////////////////////////////////////////////////////////

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
 
-// 6_1: Create an alias for a specific library from inside of a namespace
+// "8_1: Create a List of Book Titles {string name}, and then write a query to get the ones that has \"Tutorials\" in them",
 
 namespace C_Sharp_Practice
 {
-    class Problem_3_0
+    class Practice_Problem
     {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
         }
     }

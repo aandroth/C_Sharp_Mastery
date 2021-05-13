@@ -7,7 +7,9 @@ using System.Text;
 
 namespace C_Sharp_Practice
 {
-    //abstract struct StructSquare{    } // // Structs cannot be abstract as they cannot be inheritted
+    interface ISquareInterface {}
+    struct StructSquare : ISquareInterface {    } // Structs can inherit from interfaces
+    //abstract struct StructSquare{    } // // Structs cannot be abstract as they cannot be inherited
     //class Child : StructSquare{} // Structs are sealed automatically and cannot be abstract
 
     //virtual struct StructSquare // Likewise, the virtual keyword is for allowing inheritted methods to be overridden, and the compiler won't allow it on a struct

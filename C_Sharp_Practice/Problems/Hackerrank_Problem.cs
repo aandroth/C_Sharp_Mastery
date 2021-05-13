@@ -1,123 +1,100 @@
-﻿using System;
+﻿using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
 
-namespace C_Sharp_Practice.Problems
+class Hackerrank_Problem
 {
-    class Hackerrank_Problem
+    // Complete the substrCount function below.
+    static long substrCount(int n, string s)
     {
-        // Complete the countTriplets function below.
-        static long countTriplets(List<long> arr, long r)
+        int count = 0;
+
+        for(int ii=0; ii<s.Length; ++ii)
         {
-            long count = 0;
-            Dictionary<long, long> valuesR = new Dictionary<long, long>();
-            Dictionary<long, long> valuesL = new Dictionary<long, long>();
+            char currChar = s[ii];
+            int diffChar = -1;
 
-            for (int ii = 0; ii < arr.Count; ++ii)
+            for(int jj=ii; jj<s.Length; ++jj)
             {
-                //if (arr[ii] % r != 0 && arr[ii] != 1)
-                //    continue;
-                //Console.WriteLine("Adding " + arr[ii]);
-                if (valuesR.ContainsKey(arr[ii]))
-                    valuesR[arr[ii]] = valuesR[arr[ii]] + 1;
-                else
-                    valuesR.Add(arr[ii], 1);
-
-                //if (valuesR.ContainsKey(arr[ii] * r) && valuesR.ContainsKey(arr[ii] * r * r))
-                //{
-                //    count += ((valuesR[arr[ii] * r]) * (valuesR[arr[ii] * r * r]));
-                //}
-                //Console.WriteLine();
-                //Console.WriteLine("Count: " + count);
-            }
-
-            ////Console.WriteLine("count: " + arr.Count);
-            //int numberCount = 0;
-            //for (int ii = 0; ii < arr.Count; ++ii)
-            //{
-            //    if (arr[ii] % r != 0 && arr[ii] != 1)
-            //        continue;
-            //    //Console.WriteLine("Adding " + arr[ii]);
-            //    if (valuesR.ContainsKey(arr[ii]))
-            //        valuesR[arr[ii]] = valuesR[arr[ii]] + 1;
-            //    else
-            //    {
-            //        valuesR.Add(arr[ii], 1);
-            //        ++numberCount;
-            //    }
-            //}
-            //Console.WriteLine("nC: "+numberCount);
-
-            if (r == 1)
-            {
-                foreach (KeyValuePair<long, long> entry in valuesR)
+                if(currChar == s[jj])
                 {
-                    long top = (valuesR[entry.Key] * (valuesR[entry.Key] - 1) * (valuesR[entry.Key] - 2));
-                    //Console.WriteLine("top: " + top);
-
-                    //Console.WriteLine(entry.Key + ": " + entry.Value);
-                    count += (top);
-                }
-                count = count / (6);
-            }
-            else
-            {
-                for (int ii = 0; ii < arr.Count; ++ii)
-                {
-                    //if (arr[ii] % r != 0 && arr[ii] != 1)
-                    //    continue;
-                    //Console.WriteLine(arr[ii]);
-                    valuesR[arr[ii]] = valuesR[arr[ii]] - 1;
-                    //if (valuesR[arr[ii]] < 100)
-                    //{
-                    //    foreach (KeyValuePair<long, long> entry in valuesR)
-                    //    {
-                    //        Console.Write(entry.Key + ":" + entry.Value + "   ");
-                    //    }
-                    //    //Console.WriteLine();
-                    //    //Console.WriteLine("Count: " + count);
-                    //}
-                    if ((arr[ii] % r) == 0 && valuesL.ContainsKey(arr[ii] / r) && valuesR.ContainsKey(arr[ii] * r))
+                    if (diffChar == -1 ||
+                       jj - diffChar == diffChar - ii)
                     {
-                        //Console.WriteLine("Adding " + (valuesL[arr[ii] / r] * valuesR[arr[ii] * r]));
-                        count += ((valuesL[arr[ii] / r]) * (valuesR[arr[ii] * r]));
+                        ++count;
                     }
-
-                    if (valuesL.ContainsKey(arr[ii]))
-                        valuesL[arr[ii]] = valuesL[arr[ii]] + 1;
+                }
+                else
+                {
+                    if(diffChar == -1)
+                    {
+                        diffChar = jj;
+                    }
                     else
-                        valuesL.Add(arr[ii], 1);
+                    {
+                        break;
+                    }
                 }
             }
-            return count;
         }
+        return count;
+    }
 
-        public static void Hackerrank_Problem_Main()
-        {
-            Console.WriteLine("Reading lines");
-            string[] text = System.IO.File.ReadLines("input.txt").ToArray<string>();
-            Console.WriteLine("Finished reading.");
-
-            string[] nr = text[0].Split(' ');
-
-            int n = Convert.ToInt32(nr[0]);
-
-            long r = Convert.ToInt64(nr[1]);
-            Console.WriteLine("n: " + n + ", r: " + r + ", text.Length: " + text[1].Length);
-
-            string[] values = text[1].Split(' ');
-            Console.WriteLine("values.Length: " + values.Length);
-            List<long> arr = new List<long>();
-            for (int ii = 0; ii < values.Length; ++ii)
-            {
-                arr.Add(Convert.ToInt64(values[ii]));
-            }
-
-            long ans = countTriplets(arr, r);
-
-            Console.WriteLine(ans);
-            //1667018988625
-            //7957269827380
-        }
+    public static void Hackerrank_Problem_Main()
+    {
+        Console.WriteLine("0: " + substrCount(5, "aadaa"));
+        Console.WriteLine("0: " + substrCount(5, "asasd"));
+        Console.WriteLine("1: " + substrCount(7, "abcbaba"));
+        Console.WriteLine("2: " + substrCount(4, "aaaa"));
+        Console.WriteLine("2: " + substrCount(5, "daaaa"));
     }
 }
+
+
+
+
+
+
+/*
+ * 
+        long count = s.Length;
+
+        char currChar, startChar;
+        for (int ii = 0; ii < s.Length; ++ii)
+        {
+            startChar = s[ii];
+            int diffCharIdx = -1;
+
+            for (int jj = ii+1; jj < s.Length; ++jj)
+            {
+                currChar = s[jj];
+
+                if(currChar == s[ii])
+                {
+                    if(diffCharIdx == -1 ||
+                       (jj - diffCharIdx == diffCharIdx - ii))
+                    {
+                        ++count;
+                    }
+                }
+                else
+                {
+                    if (diffCharIdx == -1)
+                        diffCharIdx = jj;
+                    else
+                        break;
+                }
+            }
+        }
+        return count;
+ * */

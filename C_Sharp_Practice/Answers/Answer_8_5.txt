@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+
+namespace C_Sharp_Practice
+{
+    class ClassWithValues : IComparable<ClassWithValues>, IComparable<int>
+    {
+        public int value;
+        public string name;
+
+        public ClassWithValues(int v, string n)
+        {
+            value = v;
+            name = n;
+        }
+
+        public int CompareTo([AllowNull] ClassWithValues other)
+        {
+            return value.CompareTo(other.value);
+        }
+
+        public int CompareTo([AllowNull] int other)
+        {
+            return value.CompareTo(other);
+        }
+
+        // We can also make a general purpose CompareTo, specifying types within it
+        // This is helpful if we don't want to have to specify any types for IComparable
+        //public int CompareTo(object obj)
+        //{
+        //    if (obj.GetType() == this.GetType())
+        //        return value.CompareTo(((ClassWithValues)obj).value);
+        //    return value.CompareTo(obj);
+        //}
+    }
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            List<ClassWithValues> cV = new List<ClassWithValues>()
+            {
+                new ClassWithValues(1, "a"),
+                new ClassWithValues(5, "b"),
+                new ClassWithValues(3, "c"),
+                new ClassWithValues(7, "d"),
+                new ClassWithValues(0, "e"),
+            };
+
+            var iE = cV.OrderBy(x => x.name);
+
+            for(int ii=0; ii<cV.Count; ++ii)
+            {
+                Console.WriteLine(cV[ii].name);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            foreach (var ie in iE)
+            {
+                Console.WriteLine(ie.name);
+            }
+        }
+    }
+}

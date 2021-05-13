@@ -9,43 +9,32 @@ namespace C_Sharp_Practice
 {
     interface ISoldier
     {
-        void confirmOrders(string direction, string destination);
-    }
-    class Soldier : ISoldier
-    {
-        public void confirmOrders(string direction, string destination)
+        public static void confirmOrders(string direction, string destination)
         {
-            Console.WriteLine("I go "+direction+" to " +destination+".");
+            Console.WriteLine("I go " + direction + " to " + destination + ".");
         }
     }
     interface IUndead
     {
-        int takeDamage(int amount, string type);
-    }
-    class Undead : IUndead
-    {
-        public int takeDamage(int amount, string type)
+        public static int takeDamage(int amount, string type)
         {
             if (type == "negative")
             {
-                Console.WriteLine("Healed for "+amount);
+                Console.WriteLine("Healed for " + amount);
                 return amount;
             }
             else
             {
-                Console.WriteLine("Damaged for "+amount);
+                Console.WriteLine("Damaged for " + amount);
                 return -amount;
             }
         }
     }
 
-    class SkeletonWarrior
+    class SkeletonWarrior : ISoldier, IUndead
     {
         int m_health;
         int m_healthMax;
-
-        ISoldier i_s = new Soldier();
-        IUndead i_u = new Undead();
 
         public SkeletonWarrior(int maxHealth)
         {
@@ -55,15 +44,16 @@ namespace C_Sharp_Practice
 
         public void confirmOrders(string direction, string destination)
         {
-            i_s.confirmOrders(direction, destination);
+            ISoldier.confirmOrders(direction, destination);
         }
 
         public void takeDamage(int amount, string type)
         {
-            m_health = i_u.takeDamage(amount, type);
-            m_health = Math.Min(m_healthMax, m_health);
-            m_health = Math.Max(m_health, 0);
+            m_health += IUndead.takeDamage(amount, type);
+            m_health = Math.Clamp(m_health, 0, m_healthMax);
         }
+
+        public int getHealth() { return m_health; }
     }
 
     class Practice_Problem
@@ -73,8 +63,11 @@ namespace C_Sharp_Practice
             SkeletonWarrior sw = new SkeletonWarrior(7);
 
             sw.confirmOrders("South", "LegoLand");
+            Console.WriteLine("Health is at " + sw.getHealth());
             sw.takeDamage(3, "holy");
+            Console.WriteLine("Health is at " + sw.getHealth());
             sw.takeDamage(10, "negative");
+            Console.WriteLine("Health is at " + sw.getHealth());
         }
     }
 }

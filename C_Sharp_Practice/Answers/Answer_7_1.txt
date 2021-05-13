@@ -1,16 +1,37 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
+using System.Linq;
+using System.Numerics;
 using System.Text;
-
-// 6_1: Create an alias for a specific library from inside of a namespace
 
 namespace C_Sharp_Practice
 {
-    class Problem_3_0
+    class Practice_Problem
     {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
+            // An ArrayList is capable of dynamically changing its size, and can accomadate different data types, and changing between those data types.
+            ArrayList aL = new ArrayList();
+
+            // An Array by contrast is completely fixed, not being able to change types or even size
+            int[] arr = new int[7];
+
+            aL.Add("4.0");
+            aL.Add((float)4.0);
+            aL.Add(4);
+
+            for(int ii=0; ii<aL.Count; ++ii)
+            {
+                Console.WriteLine(aL[ii]);
+            }
+
+            aL[0] = new Vector2(1, 2);
+
+            for (int ii = 0; ii < aL.Count; ++ii)
+            {
+                Console.WriteLine(aL[ii]);
+            }
         }
     }
 }

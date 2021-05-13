@@ -14,7 +14,7 @@ namespace C_Sharp_Practice.Problems
      * By using compile-time polymorphism, we can perform different tasks with the same method name by passing different parameters.
      */
 
-    class Problem_9_to_10
+    class Practice_Problem
     {
         public int addNumbers(int a, int b)
         {
@@ -25,7 +25,7 @@ namespace C_Sharp_Practice.Problems
             return Int32.Parse(a) + Int32.Parse(b);
         }
 
-        static void Problem_9_to_10_Main(){
+        static void Practice_Problem_Main(){
             Console.WriteLine("addNumers(5, 2): " + addNumers(5, 2));
             Console.WriteLine("addNumers("5", "2"): " + addNumers("5", "2"));
         }

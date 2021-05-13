@@ -18,7 +18,7 @@ namespace C_Sharp_Practice
             arrList.Add(3f);
             arrList.Add('4');
 
-            // Still works even if do not bring in any libraries
+            // Still works even if do not bring in any libraries...
             int[] arrInt = new int[1];
             arrInt[0] = 7;
             Console.WriteLine(arrInt[0]);

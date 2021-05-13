@@ -1,39 +1,64 @@
 ﻿using System;
 using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
-// Import the System.Math library's static members
 
 namespace C_Sharp_Practice
 {
-
-    class Problem_3_0
+    class SmallClass
     {
-        public static void usingStringReader()
-        {
-string manyLines=@"This is line one
-This is line two
-Here is line three
-The penultimate line is line four
-This is the final, fifth line.";
+        public int value;
+    }
 
-            var reader = new StringReader(manyLines);
-            using (reader)
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            ArrayList arrList = new ArrayList()
             {
-                string? item;
-                do {
-                    item = reader.ReadLine();
-                    Console.WriteLine(item);
-                } while(item != null);
-            }
-            // reader is in scope here, but has been disposed
-        }
+                new SmallClass(){value = 7}, // Since we can put a class (a reference object) into an ArrayList, we should infer that we can put a null in too
+                7,
+                "text",
+                null  // And that is indeed the case
+            };
 
-        public static void Problem_3_0_Main()
-        {
-            usingStringReader();
+            int[] arr = new int[]
+            {
+                0, 1, 2, 3, 4, 5, 6, 7 //, null    // We can't put a null directly into an Array like we can with ArrayList
+            };
+
+            int? intCanBeNull0 = null;
+            int? intCanBeNull1 = 7;
+            // arr[4] = intCanBeNull1;     // We also can't put in a value that could be null, like an int?
+            arr[4] = (int)intCanBeNull1;   // However, we can typecast the int? into a regular int
+
+            // Of course, we have to be careful that the value is not null, or we will throw an error
+            // The code below throws an error because we are trying to put a null into an Array
+            try
+            {
+                arr[2] = (int)intCanBeNull0;
+                Console.WriteLine(arr[2]);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+
+            // We can creat an Array of int?, which can then take null as a value
+            int?[] canBeNullIntArr = new int?[]
+            {
+                null, 1, null, 3, 4, null
+            };
+            Console.WriteLine("Printing items in canBeNullIntArr. Indeces 0, 2, and 5 are null");
+            for (int ii = 0; ii < canBeNullIntArr.Length; ++ii)
+            {
+                Console.WriteLine(canBeNullIntArr[ii]);
+            }
         }
     }
 }

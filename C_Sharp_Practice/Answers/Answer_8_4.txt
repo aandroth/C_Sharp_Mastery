@@ -1,42 +1,44 @@
 ﻿using System;
-using System.IO;
+using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Text;
-
-// Import the System.Math library's static members
+using System.Data;
+using System.Linq;
 
 namespace C_Sharp_Practice
 {
-
-    class Problem_3_0
+    class Practice_Problem
     {
-        public static void usingStringReader()
+        public static void Practice_Problem_Main()
         {
-string manyLines=@"This is line one
-This is line two
-Here is line three
-The penultimate line is line four
-This is the final, fifth line.";
+            int[] intArr = new int[] { 
+                1, 2, 3, 4, 5, 6, 7
+            };
 
+            // ArrayList is not confined to a single type, unlike an array or even a list
+            // ArrayList otherwise acts like an int, with functions like Add
+            ArrayList intList = new ArrayList();
+
+            for(int ii=0; ii<intArr.Length; ++ii)
             {
-                var reader = new StringReader(manyLines);
-                try {
-                    string? item;
-                    do {
-                        item = reader.ReadLine();
-                        Console.WriteLine(item);
-                    } while(item != null);
-                } finally
-                {
-                    reader?.Dispose();
-                }
+                intList.Add(intArr[ii]);
             }
-        }
+            for(int ii=0; ii< intList.Count; ++ii)
+            {
+                Console.WriteLine(intList[ii]);
+            }
+            intList.Add(7777);
+            Console.WriteLine();
+            Console.WriteLine();
 
-        public static void Problem_3_0_Main()
-        {
-            usingStringReader();
+            intArr = new int[intList.Count];
+            for(int ii=0; ii<intList.Count; ++ii)
+            {
+                intArr[ii] = (int)intList[ii];
+            }
+            for(int ii=0; ii< intList.Count; ++ii)
+            {
+                Console.WriteLine(intArr[ii]);
+            }
         }
     }
 }

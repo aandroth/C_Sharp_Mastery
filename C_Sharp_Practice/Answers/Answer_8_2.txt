@@ -1,34 +1,59 @@
 ﻿using System;
-using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
-// An abstract class is a class that cannot be instantiated by itself, it must be inherited to be used
-// In C++ this would be a pure virtual class
+// There are two different and valid ways of writing this code, inline, and as an SQL-like query
 
 namespace C_Sharp_Practice
 {
-
-    class Problem_3_0
+    class Student
     {
-        public static void Problem_3_0_Main()
+        public int age;
+        public string name;
+
+        public Student(int a, string n)
         {
-            // string collection
-            IList<string> stringList = new List<string>() {
-                "C# Tutorials",
-                "VB.NET Tutorials",
-                "Learn C++",
-                "MVC Tutorials" ,
-                "Java"
+            age = a;
+            name = n;
+        }
+    }
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            List<Student> students = new List<Student>()
+            {
+                new Student(15, "A"),
+                new Student(16, "B"),
+                new Student(9, "C"),
+                new Student(2, "D"),
+                new Student(97, "E"),
+                new Student(13, "F"),
             };
 
-            // LINQ Query Syntax
-            var result = from s in stringList
-                         where s.Contains("Tutorials")
+            var query0 = students.Where(x => x.age >= 13 && x.age <= 19);
+
+            foreach(var q in query0)
+            {
+                Console.WriteLine(q.name);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            var query1 = from s in students
+                         where s.age >= 13
+                         where s.age <= 19
                          select s;
 
-            foreach(var r in result)
+            foreach (var q in query1)
             {
-                Console.WriteLine(r);
+                Console.WriteLine(q.name);
             }
         }
     }

@@ -8,19 +8,21 @@ Structs share many features with classes but with the following limitations as c
 
 Struct cannot have a default constructor (a constructor without parameters) or a destructor.
 
-A struct cannot inherit from another struct or class, and it cannot be the base of a class. All structs inherit directly from System.ValueType, 
-which inherits from System.Object.
+A struct cannot inherit from another struct or class, and it cannot be the base of a class. 
+All structs inherit directly from System.ValueType, which inherits from System.Object.
 Struct cannot be a base class. So, Struct types cannot be abstract and are always implicitly sealed.
 Abstract and sealed modifiers are not allowed and struct member cannot be protected or protected internals.
 Function members in a struct cannot be abstract or virtual, and the override modifier is allowed only to the override methods inherited from System.ValueType.
 
-Struct does not allow the instance field declarations to include variable initializers. But, static fields of a struct are allowed to include variable initializers.
+Struct does not allow the instance field declarations to include variable initializers.
+But, static fields of a struct are allowed to include variable initializers.
 A struct can implement interfaces.
 */
 
 namespace C_Sharp_Practice
 {
-    /*sealed*/ /*abstract*/ struct SealedOrAbstractStruct // Structs cannot be sealed or abstract
+    /*sealed*/ /*abstract*/
+    struct SealedOrAbstractStruct // Structs cannot be sealed or abstract
     {
         public int x;
     }
@@ -44,7 +46,8 @@ namespace C_Sharp_Practice
     struct StructSquare : I_B // : BaseClass // : BaseStruct // Structs cannot inherit other structs or classes, only interfaces
     {
         int width;// = 0; // Struct variables can't be initialized with data on creation
-        static int staticVariable = 0; // Unless they are static
+        public static int staticVariable = 4444444; // Unless they are static
+        public const int constVariable = 7777; // Unless they are static
         public string tag;
 
         //protected int protectedVariable; // Because Structs cannot be inherited from, the protected keyword isn't even allowed by the compiler
@@ -88,9 +91,9 @@ namespace C_Sharp_Practice
         }
     }
 
-    class Problem_3_0
+    class Practice_Problem
     {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
             StructSquare ss0 = new StructSquare(7);
             ss0.setWidth(7);
@@ -104,6 +107,10 @@ namespace C_Sharp_Practice
             ss2.tag = "ss2"; // We can assign public variables
             I_B i_b = new StructSquare();
             i_b.foo();
+
+            // We can have initialized variables in a struct if they are static or const
+            Console.WriteLine("Static: "+StructSquare.staticVariable);
+            Console.WriteLine("Const: " + StructSquare.constVariable);
 
             //BaseStruct ss3 = null; // A struct cannot be null
 

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
 
-// Import the System.Math library's static members
-
 namespace C_Sharp_Practice
 {
 

@@ -7,7 +7,15 @@ namespace C_Sharp_Practice
 {
     abstract class Undead
     {
+        public int spookiness;
+
         public abstract void foo();
+        public abstract void scare(int c);
+
+        public Undead(int s)
+        {
+            spookiness = s;
+        }
     }
 
     class Skeleton : Undead
@@ -16,28 +24,64 @@ namespace C_Sharp_Practice
         {
             Console.WriteLine("I am the scary skelly");
         }
+
+        public override void scare(int courage)
+        {
+            Console.WriteLine(spookiness > courage ? "Target becomes afraid!" : "Nothing happens.");
+        }
+
+        public Skeleton(int s) : base(s) {} // What is this? What do you call this? How does the ':' do this?
     }
 
     class Ghost : Undead
     {
+        private int fearsomeAura;
+
         public override void foo() // The override keyword lets the compiler know that we are overriding the base class' abstract fn
         {
             Console.WriteLine("I am the scary ghosty");
         }
+
+        public override void scare(int courage)
+        {
+            Console.Write("With a spookiness of " + (spookiness) + ", and a fearsomesness of " + fearsomeAura + " vs a " + courage + ", ");
+            Console.WriteLine((spookiness + fearsomeAura) > courage ? ("the target becomes afraid!") : "Nothing happens.");
+        }
+        public Ghost(int s, int f) : base(s-3) { fearsomeAura = f; } // What is this? What do you call this? How does the ':' do this?
     }
 
-    class Problem_3_0
+    class Practice_Problem
     {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
-            Skeleton s = new Skeleton();
+            Skeleton s = new Skeleton(1);
             s.foo();
 
-            Ghost g = new Ghost();
+            Ghost g = new Ghost(1, 1);
             g.foo();
 
-            Undead u = new Skeleton();
+            Undead u = new Skeleton(1);
             u.foo(); // Trying to call the base class' abstract class through a child class just calls the child class' override of the fn
+
+
+            List<Undead> undeadList = new List<Undead>();
+
+            undeadList.Add(new Skeleton(1));
+            undeadList.Add(new Skeleton(5));
+            undeadList.Add(new Ghost(2, 4));
+            undeadList.Add(new Ghost(7, 6));
+
+            undeadList[0].scare(7);
+            undeadList[0].scare(5);
+
+            undeadList[1].scare(7);
+            undeadList[1].scare(5);
+
+            undeadList[2].scare(7);
+            undeadList[2].scare(5);
+
+            undeadList[3].scare(7);
+            undeadList[3].scare(5);
         }
     }
 }

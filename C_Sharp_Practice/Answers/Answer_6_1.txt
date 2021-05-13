@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Text;
+using System.Linq;
+using Cat = System.Text.StringBuilder;
 
 // 6_1: Create an alias for a specific library from inside of a namespace
 
 namespace C_Sharp_Practice
 {
-    class Problem_3_0
+    class Practice_Problem
     {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
+            Cat cat = new Cat();
+
+            cat.Append("sparky");
+            cat.Append(100);
+
+            Console.WriteLine(cat);
         }
     }
 }

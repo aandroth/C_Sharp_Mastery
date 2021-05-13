@@ -1,16 +1,47 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
-// 6_0: Create a class inside of a namespace and use the using keyword to make it available. Use that class inside a different namespace
+// 7.0
+// The type difference between ArrayList and Array is that Arrayist can have any type instance in its cells
+// Array can only have the type it was instantiated with
 
 namespace C_Sharp_Practice
 {
-    class Problem_3_0
+    class Practice_Problem
     {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
+            ArrayList arrList = new ArrayList()
+            {
+                "text",
+                4.0,
+                7,
+                7777777777777,
+                new ArrayList()
+            };
+
+            int[] arr = new int[7]
+            {
+                0, 1, 2, 3, 4, 5, 6 // We can't even put what is technically a long into an int array, such as 7777777777777
+            };
+
+            for(int ii=0; ii<arrList.Count; ++ii)
+            {
+                Console.WriteLine(arrList[ii].GetType());
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            for (int ii=0; ii<arr.Length; ++ii)
+            {
+                Console.WriteLine(arr[ii].GetType());
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ namespace C_Sharp_Practice.Problems
         static double health = 6.0;
         static bool isNotUndead = true;
 
+        // 
         double ICreature.takeNegativeEnergyDamage(double negativeEnergyDamage)
         {
             health -= negativeEnergyDamage;

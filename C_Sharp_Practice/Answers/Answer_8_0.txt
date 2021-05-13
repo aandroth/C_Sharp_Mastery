@@ -11,9 +11,6 @@ There are two main classes, Enumerable, and Queryable
 Enumerable is the one that works with the in-memory collections like List, Dictionary, Hash-Map, SortedList, HashSet, and so on.
 Queryable is a static class that includes extensions methods for classes that implement the IQueryable interface.
 I believe that this means, that a class is a Queryable class if it inherits the IQueryable interface, and therefore must create the required methods as well.
-
-
-
 */
 
 namespace C_Sharp_Practice

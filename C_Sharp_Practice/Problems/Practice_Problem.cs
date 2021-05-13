@@ -1,26 +1,51 @@
 ﻿using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+
+// Inheritence:
+// Structs are always sealed, classes can be sealed, but are otherwise can be inherited
+// Structs can only inherit from interfaces
 
 namespace C_Sharp_Practice
 {
-    // Polymorphism: code that can change during the execution of a program
+    delegate void delOutsideClass();
 
-    // Run-time polymorphism: Overloading a fn name within a class by having different inputs
+    class TestClass0 {
 
-    class ExampleFn
+        public delegate void delInsideClass(int val);
+        public delInsideClass delIn = callbackFooIn;
+
+        public static void callbackFooIn(int val)
+        {
+            Console.WriteLine("callbackFooIn received " + val);
+        }
+
+        public static void callbackFooOut()
+        {
+            Console.WriteLine("callbackFooOut called");
+        }
+
+        public static void callFoo()
+        {
+            TestClass1.fooOut(callbackFooOut);
+        }
+    }
+
+    class TestClass1
     {
-        public static void foo(int i)
+        public static void fooOut(delOutsideClass delOut)
         {
-            Console.WriteLine("Overload 0");
+            delOut.Invoke();
         }
-        public static void foo(int i, int j)
+
+        public static void fooIn(TestClass0.delInsideClass delIn)
         {
-            Console.WriteLine("Overload 1");
-        }
-        public static void foo()
-        {
-            Console.WriteLine("Overload 2");
+            delIn.Invoke(7);
         }
     }
 
@@ -28,9 +53,14 @@ namespace C_Sharp_Practice
     {
         public static void Practice_Problem_Main()
         {
-            ExampleFn.foo(7);
-            ExampleFn.foo(7, 7);
-            ExampleFn.foo();
+            TestClass0.callFoo();
+
+            TestClass0 test0 = new TestClass0();
+
+            TestClass1.fooIn(test0.delIn);
+
+            //delOutsideClass delOut = TestClass0.callbackFooOut(7);
+            //TestClass1.foo();
         }
     }
 }

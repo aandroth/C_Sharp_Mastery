@@ -6,7 +6,7 @@ using System.Text;
 namespace C_Sharp_Practice
 {
     // Trick Question!
-    // We can't create a sealed abstract class because that would stop it from being inhertable, and the compiler will not let us.
+    // We can't create a sealed abstract class because that would stop it from being inheritable, and the compiler will not let us.
     //sealed abstract class AbstractClass
     //{
     //    public abstract void foo_abstract();

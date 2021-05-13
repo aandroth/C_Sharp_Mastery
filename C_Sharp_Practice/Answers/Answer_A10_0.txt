@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
 
-// 8.0
-
 /*
 Use the System.Linq to use the library
 There are two main classes, Enumerable, and Queryable
@@ -53,3 +51,35 @@ namespace C_Sharp_Practice
         }
     }
 }
+
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static int GreaterThanTwo(int x)
+        {
+            if (x > 2)
+                return x;
+            else 
+                return 0;
+        }
+
+        public static void Practice_Problem_Main()
+        {
+            List<int> iL = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 7 };
+
+            var q = iL.Select(x => GreaterThanTwo(x));
+
+            foreach(int b in q)
+            {
+                Console.WriteLine(b);
+            }
+        }
+    }
+}
+

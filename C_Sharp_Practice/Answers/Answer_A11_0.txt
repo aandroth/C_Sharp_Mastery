@@ -1,55 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
-
-// 8.0
-
-/*
-Use the System.Linq to use the library
-There are two main classes, Enumerable, and Queryable
-Enumerable is the one that works with the in-memory collections like List, Dictionary, Hash-Map, SortedList, HashSet, and so on.
-Queryable is a static class that includes extensions methods for classes that implement the IQueryable interface.
-I believe that this means, that a class is a Queryable class if it inherits the IQueryable interface, and therefore must create the required methods as well.
-
-
-
-*/
 
 namespace C_Sharp_Practice
 {
-    class Pet
+    class GenericList<T>
     {
-        public string Name { get; set; }
-        public int Age { get; set; }
-    }
+        List<T> myList = new List<T>();
 
-    public static void OrderByEx1()
-    {
-        Pet[] pets = { new Pet { Name="Barley", Age=8 },
-                       new Pet { Name="Boots", Age=4 },
-                       new Pet { Name="Whiskers", Age=1 } };
-
-        IEnumerable<Pet> query = pets.OrderBy(pet => pet.Age);
-
-        foreach (Pet pet in query)
+        public void Add(T t)
         {
-            Console.WriteLine("{0} - {1}", pet.Name, pet.Age);
+            myList.Add(t);
+        }
+        public T Get(int i)
+        {
+            return myList[i];
         }
     }
 
-    /*
-     This code produces the following output:
-
-     Whiskers - 1
-     Boots - 4
-     Barley - 8
-    */
-
-    class Problem_3_0
+    class ImplementInt
     {
-        public static void Problem_3_0_Main()
+        static GenericList<int> gl = new GenericList<int>();
+
+        public static void fillList()
         {
+            for(int ii=0; ii<7; ++ii)
+            {
+                gl.Add(ii);
+            }
+        }
+        public static void printList()
+        {
+            for(int ii=0; ii<7; ++ii)
+            {
+                Console.WriteLine(gl.Get(ii));
+            }
+        }
+    }
+
+    class Practice_Problem
+    {
+
+        public static void Practice_Problem_Main()
+        {
+            ImplementInt.fillList();
+            ImplementInt.printList();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace C_Sharp_Practice
         {
             Console.WriteLine("This is the abstract foo");
         }
-        public new void foo_virtual()
+        public new void foo_virtual() // new and override can be used here, but is one more correct?
         {
             Console.WriteLine("This is the virtual foo from the Child class");
         }
