@@ -6,10 +6,10 @@ using System.Text;
 // What are the four attributes of Structs' type, and how does this differ from classes?
 
 /*
-Structs are value types while classes are reference types.
-Structs are value types and are copied on assignment.
-A struct cannot be used as a nullable type and cannot be assigned a null value.
-Structs can be instantiated without using a new operator, but then their variables need to be public to be of any use, and that by itself is a bad idea.
+    Structs are value types while classes are reference types.
+    Structs are copied on assignment, where classes need to be deep copied.
+    A struct cannot be used as a nullable type and cannot be assigned a null value.
+    Structs can be instantiated without using a new operator, but then their variables need to be public to be of any use, and that by itself is a bad idea.
 */
 
 namespace C_Sharp_Practice

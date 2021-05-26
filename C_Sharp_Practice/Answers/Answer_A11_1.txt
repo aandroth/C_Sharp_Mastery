@@ -1,34 +1,52 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+
+// The basics of using Delegates is that we define a function input and output, and then we are able to use that as the placeholder for sending functions as data.
+// Here, we have two fns in Inciter that are sent as data to Executor, which uses Func as an inline delegate so it doesn't have to define one.
 
 namespace C_Sharp_Practice
 {
+    class Inciter
+    {
+        public static void MessageEvaluator0(string str)
+        {
+            Executor.ExecuteDelegates(str =>
+                                        {
+                                            int total = 0;
+                                            for (int ii = 0; ii < str.Length; ++ii)
+                                                total += str[ii];
+                                            return total;
+                                        }
+            );
+        }
+        public static void MessageEvaluator1(string str)
+        {
+            Executor.ExecuteDelegates(str =>
+                                        {
+                                            int total = 0;
+                                            for (int ii = 0; ii < str.Length; ii+=4)
+                                                total += str[ii];
+                                            return total*2;
+                                        }
+            );
+        }
+    }
+    class Executor
+    {
+        public static void ExecuteDelegates(Func<string, int> messageValue)
+        {
+            int total = messageValue.Invoke("some message");
+            Console.WriteLine("The value of the message is " + total);
+        }
+    }
+
     class Practice_Problem
     {
-        class SmallClass
-        {
-            public int value;
-            public SmallClass(int v)
-            {
-                value = v;
-            }
-        }
-
         public static void Practice_Problem_Main()
         {
-            ArrayList arrList = new ArrayList();
-
-            arrList.Add("text");
-            arrList.Add(2.0);
-            arrList.Add(4);
-            arrList.Add(new SmallClass(7));
-
-            for(int ii=0; ii<arrList.Count; ++ii)
-            {
-                Console.WriteLine(arrList[ii].GetType());
-            }
-
-
+            Inciter.MessageEvaluator0("Standard message");
+            Inciter.MessageEvaluator1("Standard message");
         }
     }
 }

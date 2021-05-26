@@ -1,55 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Text;
 
-// 8.0
-
-/*
-Use the System.Linq to use the library
-There are two main classes, Enumerable, and Queryable
-Enumerable is the one that works with the in-memory collections like List, Dictionary, Hash-Map, SortedList, HashSet, and so on.
-Queryable is a static class that includes extensions methods for classes that implement the IQueryable interface.
-I believe that this means, that a class is a Queryable class if it inherits the IQueryable interface, and therefore must create the required methods as well.
-
-
-
-*/
+// The basics of using Delegates is that we define a function input and output, and then we are able to use that as the placeholder for sending functions as data.
+// Here, we have two fns in Inciter that are sent as data to Executor, which uses Action as an inline delegate so it doesn't have to define one.
 
 namespace C_Sharp_Practice
 {
-    class Pet
+    class Inciter
     {
-        public string Name { get; set; }
-        public int Age { get; set; }
-    }
-
-    public static void OrderByEx1()
-    {
-        Pet[] pets = { new Pet { Name="Barley", Age=8 },
-                       new Pet { Name="Boots", Age=4 },
-                       new Pet { Name="Whiskers", Age=1 } };
-
-        IEnumerable<Pet> query = pets.OrderBy(pet => pet.Age);
-
-        foreach (Pet pet in query)
+        public static void MouseOut(string str)
         {
-            Console.WriteLine("{0} - {1}", pet.Name, pet.Age);
+            MessageToUser.ExecuteDelegates(str, str =>
+                                        {
+                                            char[] mouseOutArr = str.ToCharArray();
+                                            for (int ii = 0; ii < str.Length; ++ii)
+                                                if (str[ii] != ' ')
+                                                    mouseOutArr[ii] = '*';
+                                                else
+                                                    mouseOutArr[ii] = '-';
+                                            Console.WriteLine(mouseOutArr);
+                                        }
+            );
+        }
+        public static void PrinterOut(string str)
+        {
+            MessageToUser.ExecuteDelegates(str, str =>
+                                            {
+                                                for (int ii = 0; ii < str.Length + 4; ++ii)
+                                                    Console.Write("/");
+                                                Console.WriteLine();
+                                                Console.WriteLine("//" + str + "//");
+                                                for (int ii = 0; ii < str.Length + 4; ++ii)
+                                                    Console.Write("/");
+                                                Console.WriteLine();
+                                            }
+            );
+        }
+    }
+    class MessageToUser
+    {
+        public static int messageMaxLegth = 7;
+
+        public static void ExecuteDelegates(string message, Action<string> messageOut)
+        {
+            if (message.Length > messageMaxLegth)
+                message = message.Substring(0, messageMaxLegth);
+
+            messageOut.Invoke(message);
         }
     }
 
-    /*
-     This code produces the following output:
-
-     Whiskers - 1
-     Boots - 4
-     Barley - 8
-    */
-
-    class Problem_3_0
+    class Practice_Problem
     {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
+            Inciter.PrinterOut("Flock Flock Flock");
+            Inciter.MouseOut("Flock Flock Flock");
+
+            MessageToUser.messageMaxLegth = 12;
+
+            Inciter.PrinterOut("Flock Flock Flock");
+            Inciter.MouseOut("Flock Flock Flock");
         }
     }
 }

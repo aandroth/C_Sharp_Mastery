@@ -58,12 +58,12 @@ namespace C_Sharp_Practice
                 "2_0: Put the definition of polymorphism in the comments, including the definition of compile-time polymorphism, and create an example of compile-time polymorphism",
                 "2_1: Put the definition of polymorphism in the comments, including the definition of runtime polymorphism, and create an example of runtime polymorphism",
                 "2_2: Create a class that does NOT allow itself to be inherited from.",
-                "2_3: Create a class with a function that cannot be inherited from.",
+                "2_3: Create a class that can be inherited, but with a function that cannot be overriden by the child.",
                 "2_4: Put the definition of polymorphism in the comments, including the definition of compile-time and runtime polymorphism, and create an example of runtime and compile-time polymorphism",
                 },
                 new List<string>() // Array manipulation
                 {
-                "3_0: Longest common subarray in the given two arrays. Given two arrays A[] and B[] of N and M integers respectively, the task is to find the maximum length of equal subarray or the longest common subarray between the two given array.",
+                "3_0: Longest common sequence (in-order subarray) in the given two arrays. Given two arrays A[] and B[] of N and M integers respectively, the task is to find the maximum length of equal subarray or the longest common subarray between the two given arrays. So if A is aabbcc, and B is bccdd, the longest common sequence is bcc.",
                 "3_1: Find the most common letter in a string",
                 "3_2: Write a method, isRotation, which checks if one word is a rotation of another (order must also be the same).Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one function call to isRotation. Ex: \"waterbottle\" is a rotation of \"erbottlewat\"",
                 "3_3: Write an algorithm such that if an element in an MxN matrix is zero, its entire row and column are set to 0. Then return the total of all non-zero elements.",
@@ -129,10 +129,10 @@ namespace C_Sharp_Practice
                 new List<string>() // Delegates
                 {
                 "11_0: Create one delegate inside a class, and one outside a class, and then use both",
-                "11_1: Create a generic list where the nodes of the list can have any kind of data type",
-                "11_2: Do something with delegates",
-                "11_3: Do something with delegates",
-                "11_4: Do something with delegates",
+                "11_1: Create a class that sends an inline function, that returns a value, as data to another class that doesn't explicitly define anything except for one fn.",
+                "11_2: Create a class that sends an inline function, that doesn't return a value, as data to another class that doesn't explicitly define anything except for one fn.",
+                "11_3: Create a ShoppingCart, Item, and User classes. Use Delegates to calculate the total of the items in the shopping cart using three different ways inside the User class.",
+                "11_4: Create a ServerAPI and a ServerFrontEnd class, where the frontend sends two delegates to the backend without explicitly defining them as functions. One will return a value and the other will not.",
                 },
                 new List<string>() // Research Tasks
                 {
@@ -152,7 +152,6 @@ namespace C_Sharp_Practice
                 },
             };
 
-            // Delegates
             // Generics
             // Speed of API over DoubleCF
             // IEnumerable

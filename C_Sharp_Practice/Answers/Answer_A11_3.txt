@@ -1,55 +1,133 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Text;
+using System.Linq;
 
-// 8.0
-
-/*
-Use the System.Linq to use the library
-There are two main classes, Enumerable, and Queryable
-Enumerable is the one that works with the in-memory collections like List, Dictionary, Hash-Map, SortedList, HashSet, and so on.
-Queryable is a static class that includes extensions methods for classes that implement the IQueryable interface.
-I believe that this means, that a class is a Queryable class if it inherits the IQueryable interface, and therefore must create the required methods as well.
-
-
-
-*/
+// The basics of using Delegates is that we define a function input and output, and then we are able to use that as the placeholder for sending functions as data.
+// Here, we have two fns in Inciter that are sent as data to Executor, which uses Action as an inline delegate so it doesn't have to define one.
 
 namespace C_Sharp_Practice
 {
-    class Pet
+
+    class CommToUser
     {
-        public string Name { get; set; }
-        public int Age { get; set; }
-    }
-
-    public static void OrderByEx1()
-    {
-        Pet[] pets = { new Pet { Name="Barley", Age=8 },
-                       new Pet { Name="Boots", Age=4 },
-                       new Pet { Name="Whiskers", Age=1 } };
-
-        IEnumerable<Pet> query = pets.OrderBy(pet => pet.Age);
-
-        foreach (Pet pet in query)
+        public static void SendToDelegate(int intVar, string strVar)
         {
-            Console.WriteLine("{0} - {1}", pet.Name, pet.Age);
+            Console.WriteLine("There are " + intVar + " " + strVar);
         }
     }
 
-    /*
-     This code produces the following output:
-
-     Whiskers - 1
-     Boots - 4
-     Barley - 8
-    */
-
-    class Problem_3_0
+    class User
     {
-        public static void Problem_3_0_Main()
+        public ShoppingCart myShoppingCart = new ShoppingCart();
+
+        public void AddItemToCart(string itemName, decimal value)
         {
+            myShoppingCart.AddProductModelToItems(new ProductModel(itemName, value));
+        }
+        public static decimal CalcTotalForLevel3(List<ProductModel> items, decimal value)
+        {
+            return items.Sum(x => x._value);
+        }
+        public decimal CalcTotalForLevel2(List<ProductModel> items, decimal discount)
+        {
+            decimal total = items.Sum(x => x._value);
+            total = total - total * discount;
+
+            return total;
+        }
+        public decimal CalcTotalForLevel1(List<ProductModel> items, decimal antiDiscount)
+        {
+            decimal total = items.Sum(x => x._value);
+            total = total + total * antiDiscount;
+
+            return total;
+        }
+
+        private void AlertUserAboutDiscount(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public void CheckCart(int userLevel)
+        {
+            if (userLevel >= 3)
+            {
+                Console.WriteLine("My cart's total is " + myShoppingCart.GenerateTotalForCart(CommToUser.SendToDelegate,
+                                                                                                CalcTotalForLevel3, AlertUserAboutDiscount));
+            }
+            else if (userLevel >= 2)
+            {
+                Console.WriteLine("My cart's total is " + myShoppingCart.GenerateTotalForCart(CommToUser.SendToDelegate,
+                                                                                                CalcTotalForLevel2, AlertUserAboutDiscount));
+            }
+            else if (userLevel >= 1)
+            {
+                Console.WriteLine("My cart's total is " + myShoppingCart.GenerateTotalForCart(CommToUser.SendToDelegate,
+                                                                                                CalcTotalForLevel1, AlertUserAboutDiscount));
+            }
+            else if (userLevel >= 0)
+            {
+                Console.WriteLine("My cart's total is " + myShoppingCart.GenerateTotalForCart((s, t) => { Console.WriteLine("One line to the " + s + " and " + t); },
+                                                                                                (items, sum) => {
+                                                                                                    if (items.Count < 4)
+                                                                                                        return items.Count + items.Count * sum;
+                                                                                                    else
+                                                                                                        return items.Count * sum;
+                                                                                                },
+                                                                                                s => Console.WriteLine("Keep practicing!")));
+            }
+        }
+    }
+
+    class ProductModel
+    {
+        public string _name;
+        public decimal _value;
+
+        public ProductModel(string name, decimal value)
+        {
+            _name = name;
+            _value = value;
+        }
+    }
+
+    class ShoppingCart
+    {
+        public delegate void mentionItemsInCart(int intVar, string strVar);
+        public List<ProductModel> Items = new List<ProductModel>();
+
+        public decimal GenerateTotalForCart(mentionItemsInCart delDef,
+                                                    Func<List<ProductModel>, decimal, decimal> calcItemsTotal,
+                                                    Action<string> messageToUser)
+        {
+            delDef.Invoke(Items.Count, "items");
+
+            messageToUser.Invoke("Applying discount!");
+
+            return calcItemsTotal.Invoke(Items, 0.05M);
+        }
+
+        public void AddProductModelToItems(ProductModel product)
+        {
+            Items.Add(product);
+        }
+    }
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            User user = new User();
+            user.AddItemToCart("oranges", 7M);
+            user.AddItemToCart("tv", 70M);
+            user.AddItemToCart("pencil", 0.5M);
+            user.AddItemToCart("watch", 50M);
+
+            Console.Write("u3: "); user.CheckCart(3);
+            Console.Write("u2: "); user.CheckCart(2);
+            Console.Write("u1: "); user.CheckCart(1);
+            Console.Write("u1: "); user.CheckCart(0);
         }
     }
 }

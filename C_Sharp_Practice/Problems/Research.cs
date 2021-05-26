@@ -90,6 +90,111 @@ namespace C_Sharp_Practice.Problems
         }
     }
 
+    class CommToUser
+    {
+        public static void SendToDelegate(int intVar, string strVar)
+        {
+            Console.WriteLine("There are " + intVar + " " + strVar);
+        }
+    }
+
+    class User
+    {
+        public ShoppingCart myShoppingCart = new ShoppingCart();
+
+        public void AddItemToCart(string itemName, decimal value)
+        {
+            myShoppingCart.AddProductModelToItems(new ProductModel(itemName, value));
+        }
+        public static decimal CalcTotalForLevel3(List<ProductModel> items, decimal value)
+        {
+            return items.Sum(x => x._value);
+        }
+        public decimal CalcTotalForLevel2(List<ProductModel> items, decimal discount)
+        {
+            decimal total = items.Sum(x => x._value);
+            total = total - total*discount;
+
+            return total;
+        }
+        public decimal CalcTotalForLevel1(List<ProductModel> items, decimal antiDiscount)
+        {
+            decimal total = items.Sum(x => x._value);
+            total = total + total*antiDiscount;
+
+            return total;
+        }
+
+        private void AlertUserAboutDiscount(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public void CheckCart(int userLevel)
+        {
+            if (userLevel >= 3)
+            {
+                Console.WriteLine("My cart's total is " + myShoppingCart.GenerateTotalForCart(CommToUser.SendToDelegate,
+                                                                                                CalcTotalForLevel3, AlertUserAboutDiscount));
+            }
+            else if (userLevel >= 2)
+            {
+                Console.WriteLine("My cart's total is " + myShoppingCart.GenerateTotalForCart(CommToUser.SendToDelegate,
+                                                                                                CalcTotalForLevel2, AlertUserAboutDiscount));
+            }
+            else if (userLevel >= 1)
+            {
+                Console.WriteLine("My cart's total is " + myShoppingCart.GenerateTotalForCart(CommToUser.SendToDelegate,
+                                                                                                CalcTotalForLevel1, AlertUserAboutDiscount));
+            }
+            else if (userLevel >= 0)
+            {
+                Console.WriteLine("My cart's total is " + myShoppingCart.GenerateTotalForCart((s, t) => { Console.WriteLine("One line to the " + s + " and " + t); },
+                                                                                                (items, sum) => {
+                                                                                                    if (items.Count < 4)
+                                                                                                        return items.Count + items.Count * sum;
+                                                                                                    else
+                                                                                                        return items.Count * sum;
+                                                                                                }, 
+                                                                                                s => Console.WriteLine("Keep practicing!")));
+            }
+        }
+    }
+
+    class ProductModel
+    {
+        public string _name;
+        public decimal _value;
+
+        public ProductModel(string name, decimal value)
+        {
+            _name = name;
+            _value = value;
+        }
+    }
+
+    class ShoppingCart
+    {
+        public delegate void mentionItemsInCart(int intVar, string strVar);
+        public List<ProductModel> Items = new List<ProductModel>();
+
+        public decimal GenerateTotalForCart(mentionItemsInCart delDef,
+                                                    Func<List<ProductModel>, decimal, decimal> calcItemsTotal,
+                                                    Action<string> messageToUser)
+        {
+            delDef.Invoke(Items.Count, "items");
+
+            messageToUser.Invoke("Applying discount!");
+
+            return calcItemsTotal.Invoke(Items, 0.05M);
+        }
+
+        public void AddProductModelToItems(ProductModel product)
+        {
+            Items.Add(product);
+        }
+    }
+
     class Research
     {
         delegate void DelegateInsideClass(string message);
@@ -106,12 +211,23 @@ namespace C_Sharp_Practice.Problems
 
         public static void Research_Main()
         {
-            // Now we can start instantiating delegates with handlers
-            // Is this what AWS lambda fns does?
-            DelegateOutsideClass dO0 = DelegateMethod0;
-            ExClass0.ExeDelegate(dO0);
+            //// Now we can start instantiating delegates with handlers
+            //// Is this what AWS lambda fns does?
+            //DelegateOutsideClass dO0 = DelegateMethod0;
+            //ExClass0.ExeDelegate(dO0);
 
-            StartingProcess.StartProcess();
+            //StartingProcess.StartProcess();
+
+            User user = new User();
+            user.AddItemToCart("oranges", 7M);
+            user.AddItemToCart("tv", 70M);
+            user.AddItemToCart("pencil", 0.5M);
+            user.AddItemToCart("watch", 50M);
+
+            Console.Write("u3: "); user.CheckCart(3);
+            Console.Write("u2: "); user.CheckCart(2);
+            Console.Write("u1: "); user.CheckCart(1);
+            Console.Write("u1: "); user.CheckCart(0);
         }
     }
 }

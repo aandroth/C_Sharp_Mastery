@@ -1,51 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+
+// The basics of using Delegates is that we define a function input and output, and then we are able to use that as the placeholder for sending functions as data.
+// Here, we have a global delegate and a local delegate (local to Executor), which Executor uses as a placeholder for fns passed to it from Inciter
 
 namespace C_Sharp_Practice
 {
-    class GenericList<T>
-    {
-        List<T> myList = new List<T>();
+    delegate void globalDelegate(string str);
 
-        public void Add(T t)
+    class Inciter
+    {
+        static int value = 7;
+        public static void SendToDelegate(string str)
         {
-            myList.Add(t);
+            Console.WriteLine("Function was passed with "+str+", called, and value is " + value);
         }
-        public T Get(int i)
+        public static string MessageAlteration(string str)
         {
-            return myList[i];
+            char[] arr = str.ToCharArray();
+            Array.Reverse(arr);
+
+            return new string(arr);
         }
     }
-
-    class ImplementInt
+    class Executor
     {
-        static GenericList<int> gl = new GenericList<int>();
+        public delegate string AlterMessage(string str);
 
-        public static void fillList()
+        public static void ExecuteDelegates(globalDelegate globeDel, AlterMessage alterMessage)
         {
-            for(int ii=0; ii<7; ++ii)
-            {
-                gl.Add(ii);
-            }
-        }
-        public static void printList()
-        {
-            for(int ii=0; ii<7; ++ii)
-            {
-                Console.WriteLine(gl.Get(ii));
-            }
+            globeDel.Invoke("some message");
+
+            Console.WriteLine(alterMessage.Invoke("Standard message"));
         }
     }
 
     class Practice_Problem
     {
-
         public static void Practice_Problem_Main()
         {
-            ImplementInt.fillList();
-            ImplementInt.printList();
+            Executor.ExecuteDelegates(Inciter.SendToDelegate, Inciter.MessageAlteration);
         }
     }
 }
