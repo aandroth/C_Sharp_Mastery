@@ -1,35 +1,37 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Aquin\\Source\\Repos\\C_Sharp_Practice\\C_Sharp_Practice\\C_Sharp_Practice.csproj": {}
+    "C:\\Users\\aandr\\source\\repos\\C_Sharp_Mastery\\C_Sharp_Practice\\C_Sharp_Practice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Aquin\\Source\\Repos\\C_Sharp_Practice\\C_Sharp_Practice\\C_Sharp_Practice.csproj": {
+    "C:\\Users\\aandr\\source\\repos\\C_Sharp_Mastery\\C_Sharp_Practice\\C_Sharp_Practice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Aquin\\Source\\Repos\\C_Sharp_Practice\\C_Sharp_Practice\\C_Sharp_Practice.csproj",
+        "projectUniqueName": "C:\\Users\\aandr\\source\\repos\\C_Sharp_Mastery\\C_Sharp_Practice\\C_Sharp_Practice.csproj",
         "projectName": "C_Sharp_Practice",
-        "projectPath": "C:\\Users\\Aquin\\Source\\Repos\\C_Sharp_Practice\\C_Sharp_Practice\\C_Sharp_Practice.csproj",
-        "packagesPath": "C:\\Users\\Aquin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Aquin\\Source\\Repos\\C_Sharp_Practice\\C_Sharp_Practice\\obj\\",
+        "projectPath": "C:\\Users\\aandr\\source\\repos\\C_Sharp_Mastery\\C_Sharp_Practice\\C_Sharp_Practice.csproj",
+        "packagesPath": "C:\\Users\\aandr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aandr\\source\\repos\\C_Sharp_Mastery\\C_Sharp_Practice\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Aquin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "netcoreapp2.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "netcoreapp2.1": {
+            "targetAlias": "netcoreapp2.1",
             "projectReferences": {}
           }
         },
@@ -40,8 +42,16 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "netcoreapp2.1": {
+          "targetAlias": "netcoreapp2.1",
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -52,12 +62,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -174,10 +174,11 @@ namespace C_Sharp_Practice
             // Interface extensions
             // uint.MaxValue
             // checked - keyword to detect int overflows and such
-            // unsafe - Pointers in C# exist!
+            // unsafe - Pointers in C# exist! And More!
             // fixed
             // sizeOf
             // stackAlloc - mastering performance level of detail
+            // .NET written using IL code
 
             questionsLists2d = temp;
 
