@@ -6,7 +6,8 @@ using System.Text;
 /*
 Struct cannot have a parameterless constructor or any destructor.
 
-Struct does not allow the instance field declarations to include variable initializers. But, static fields of a struct are allowed to include variable initializers.
+Struct does not allow the instance field declarations to include variable initializers. 
+But, static fields of a struct are allowed to include variable initializers.
 
 Structs cannot have non-static variables of themselves.
 

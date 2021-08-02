@@ -2,7 +2,9 @@
 
 //Abstraction can be achieved using abstract classes in C#. 
 //C# allows you to create abstract classes that are used to provide a partial class implementation of an interface. 
-//Implementation is completed when a derived class inherits from it.Abstract classes contain abstract methods, which are implemented by the derived class. 
+//Implementation is completed when a derived class inherits from it. 
+//Abstract classes can contain abstract methods, which are implemented by the derived class.
+//A class with only abstract methods is a Pure Abstract class.
 //The derived classes have more specialized functionality.
 
 //The following are some of the key points:

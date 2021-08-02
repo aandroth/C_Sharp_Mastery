@@ -21,6 +21,7 @@ Four.";
 B
 C
 D.";
+#nullable enable
             using (StringReader left = new StringReader(numbers),
                 right = new StringReader(letters))
             {
@@ -34,6 +35,7 @@ D.";
                     Console.WriteLine(item);
                 } while (item != null);
             }
+#nullable disable
         }
 
         public static void Problem_3_0_Main()

@@ -11,9 +11,6 @@ There are two main classes, Enumerable, and Queryable
 Enumerable is the one that works with the in-memory collections like List, Dictionary, Hash-Map, SortedList, HashSet, and so on.
 Queryable is a static class that includes extensions methods for classes that implement the IQueryable interface.
 I believe that this means, that a class is a Queryable class if it inherits the IQueryable interface, and therefore must create the required methods as well.
-
-
-
 */
 
 namespace C_Sharp_Practice
@@ -53,3 +50,63 @@ namespace C_Sharp_Practice
         }
     }
 }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Min
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Collections;
+
+namespace C_Sharp_Practice
+{
+    struct S
+    {
+        public static int val = 7;
+        public void Foo()
+        {
+            Console.WriteLine("struct foo");
+        }
+    }
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            List<int> iList = new List<int>() { 6, 1, 2, 5, 4, 8, 9, 7 };
+
+            while(iList.Count > 0)
+            {
+                Console.WriteLine(iList.Min());
+                iList.RemoveAt(0);
+            }
+        }
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Sum
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Collections;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            List<int> iList = new List<int>() {0, 1, 2, 3, 4, 5, 6, 7};
+
+            Console.WriteLine(iList.Sum());
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////

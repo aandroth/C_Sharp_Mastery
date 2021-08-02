@@ -1,52 +1,91 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
+using System.Linq;
+
+// Import the System.Math library's static members
 
 namespace C_Sharp_Practice
 {
-    class Practice_Problem
+    // Compile-time polymorphism: Operator overloading
+    // 
+    class P
     {
-        static T[] LongestCommonSequence<T>(T[] arrA, T[] arrB)
-        {
-            List<T> listT = new List<T>();
+        public int pValue;
 
-            for(int ii=0; ii<arrA.Length; ++ii)
-            {
-                for (int jj = 0; jj < arrB.Length; ++jj)
-                {
-                    if (arrA[ii].Equals(arrB[jj]))
-                    {
-                        List<T> tempT = new List<T>();
-                        for (int kk = 0; ii + kk < arrA.Length && jj + kk < arrB.Length; ++kk)
-                        {
-                            if (arrA[ii + kk].Equals(arrB[jj + kk]))
-                            {
-                                tempT.Add(arrA[ii+kk]);
-                            }
-                            else
-                            {
-                                if(listT.Count < tempT.Count){
-                                    listT.Clear();
-                                    listT = tempT;
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-            return listT.ToArray();
+        public P(int i)
+        {
+            pValue = i;
         }
 
+        protected virtual void foo()
+        {
+            Console.WriteLine("P foo "+pValue);
+        }
+        public virtual void access_foo()
+        {
+            foo();
+        }
+    }
+
+    class C : P
+    {
+        public int value = 7;
+
+        public C(int i) : base(i)
+        {
+            Console.WriteLine("Paramterless Cstr");
+        }
+        protected override void foo()
+        {
+            Console.WriteLine("C foo "+(value*2));
+        }
+        public override void access_foo()
+        {
+            foo();
+        }
+
+        public void F()
+        {
+            Console.WriteLine("Just F");
+        }
+
+        public void F(int i)
+        {
+            Console.WriteLine("Just F with int");
+        }
+
+        public void F(string s)
+        {
+            Console.WriteLine("Just F with string");
+        }
+    }
+
+    class Practice_Problem
+    {
         public static void Practice_Problem_Main()
         {
-            char[] arrA_char = "aabbdddooaabb".ToCharArray();
-            char[] arrB_char = "ccooppaabdefgaabb".ToCharArray();
+            C c = new C(5);
 
-            char[] answer = LongestCommonSequence<char>(arrA_char, arrB_char);
-            for (int ii = 0; ii < answer.Length; ++ii)
+            c.F();
+            c.F(3);
+            c.F("3");
+
+            Random random = new Random();
+            for (int ii = 0; ii < 1000; ++ii)
             {
-                Console.Write(answer[ii] + ", ");
+                int r = random.Next(0, 12);
+                if (r == 9 || r == 10)
+                {
+                    int randLinqNum = random.Next(0, 181) * 3;
+                    string[] lines = System.IO.File.ReadAllLines("Linq_Methods.txt");
+                    Console.WriteLine(lines[randLinqNum]);
+                    Console.WriteLine(lines[randLinqNum + 1]);
+                    Console.WriteLine();
+                    Console.WriteLine();
+                }
             }
         }
     }

@@ -1,43 +1,47 @@
-﻿using System;
-using System.Collections;
+﻿
+
+
+using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Text;
 using System.Linq;
+using System.Collections;
+using System.IO;
 
 namespace C_Sharp_Practice
 {
     class Practice_Problem
     {
         public static void Practice_Problem_Main()
-        {
-            int[] intArr = new int[] { 
-                1, 2, 3, 4, 5, 6, 7
-            };
-
+        {            
+        
             // ArrayList is not confined to a single type, unlike an array or even a list
-            // ArrayList otherwise acts like an int, with functions like Add
-            ArrayList intList = new ArrayList();
+            // ArrayList otherwise acts like an int
+            
+            int[] iArr = new int[] {1, 2, 3, 4, 5, 6, 7};
+            ArrayList aArr = new ArrayList() {8, 9, 10, 11, 12, 13, 14};
 
-            for(int ii=0; ii<intArr.Length; ++ii)
+            for(int ii=0; ii<iArr.Length; ++ii)
             {
-                intList.Add(intArr[ii]);
+                iArr[ii] = (int)aArr[ii]-1;
             }
-            for(int ii=0; ii< intList.Count; ++ii)
+
+            for(int ii=0; ii<iArr.Length; ++ii)
             {
-                Console.WriteLine(intList[ii]);
+                Console.Write(iArr[ii] + ", ");
             }
-            intList.Add(7777);
             Console.WriteLine();
             Console.WriteLine();
 
-            intArr = new int[intList.Count];
-            for(int ii=0; ii<intList.Count; ++ii)
+            aArr.Clear();
+            for (int ii = 0; ii < iArr.Length; ++ii)
             {
-                intArr[ii] = (int)intList[ii];
+                aArr.Add(iArr[ii]*7);
             }
-            for(int ii=0; ii< intList.Count; ++ii)
+
+            for (int ii = 0; ii < aArr.Count; ++ii)
             {
-                Console.WriteLine(intArr[ii]);
+                Console.Write(aArr[ii] + ", ");
             }
         }
     }

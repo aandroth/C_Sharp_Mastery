@@ -55,9 +55,9 @@ namespace C_Sharp_Practice
                 },
                 new List<string>() // Polymorphism
                 {
-                "2_0: Put the definition of polymorphism in the comments, including the definition of compile-time polymorphism, and create an example of compile-time polymorphism",
+                "2_0: Put the definition of polymorphism in the comments, including the definition of compile-time polymorphism, and create an example of compile-time polymorphism, and give the parent class a constructor with a parameter.",
                 "2_1: Put the definition of polymorphism in the comments, including the definition of runtime polymorphism, and create an example of runtime polymorphism",
-                "2_2: Create a class that does NOT allow itself to be inherited from.",
+                "2_2: Create a class that does NOT allow itself to be inherited from, and give the parent a constructor with a parameter.",
                 "2_3: Create a class that can be inherited, but with a function that cannot be overriden by the child.",
                 "2_4: Put the definition of polymorphism in the comments, including the definition of compile-time and runtime polymorphism, and create an example of runtime and compile-time polymorphism",
                 },
@@ -89,7 +89,7 @@ namespace C_Sharp_Practice
                 {
                 "6_0: Create a class inside of a namespace and use the using keyword to make it available. Use that class inside a different namespace",
                 "6_1: Create an alias for a specific library from inside of a namespace",
-                "6_2: Create a function that makes use of the Dispose interface, and write a try-catch block to show that the variable has been disposed",
+                "6_2: Create a function that makes use of the Dispose interface with the Dispose keyword, and write a try-catch block to show that the variable has been disposed",
                 "6_3: Create a fn that reads from two StringReaders that has automatic garbage cleanup",
                 "6_4: Create a fn that reads from a StringReader with a try block to read lines and a finally block to dispose of the StringReader",
                 },
@@ -130,55 +130,103 @@ namespace C_Sharp_Practice
                 {
                 "11_0: Create one delegate inside a class, and one outside a class, and then use both",
                 "11_1: Create a class that sends an inline function, that returns a value, as data to another class that doesn't explicitly define anything except for one fn.",
-                "11_2: Create a class that sends an inline function, that doesn't return a value, as data to another class that doesn't explicitly define anything except for one fn.",
-                "11_3: Create a ShoppingCart, Item, and User classes. Use Delegates to calculate the total of the items in the shopping cart using three different ways inside the User class.",
+                "11_2: Create a class that sends an inline function, that doesn't return a value, as data to another class that doesn't explicitly define anything except for one fn. Have that class send two different fns through the inline fn.",
+                "11_3: Create a ShoppingCart, Item, and User classes. Use Delegates to calculate the total of the items in the shopping cart using three different fns inside the User class.",
                 "11_4: Create a ServerAPI and a ServerFrontEnd class, where the frontend sends two delegates to the backend without explicitly defining them as functions. One will return a value and the other will not.",
-                },
-                new List<string>() // Research Tasks
-                {
-                "12_0: Read game code on github",
-                "12_1: Read game jam code from a recent jam event",
-                "12_2: Read code written by a great programmer",
-                "12_3: Read five pages from the C# man pages",
-                "12_4: Read up on one design pattern and implement it",
                 },
                 new List<string>() // Generics
                 {
-                "13_0: Create a class that implements a generic list with Add (aka push), and another class that implements it",
-                "13_1: Create a generic list where the nodes of the list can have any kind of data type",
-                "13_2: Do something with generics",
-                "13_3: Do something with generics",
-                "13_4: Do something with generics",
+                "12_0: Create a class that implements a generic list with Add (aka push), and another class that implements it",
+                "12_1: Create a generic list where the nodes of the list can have any kind of data type",
+                "12_2: Create and implement a generic Interface",
+                "12_3: Create and implement a class with two different generic variables",
+                "12_4: Implement a fluent interface design pattern with generics", //https://tyrrrz.me/blog/fluent-generics
+                // https://tyrrrz.me/blog/return-type-inference
                 },
+                //new List<string>() // Generics
+                //{
+                //"13_0: Create a class that implements a generic list with Add (aka push), and another class that implements it",
+                //"13_1: Create a generic list where the nodes of the list can have any kind of data type",
+                //"13_2: Do something with generics",
+                //"13_3: Do something with generics",
+                //"13_4: Do something with generics",
+                //},
             };
+            //Design Patterns below are at https://sourcemaking.com/design_patterns
 
-            // Generics
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // CURRENT:
+            // Generics, create answers for the Q12 block
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            // Creational Design Pattern: Abstract Factory
             // Speed of API over DoubleCF
+            // Creational Design Pattern: Builder
             // IEnumerable
+            // Creational Design Pattern: Factory Method
             // Anonymous Fns https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions
+            // Creational Design Pattern: Object Pool
             // Lambda functions
+            // Creational Design Pattern: Prototype
             // Lambda expressions
+            // Creational Design Pattern: Singleton
             // Virtual classes
+            // Structural design pattern: Adapter
             // try and catch and finally
+            // Structural design pattern: Bridge
             // Using '?' to keep null values from causing errors, ie: reader?.Dispose(); will not create an error, even if run twice
+            // Structural design pattern: Composite
             // C# Closures
+            // Structural design pattern:Decorator
             // Where are Structs used in practice?
+            // Structural design pattern: Facade
             // Comparators
+            // Structural design pattern: Flyweight
             // Difference between List and Array
+            // Structural design pattern: Private Class Data
             // Reading the code written by others
-            // Reading up on design patterns
+            // Structural design pattern: Proxy
             // A series of problem-solving and specific functionality that creates an application at the finish
+            // Behavorial design pattern: Chain of Responsibility
             // Implement the flocking system of https://www.youtube.com/watch?v=6BrZryMz-ac
+            // Behavorial design pattern: Command
             // public Ghost(int s, int f) : base(s-3) { fearsomeAura = f; } // Constructor for an abstract class inside of its child class ( Problem 4_1 )
+            // Behavorial design pattern: Interpreter
             // Being able to assign null to value types using ?, ie: string? item; where item can now be null
+            // Behavorial design pattern: Iterator
             // Interface extensions
+            // Behavorial design pattern: Mediator
             // uint.MaxValue
+            // Behavorial design pattern: Memento
             // checked - keyword to detect int overflows and such
+            // Behavorial design pattern: Null Object
             // unsafe - Pointers in C# exist! And More!
+            // Behavorial design pattern: Observer
             // fixed
+            // Behavorial design pattern: State
             // sizeOf
+            // Behavorial design pattern: Strategy
             // stackAlloc - mastering performance level of detail
+            // Behavorial design pattern: Template Method
             // .NET written using IL code
+            // Behavorial design pattern: Visitor
+            // AddController
+            // IActionFilter
+            // IOrderedFilter
+            // OneOf, this is a library, is it worth learning? Cool thing is that it can return different types, so if it needs to return a User object, it does, and if it needs to return an Error it does
+            // Fluent Interface Design Pattern https://en.wikipedia.org/wiki/Fluent_interface
+            // is and as: https://www.pluralsight.com/guides/csharp-is-as-operators-is-expressions
+            // Single as a type
+
+            // Still thinking about this
+            //new List<string>() // Research Tasks
+            //    {
+            //    "12_0: Read game code on github",
+            //    "12_1: Read game jam code from a recent jam event",
+            //    "12_2: Read code written by a great programmer",
+            //    "12_3: Read five pages from the C# man pages",
+            //    "12_4: Read up on one design pattern and implement it",
+            //    },
 
             questionsLists2d = temp;
 

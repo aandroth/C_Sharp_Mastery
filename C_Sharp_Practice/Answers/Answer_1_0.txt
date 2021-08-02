@@ -1,51 +1,59 @@
-﻿using C_Sharp_Practice.Problems;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using System.Collections;
+using System.IO;
 
 namespace C_Sharp_Practice
 {
-    interface IAddThing<A>
+    interface IAdd<T>
     {
-        void AddThing(A a);
+        public void Add(T t);
     }
-    interface IGetThing<A> : IAddThing<A>
+    interface IGet<T>
     {
-        A GetThing(int idx);
+        public T Get(int index);
     }
 
-    class SampleClass<A> : IGetThing<A>, IAddThing<A>
+    class C<T> : IAdd<T>, IGet<T>
     {
-        private List<A> arrA;
+        List<T> tList = null;
 
-        public void AddThing(A item)
+        public void Add(T t)
         {
-            arrA.Add(item);
+            if (tList == null)
+                tList = new List<T>();
+
+            tList.Add(t);
         }
-        public A GetThing(int idx)
-        {
-            if(arrA.Count == 0)
-                return default(A);
 
-            if (idx < arrA.Count)
-                return arrA[idx];
-            else
-                return arrA[arrA.Count - 1];
+        public T Get(int index)
+        {
+            if (tList == null)
+            {
+                tList = new List<T>();
+                return default;
+            }
+
+            if (index < 0 || index >= tList.Count || tList.Count == 0)
+                return default;
+
+            return tList[index];
         }
     }
-
-
-    class Problem_3_0
+    class Practice_Problem
     {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
-            IGetThing<int> a = new SampleClass<int>();
-
-            Console.WriteLine("Printing: " + a.GetThing(10));
-
-            IGetThing<string> b = new SampleClass<string>();
-            b.AddThing("test");
-            Console.WriteLine("Printing: " + b.GetThing(10));
+            C<int> c0 = new C<int>();
+            Console.WriteLine(c0.Get(7));
+            c0.Add(0);
+            c0.Add(1);
+            c0.Add(2);
+            Console.WriteLine(c0.Get(1));
+            Console.WriteLine(c0.Get(7));
+            Console.WriteLine(c0.Get(-1));
         }
     }
 }

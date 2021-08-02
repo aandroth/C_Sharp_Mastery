@@ -1,16 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D/KCEJpz1r3EonMzHtU4jz9W6D2G3EyCbd6DxXxNGNqo04lXutK3sqRgK6ctGHmEMYR1GC8sEP8bAJwk96b9TA==",
+  "dgSpecHash": "JonXxIvtLG4ZSXZAegswVusdcH0UQqJ8SoDrWpohWM3Mm9x24TBwctj9w64QhqstqRzYvgWnMWo06jN1/KxHRQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\aandr\\source\\repos\\C_Sharp_Mastery\\C_Sharp_Practice\\C_Sharp_Practice.csproj",
-  "expectedPackageFiles": [
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.app\\2.1.0\\microsoft.netcore.app.2.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.dotnetapphost\\2.1.0\\microsoft.netcore.dotnetapphost.2.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.dotnethostpolicy\\2.1.0\\microsoft.netcore.dotnethostpolicy.2.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.dotnethostresolver\\2.1.0\\microsoft.netcore.dotnethostresolver.2.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\2.1.0\\microsoft.netcore.platforms.2.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\2.1.0\\microsoft.netcore.targets.2.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

@@ -13,7 +13,7 @@ namespace C_Sharp_Practice
     {
         public static void usingStringReader()
         {
-string manyLines=@"This is line one
+            string manyLines = @"This is line one
 This is line two
 Here is line three
 The penultimate line is line four
@@ -23,10 +23,10 @@ This is the final, fifth line.";
             using (reader)
             {
                 string? item;
-                do {
-                    item = reader.ReadLine();
-                    Console.WriteLine(item);
-                } while(item != null);
+
+                item = reader.ReadLine();
+                Console.WriteLine(item);
+                reader.Dispose();
             }
             try
             {

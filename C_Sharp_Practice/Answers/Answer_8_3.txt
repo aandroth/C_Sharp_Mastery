@@ -1,17 +1,32 @@
 ﻿using System;
-using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
-
-// An abstract class is a class that cannot be instantiated by itself, it must be inherited to be used
-// In C++ this would be a pure virtual class
+using System.IO;
+using System.Linq;
 
 namespace C_Sharp_Practice
 {
-
-    class Problem_3_0
+    struct Book
     {
-        public static void Problem_3_0_Main()
+        public int id;
+        public string title;
+
+        public Book(int i, string t) { id = i; title = t; }
+    }
+    struct BookSpot
+    {
+        public int bookId;
+        public string location;
+        public BookSpot(int i, string l) { bookId = i; location = l; }
+    }
+
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
         {
+            // Here we see how to use Join in a std SQL-like query
+            /////////////////////////////////////////////////////////////////////////////////////////////
             // string collection
             IList<string> stringList0 = new List<string>() {
                 "C# Tutorials",
@@ -31,15 +46,58 @@ namespace C_Sharp_Practice
 
             //Using linq,  
             var result = from str0 in stringList0
-                          join str1 in stringList1
-                            on str0 equals str1
-                          select str0;
+                         join str1 in stringList1
+                           on str0 equals str1
+                         select str0;
 
             foreach (var r in result)
             {
                 Console.WriteLine(r);
             }
+            Console.WriteLine();
+            Console.WriteLine();
+
+            // Here we have the inline version
+            /////////////////////////////////////////////////////////////////////////////////////////////
+            IList<string> strL0 = new List<string>() { "How to Kill", "Kill la Kill", "Tire Fire", "To Kill a Mockingbird", "To Be" };
+            IList<string> strL1 = new List<string>() { "Tire Fire", "Noob Axes", "League of Noobs", "Kill la Kill", "To Be" };
+
+            var iE = strL0.Join(strL1,                                                               //IEnumerable Inner String
+                                str0 => str0,                                                        //Outer Key Selector
+                                str1 => str1,                                                        //Inner Key Selector
+                                (str0, str1) => str1);                                               //Result Selector
+
+            foreach (var i in iE)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            /////////////////////////////////////////////////////////////////////////////////////////////
+
+            // And finally, the most advnced use of this is to join structs (or classes) like SQL tables
+            /////////////////////////////////////////////////////////////////////////////////////////////
+            IList<Book> books = new List<Book>() { new Book(0, "How to Kill"),
+                                                   new Book(1, "Kill la Kill"),
+                                                   new Book(2, "Tire Fire"),
+                                                   new Book(3, "To Kill a Mockingbird"),
+                                                   new Book(4, "To Be")};
+
+            IList<BookSpot> spots = new List<BookSpot>() { new BookSpot(7, "Library"), 
+                                                           new BookSpot(2, "News Room"), 
+                                                           new BookSpot(3, "Library"), 
+                                                           new BookSpot(1, "Nowhere")};
+
+            var iE2 = books.Join(spots,                                                                 //IEnumerable Inner String
+                                book => book.id,                                                        //Outer Key Selector
+                                spot => spot.bookId,                                                    //Inner Key Selector
+                                (book, spot) => new { ti = book.title, loc = spot.location }) ;         //Result Selector
+
+            foreach (var i in iE2)
+            {
+                Console.WriteLine(i.ti +", "+i.loc);
+            }
+            /////////////////////////////////////////////////////////////////////////////////////////////
         }
     }
 }
-

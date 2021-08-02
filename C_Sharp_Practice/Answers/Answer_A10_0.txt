@@ -1,4 +1,171 @@
-﻿/////////////////////////////////////////////////////////////////////////////////
+﻿
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+Aggregate
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Collections;
+
+namespace C_Sharp_Practice
+{
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            string[] fruits = new string[] { "banana", "passionfruit", "lemon" };
+
+            string longestName0 =
+                fruits.Aggregate("", // This is the seed, but does still get considered
+                (longest, next) => next.Length > longest.Length ? next : longest, // The comparison fn
+                fruit => fruit.ToUpper()); // Any fn we want to throw in
+
+            Console.WriteLine("Longest string is {1}", "blank", longestName0);
+
+            string longestName1 =
+                fruits.Aggregate("This seed is way too long", // This is the seed, but does still get considered
+                (longest, next) => next.Length > longest.Length ? next : longest,
+                fruit => fruit.ToUpper());
+
+            Console.WriteLine("Longest string is {0}", longestName1);
+
+            string longestName2 =
+                fruits.Aggregate("",
+                (longest, next) => next.Length > longest.Length ? next : longest,
+                fruit => fruit.ToUpper().Substring(0, 3));
+
+            Console.WriteLine("Longest string is {0}", longestName2);
+
+            string longestName3 =
+                fruits.Aggregate("",
+                (longest, next) => next.Length > longest.Length ? next : longest,
+                fruit => fruit);
+
+            Console.WriteLine("Longest string is "+ longestName3);
+        }
+    }
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+Average
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+return list.Where(x => x > 7).Average();
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+GroupBy
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Collections;
+
+namespace C_Sharp_Practice
+{
+    struct S
+    {
+        public int val;
+        public string tag;
+
+        public S(int i, string s)
+        {
+            val = i;
+            tag = s;
+        }
+    }
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            List<S> sList = new List<S>() 
+            { 
+                new S(7, "A"),
+                new S(2, "D"),
+                new S(7, "B"),
+                new S(2, "E"),
+                new S(4, "F"),
+                new S(7, "C"),
+            };
+
+            var q = sList.GroupBy(v => v.val, (key, keys) => new { Key = key, Count = keys.Count()});
+
+            foreach(var i in q)
+            {
+                Console.WriteLine(i.Key +": "+i.Count);
+            }
+        }
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////
+Max
+/////////////////////////////////////////////////////////////////////////////////
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Collections;
+
+namespace C_Sharp_Practice
+{
+    struct S
+    {
+        public int value;
+        public S(int v)
+        {
+            value = v;
+        }
+    }
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            List<S> a = new List<S>() {new S(1), new S(8), new S(2), new S(9), new S(10), new S(3), new S(5), new S(6) };
+
+            var q = a.Max();
+
+            Console.WriteLine(q.ToString());
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+Min
+/////////////////////////////////////////////////////////////////////////////////
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Collections;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            List<int> l = new List<int>() { 5, 6, 7, 2, 3, 4, 5, 6, 7 };
+
+            Console.WriteLine(l.Min());
+        }
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////
 Order By
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -56,6 +223,37 @@ namespace C_Sharp_Practice
         }
     }
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+RANGE
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace C_Sharp_Practice
+{
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            int[] r = Enumerable.Range(0, 70).ToArray();
+
+            foreach(int i in r)
+            {
+                Console.Write(i + ", ");
+            }
+
+            Range R = new Range(0, 70);
+            Console.WriteLine(R);
+        }
+    }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 SELECT
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,13 +285,20 @@ namespace C_Sharp_Practice
             {
                 Console.WriteLine(b);
             }
+
+            IEnumerable iE = iL.Select(x => x > 5); // Gives bools
+
+            foreach (var i in iE)
+            {
+                Console.WriteLine(i);
+            }
+
+            iE = iL.Select(x => x + 5); // Gives modified ints
+
+            foreach (int i in iE)
+            {
+                Console.WriteLine(i);
+            }
         }
     }
 }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-Average
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-            return list.Where(x => x > 7).Average();

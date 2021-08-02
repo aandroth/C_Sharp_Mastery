@@ -12,6 +12,7 @@ namespace C_Sharp_Practice
     class Inciter
     {
         static int value = 7;
+
         public static void SendToDelegate(string str)
         {
             Console.WriteLine("Function was passed with "+str+", called, and value is " + value);

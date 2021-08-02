@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+
+namespace C_Sharp_Practice
+{
+    class GenericListClass<T>
+    {
+        List<T> tList = new List<T>();
+
+        public void Add(T t) { tList.Add(t); }
+        public void Print()
+        {
+            foreach (var t in tList)
+            {
+                Console.Write(t + " |");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            GenericListClass<string> gStr = new GenericListClass<string>();
+
+            gStr.Add("One");
+            gStr.Add("One");
+            gStr.Add("Two");
+            gStr.Add("Three");
+
+            gStr.Print();
+        }
+    }
+}

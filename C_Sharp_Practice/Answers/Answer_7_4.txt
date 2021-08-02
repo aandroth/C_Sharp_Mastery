@@ -9,38 +9,31 @@ namespace C_Sharp_Practice
     {
         public static void Practice_Problem_Main()
         {
-            List<int> intList = new List<int>() {1, 2, 3, 4, 5, 6, 7, 8};
-            int[] intArray = new int[8];
+            int[] arr = {0, 1, 2, 3, 4, 5};
+            ArrayList arrA = new ArrayList();
 
-            intArray = intList.ToArray();
-
-            for(int ii=0; ii<intArray.Length; ++ii)
+            for (int ii = 0; ii < arr.Length; ++ii)
             {
-                Console.Write(intArray[ii] + ", ");
+                arrA.Add(arr[ii]);
             }
-            Console.WriteLine();
-
-            intList.Clear();
-            Console.WriteLine(intList.Count);
-
-            intList = intArray.ToList<int>();
-            for (int ii = 0; ii < intList.Count; ++ii)
+            for (int ii = 0; ii < arr.Length; ++ii)
             {
-                Console.Write(intList[ii] + ", ");
+                arrA.Add(arr[ii]);
             }
-            Console.WriteLine();
-
-
-            intList.Clear();
-            Console.WriteLine("Count: "+intList.Count);
-            var q = from iA in intArray
-                    where iA > 4
-                    select iA;
-            intList = q.ToList();
-
-            for (int ii = 0; ii < intList.Count; ++ii)
+            arr = new int[arrA.Count];
+            for (int ii = 0; ii < arr.Length; ++ii)
             {
-                Console.Write(intList[ii] + ", ");
+                arr[ii] = (int)arrA[ii];
+            }
+            Console.WriteLine("arr:");
+            for (int ii = 0; ii < arr.Length; ++ii)
+            {
+                Console.WriteLine(arr[ii]);
+            }
+            Console.WriteLine("arrA:");
+            for (int ii = 0; ii < arrA.Count; ++ii)
+            {
+                Console.WriteLine(arrA[ii]);
             }
         }
     }

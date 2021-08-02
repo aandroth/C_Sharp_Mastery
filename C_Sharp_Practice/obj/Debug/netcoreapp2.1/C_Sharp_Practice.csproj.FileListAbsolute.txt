@@ -1,7 +1,3 @@
-C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\obj\Debug\netcoreapp2.1\C_Sharp_Practice.csprojAssemblyReference.cache
-C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\obj\Debug\netcoreapp2.1\C_Sharp_Practice.csproj.CoreCompileInputs.cache
-C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\obj\Debug\netcoreapp2.1\C_Sharp_Practice.AssemblyInfoInputs.cache
-C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\obj\Debug\netcoreapp2.1\C_Sharp_Practice.AssemblyInfo.cs
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\bin\Debug\netcoreapp2.1\ActiveQs.txt
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\bin\Debug\netcoreapp2.1\Linq_Methods.txt
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\bin\Debug\netcoreapp2.1\ActiveQs_New.txt
@@ -10,5 +6,9 @@ C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\bin\Debug\netcoreap
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\bin\Debug\netcoreapp2.1\C_Sharp_Practice.runtimeconfig.dev.json
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\bin\Debug\netcoreapp2.1\C_Sharp_Practice.dll
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\bin\Debug\netcoreapp2.1\C_Sharp_Practice.pdb
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\obj\Debug\netcoreapp2.1\C_Sharp_Practice.AssemblyInfoInputs.cache
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\obj\Debug\netcoreapp2.1\C_Sharp_Practice.AssemblyInfo.cs
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\obj\Debug\netcoreapp2.1\C_Sharp_Practice.csproj.CoreCompileInputs.cache
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\obj\Debug\netcoreapp2.1\C_Sharp_Practice.dll
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\obj\Debug\netcoreapp2.1\C_Sharp_Practice.pdb
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Practice\obj\Debug\netcoreapp2.1\C_Sharp_Practice.genruntimeconfig.cache
