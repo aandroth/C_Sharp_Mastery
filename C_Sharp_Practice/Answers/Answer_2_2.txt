@@ -4,16 +4,26 @@
 
 namespace C_Sharp_Practice.Problems
 {
-    sealed class CannotInherit
+    sealed class SealedParent
     {
+        int value;
 
+        public SealedParent(int val)
+        {
+            value = val;
+        }
     }
-    class CanInherit
+
+    class Child // : SealedParent   // We cannot inherit from the sealed class
     {
-
+        SealedParent myParent;      // We can make our own object of it though
+        public Child()
+        {
+            myParent = new SealedParent(7);
+        }
     }
 
-    class Problem_4_to_8: CanInherit //, CannotInherit   // We cannot inherit from the sealed class
+    class Problem_4_to_8
     {
         public static void Problem_4_to_8_Main()
         {

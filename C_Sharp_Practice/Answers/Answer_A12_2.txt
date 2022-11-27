@@ -1,54 +1,36 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
 using System.Linq;
+using System.Collections;
 
-// The basics of using Delegates is that we define a function input and output, and then we are able to use that as the placeholder for sending functions as data.
-// Here, we have two classes, a frontend and a backend. The frontend sends delegates to the backend so that we are able to print messages out to the console.
 
 namespace C_Sharp_Practice
 {
-    class FrontEnd
+    interface IPrintable<T>
     {
-        public static void PrintProfileUsername(int id)
-        {
-            BackEndAPI.PrintUsername(id, s => Console.WriteLine(s));
-        }
-
-        public static void CreateUesr(string name)
-        {
-            BackEndAPI.CreateNewUser((id) => { Console.WriteLine("Welcome user " + name + id + "!"); return name; });
-        }
+        public void Print();
     }
 
-    class DB_Instance
+    class Node<T> : IPrintable<T>
     {
-        public string username;
-        public int userId = -1;
-    }
+        T item;
 
-    class BackEndAPI
-    {
-        private static List<DB_Instance> dbInstance = new List<DB_Instance>();
-
-        public static void CreateNewUser(Func<int, string> newUserCallback)
+        public Node()
         {
-            DB_Instance newDB_Instance = new DB_Instance();
-            if (dbInstance.Count == 0)
-                newDB_Instance.userId = 0;
-            else
-                newDB_Instance.userId = dbInstance[dbInstance.Count-1].userId + 1;
-            newDB_Instance.username = newUserCallback(newDB_Instance.userId);
-            dbInstance.Add(newDB_Instance);
+            item = default;
         }
-        public static void PrintUsername(int id, Action<string> printUsername)
-        {
-            DB_Instance dbI = dbInstance.First(x => x.userId == id);
 
-            if (dbI == null)
-                printUsername("User Not Found");
-            else
-                printUsername(dbI.username);
+        public Node(T t)
+        {
+            item = t;
+        }
+
+        public void Print()
+        {
+            Console.WriteLine(item.ToString());
         }
     }
 
@@ -56,12 +38,11 @@ namespace C_Sharp_Practice
     {
         public static void Practice_Problem_Main()
         {
+            IPrintable<int> n = new Node<int>();
+            IPrintable<string> s = new Node<string>("Varily!");
 
-            FrontEnd.CreateUesr("Lester");
-            FrontEnd.PrintProfileUsername(0);
-
-            FrontEnd.CreateUesr("Chester");
-            FrontEnd.PrintProfileUsername(1);
+            n.Print();
+            s.Print();
         }
     }
 }

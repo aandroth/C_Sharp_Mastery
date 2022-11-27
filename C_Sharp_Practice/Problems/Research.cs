@@ -6,6 +6,9 @@ using System.Collections.Specialized;
 using System.Text;
 using System.Linq;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
 
 // Currently looking into Generics:
 // 12_0: Create a class that implements a generic list with Add (aka push), and another class that implements it",
@@ -57,13 +60,206 @@ namespace C_Sharp_Practice
     //    }
     //}
 
+
+    //string gitbashExePath = "C:\\Program Files\\Git\\git-bash.exe";
+    //string gitCommand = "login user pass";
+    //string gitRepoPath = "C:\\Users\\aandr\\source\\repos\\C_Sharp_Mastery";
+
+    //ProcessStartInfo processStartInfo = new ProcessStartInfo(gitbashExePath, "-c \" " + gitCommand + " \"")
+    //{
+    //    WorkingDirectory = gitRepoPath,
+    //    //                Arguments = gitCommand,
+    //    RedirectStandardOutput = true,
+    //    RedirectStandardError = true,
+    //    RedirectStandardInput = true,
+    //    UseShellExecute = false,
+    //    CreateNoWindow = true
+    //};
+
+    //var process = Process.Start(processStartInfo);
+    //process.WaitForExit();
+
+    //        string output = process.StandardOutput.ReadToEnd();
+    //string error = process.StandardError.ReadToEnd();
+    //var exitCode = process.ExitCode;
+
+    //process.Close();
+
+    //        Console.WriteLine("output: "+output);
+    //        Console.WriteLine("error: " + error);
+    //        Console.WriteLine("exitCode: " + exitCode.ToString());
+
+    class Car
+    {
+        public int seatCount = 1;
+        public string engineModel = "unknown";
+        public bool hasGPS = false;
+
+        public void printCarDetails()
+        {
+            Console.WriteLine("Car Details:");
+            Console.WriteLine("Seat Count is "+seatCount);
+            Console.WriteLine("Engine model is "+seatCount);
+            if(hasGPS)
+                Console.WriteLine("Has a GPS");
+            else
+                Console.WriteLine("No GPS");
+        }
+    }
+    class CarManual
+    {
+        public int seatCount = 1;
+        public string engineModel = "unknown";
+        public bool hasGPS = false;
+
+        public void printCarDetails()
+        {
+            Console.WriteLine("Car Details:");
+            Console.WriteLine("Seat Count is "+seatCount);
+            Console.WriteLine("Engine model is "+seatCount);
+            if(hasGPS)
+                Console.WriteLine("Has a GPS");
+            else
+                Console.WriteLine("No GPS");
+        }
+    }
+
+    class Builder<T>
+    {
+        private T t;
+
+        public void reset() { }
+        public void setSeats(int numberOfSeats) { }
+        public void setEngine(string engineModel) { }
+        public void setGPS(bool hasGPS) { }
+
+        public T returnResult() { return t; }
+    }
+
+    class ClunkerCarBuilder : Builder<Car>
+    {
+        private static Car car;
+
+        static ClunkerCarBuilder()
+        {
+            car = new Car();
+        }
+        public new void setSeats(int numberOfSeats)
+        {
+            car.seatCount = Math.Max(numberOfSeats-2, 0);
+        }
+        public new void setEngine(string carEngineModel)
+        {
+            car.engineModel = "knockoff" + carEngineModel;
+        }
+        public new void setGPS(bool carHasGPS)
+        {
+            car.hasGPS = !carHasGPS;
+        }
+    }
+
+    class LuxeryCarBuilder : Builder<Car>
+    {
+        private static Car car;
+
+        static LuxeryCarBuilder()
+        {
+            car = new Car();
+        }
+        public new void setSeats(int numberOfSeats)
+        {
+            car.seatCount = numberOfSeats + 4;
+        }
+        public new void setEngine(string carEngineModel)
+        {
+            car.engineModel = "Turbo charged " + carEngineModel;
+        }
+        public new void setGPS(bool carHasGPS)
+        {
+            car.hasGPS = carHasGPS;
+        }
+    }
+
+    class CarManualBuilder : Builder<CarManual>
+    {
+        private static CarManual carManual;
+
+        static CarManualBuilder()
+        {
+            carManual = new CarManual();
+        }
+        public new void setSeats(int numberOfSeats)
+        {
+            carManual.seatCount = numberOfSeats;
+        }
+        public new void setEngine(string carEngineModel)
+        {
+            carManual.engineModel = carEngineModel;
+        }
+        public new void setGPS(bool carHasGPS)
+        {
+            carManual.hasGPS = carHasGPS;
+        }
+    }
+
+    class CarAndCarManualDirector
+    {
+        public static Car makeSUV(Builder<Car> builder)
+        {
+            builder.setSeats(5);
+            builder.setEngine("4 Cylinder");
+            builder.setGPS(false);
+            return builder.returnResult();
+        }
+        public static Car makeSportsCar(Builder<Car> builder)
+        {
+            builder.setSeats(2);
+            builder.setEngine("10 Cylinder");
+            builder.setGPS(true);
+            return builder.returnResult();
+        }
+        public static CarManual makeSUVCarManual(Builder<CarManual> builder)
+        {
+            builder.setSeats(5);
+            builder.setEngine("4 Cylinder");
+            builder.setGPS(false);
+            return builder.returnResult();
+        }
+        public static CarManual makeSportsCarManual(Builder<CarManual> builder)
+        {
+            builder.setSeats(2);
+            builder.setEngine("10 Cylinder");
+            builder.setGPS(true);
+            return builder.returnResult();
+        }
+    }
+
     class Research
     {
         public static void Research_Main()
         {
-            //GenericArrayListClass g = new GenericArrayListClass();
+            ClunkerCarBuilder clunkerBuilder = new ClunkerCarBuilder();
+            LuxeryCarBuilder sportyBuilder = new LuxeryCarBuilder();
+            Car clunkerSUV = CarAndCarManualDirector.makeSUV(clunkerBuilder);
+            Car clunkerSporty = CarAndCarManualDirector.makeSportsCar(clunkerBuilder);
+            Car luxSUV = CarAndCarManualDirector.makeSUV(sportyBuilder);
+            Car luxSporty = CarAndCarManualDirector.makeSportsCar(sportyBuilder);
 
-            //g.Add(7);
+            CarManualBuilder carManualBuilder = new CarManualBuilder();
+            CarManual SUVManual = new CarManual();
+            CarManual sportsCarManual = new CarManual();
+            CarManual clunkerManual = CarAndCarManualDirector.makeSUVCarManual(carManualBuilder);
+            CarManual sportyManual = CarAndCarManualDirector.makeSUVCarManual(carManualBuilder);
+
+            clunkerSUV.printCarDetails();
+            clunkerSporty.printCarDetails();
+            luxSUV.printCarDetails();
+            luxSporty.printCarDetails();
+
+            SUVManual.printCarDetails();
+            sportsCarManual.printCarDetails();
+            clunkerManual.printCarDetails();
+            sportyManual.printCarDetails();
         }
     }
 }

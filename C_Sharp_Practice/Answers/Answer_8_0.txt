@@ -1,7 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
+using System.Linq;
+using System.Collections;
 
 // 8.0
 
@@ -15,38 +18,44 @@ I believe that this means, that a class is a Queryable class if it inherits the 
 
 namespace C_Sharp_Practice
 {
-    class Pet
+    class Weapon
     {
-        public string Name { get; set; }
-        public int Age { get; set; }
-    }
+        public enum WEAPON_TYPE {AXE, SWORD, SPEAR};
 
-    public static void OrderByEx1()
-    {
-        Pet[] pets = { new Pet { Name="Barley", Age=8 },
-                       new Pet { Name="Boots", Age=4 },
-                       new Pet { Name="Whiskers", Age=1 } };
+        public WEAPON_TYPE type;
+        public string name;
 
-        IEnumerable<Pet> query = pets.OrderBy(pet => pet.Age);
-
-        foreach (Pet pet in query)
+        public Weapon(WEAPON_TYPE t, string n)
         {
-            Console.WriteLine("{0} - {1}", pet.Name, pet.Age);
+            type = t;
+            name = n;
+        }
+
+        public override string ToString()
+        {
+            return "The " + type.ToString() + ", " + name;
         }
     }
 
-    /*
-     This code produces the following output:
-
-     Whiskers - 1
-     Boots - 4
-     Barley - 8
-    */
-
-    class Problem_3_0
+    class Practice_Problem
     {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
+            List<Weapon> weaponRack = new List<Weapon>()
+            {
+                new Weapon(Weapon.WEAPON_TYPE.SWORD, "Silver Sword"),
+                new Weapon(Weapon.WEAPON_TYPE.AXE, "Wooden Axe"),
+                new Weapon(Weapon.WEAPON_TYPE.SWORD, "Sting"),
+                new Weapon(Weapon.WEAPON_TYPE.SPEAR, "Lifestealer"),
+                new Weapon(Weapon.WEAPON_TYPE.AXE, "Grim"),
+            };
+
+            var q = weaponRack.OrderBy(x => x.type);
+
+            foreach(var w in q)
+            {
+                Console.WriteLine(w.ToString());
+            }
         }
     }
 }

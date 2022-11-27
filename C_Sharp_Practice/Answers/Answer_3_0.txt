@@ -1,64 +1,60 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
 
 namespace C_Sharp_Practice
 {
     class Practice_Problem
     {
-        static public T[] getLongestCommonSequence<T>(T[] arrA, T[] arrB)
+
+        public static string MostCommonSequence(string A, string B)
         {
-            T[] arr = new T[0];
-            List<T> currList = new List<T>();
-            List<T> maxList = new List<T>();
+            string maxSeq = "";
 
-            for (int ii = 0; ii < arrA.Length; ++ii)
+            for (int ii = 0; ii < A.Length; ++ii)
             {
-                for (int jj = 0; jj < arrB.Length; ++jj)
+                for (int jj = 0; jj < B.Length; ++jj)
                 {
-                    if (arrA[ii].Equals(arrB[jj]))
+                    if (A[ii] == B[jj])
                     {
-                        for (int kk = 0; (ii + kk) < arrA.Length && jj < arrB.Length; ++kk, ++jj)
+                        string temp = "";
+                        
+                        for (int kk = 0; ii+kk < A.Length && jj+kk < B.Length; ++kk)
                         {
-                            if (arrA[ii + kk].Equals(arrB[jj]))
-                                currList.Add(arrB[jj]);
-
-                            if ((ii + kk) == (arrA.Length - 1) || jj == (arrB.Length - 1) ||
-                                !(arrA[ii + kk].Equals(arrB[jj])))
+                            if(A[ii+kk] != B[jj + kk])
                             {
-                                maxList = currList.Count > maxList.Count ? currList : maxList;
-                                currList = new List<T>();
+                                break;
                             }
+                            temp = temp + A[ii + kk];
+                        }
+
+                        if (maxSeq.Length < temp.Length)
+                        {
+                            maxSeq = temp;
                         }
                     }
                 }
             }
-            arr = maxList.ToArray();
-            return arr;
-        }
 
-        static void printArray<T>(T[] tArr)
-        {
-            for (int ii = 0; ii < tArr.Length; ++ii)
-            {
-                Console.Write(tArr[ii] + ",");
-            }
-            Console.WriteLine();
+            return maxSeq;
         }
 
         public static void Practice_Problem_Main()
         {
-            int[] A = { 1, 2, 8, 2, 1 }, B = { 8, 2, 1, 4, 7 };
-            int[] C = { 1, 2, 3, 2, 1 }, D = { 8, 7, 6, 4, 7 };
-            int[] E = { 2, 2, 7, 2, 2 }, F = { 2, 2, 3, 7, 2, 2, 7 };
-
-            char[] G = { 'a', 'b', 'c', 'd', 'e' };
-            char[] H = { 'a', 'd', 'e', 'b', 'c', 'd', 'a', 'd', };
-
-            printArray(getLongestCommonSequence(A, B));
-            printArray(getLongestCommonSequence(C, D));
-            printArray(getLongestCommonSequence(E, F));
-
-            printArray(getLongestCommonSequence(G, H));
+            string A = "aabbcc";
+            string B = "bccdd";
+            string a = "aaabbbcccbbbdddbbbeeebbb";
+            string b = "bcccccbb";
+            string c = "bcccdddbbbaaa";
+            string G = "abcde";
+            string H = "adebcdad";
+            Console.WriteLine(MostCommonSequence(A, B));
+            Console.WriteLine(MostCommonSequence(a, b));
+            Console.WriteLine(MostCommonSequence(a, c));
+            Console.WriteLine(MostCommonSequence(G, H));
         }
     }
 }

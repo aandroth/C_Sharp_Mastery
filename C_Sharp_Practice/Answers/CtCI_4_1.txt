@@ -1,0 +1,84 @@
+﻿using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+
+using System.Numerics;
+
+class Node
+{
+    public int min, max;
+    public Node left, right;
+}
+
+class Hackerrank_Problem {
+
+    //Implement a function to check if a binary tree is balanced.
+    // For the purposes of teh question,
+    // // a balanced tree is defined to be a tree such that the heights of the two subtrees never differ by more than one
+    static bool Problem4_1_Is_Binary_Tree_Balanced(Node node)
+    {
+        return GetHeights(node);
+
+        return true;
+    }
+
+    static bool GetHeights(Node node)
+    {
+        // Fill heights
+        bool returnEarly = false;
+        Console.WriteLine("Checking left node");
+        if(node.left != null) returnEarly = !GetHeights(node.left);
+        else Console.WriteLine("Left node was null");
+        if (returnEarly)
+            return false;
+        Console.WriteLine("Checking right node");
+        if (node.right != null) returnEarly = !GetHeights(node.right);
+        else Console.WriteLine("Right node was null");
+        if (returnEarly)
+            return false;
+
+        int leftMin = node.left != null ? node.left.min+1 : 0;
+        int rightMin = node.right != null ? node.right.min+1 : 0;
+        int leftMax = node.left != null ? node.left.max+1 : 0;
+        int rightMax = node.right != null ? node.right.max+1 : 0;
+
+        node.min = leftMin < rightMin ? leftMin : rightMin;
+        node.max = leftMax > rightMax ? leftMax : rightMax;
+        Console.WriteLine("max: "+node.max+", min: "+node.min);
+
+        return Math.Abs(node.max - node.min) <= 1;
+    }
+
+    public static void Hackerrank_Problem_Main()
+    {
+        Node root = new Node();
+
+        root.left = new Node();
+        root.left.left = new Node();
+        root.left.right = new Node();
+        root.left.right.left = new Node();
+
+        root.right = new Node();
+        root.right.left = new Node();
+        root.right.left.left = new Node();
+        root.right.right = new Node();
+        root.right.right.left = new Node();
+        root.right.right.left.right = new Node();
+
+        if (Problem4_1_Is_Binary_Tree_Balanced(root))
+            Console.WriteLine("Tree is balanced");
+        else
+            Console.WriteLine("Tree is NOT balanced");
+    }
+}

@@ -1,34 +1,44 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Collections;
 
-namespace C_Sharp_Practice.Problems
+namespace C_Sharp_Practice
 {
-    interface IMagicUser
+    interface ICast
     {
-        void stateClassType();
-        void stateMagicType();
-    }
-
-    class Wizard : IMagicUser
-    {
-        void IMagicUser.stateClassType()
+        void AskForMana()
         {
-            Console.WriteLine("I am a wizard!");
+            Console.WriteLine("I need mana.");
         }
-
-        public void stateMagicType()
+        public void CastSpell()
         {
-            Console.WriteLine("I use arcane magic!");
+            Console.WriteLine("I cast a spell.");
         }
     }
 
-
-    class Problem_3_0
+    class OrcCaster : ICast
     {
-        public static void Problem_3_0_Main()
+        public void CastSpell()
         {
-            IMagicUser i_mu = new Wizard();
-            i_mu.stateClassType();
-            i_mu.stateMagicType();
+            Console.WriteLine("I sparkle ball YOU!!!");
+        }
+        public void AskForMana()
+        {
+            Console.WriteLine("Need more sparkle power!");
+        }
+    }
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            ICast oC = new OrcCaster();
+            oC.CastSpell();
+            oC.AskForMana();
         }
     }
 }

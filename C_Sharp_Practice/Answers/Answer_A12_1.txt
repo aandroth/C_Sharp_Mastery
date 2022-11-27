@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-// The basics of using Delegates is that we define a function input and output, and then we are able to use that as the placeholder for sending functions as data.
-// Here, we have two classes, a frontend and a backend. The frontend sends delegates to the backend so that we are able to print messages out to the console.
+// The basics of using Delegates is that we define a function input and output, 
+// and then we are able to use that as the placeholder for sending functions as data.
+// Here, we have two classes, a frontend and a backend. 
+// The frontend sends delegates to the backend so that we are able to print messages out to the console.
 
 namespace C_Sharp_Practice
 {

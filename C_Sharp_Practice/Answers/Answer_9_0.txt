@@ -1,4 +1,76 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+Average(IEnumerable<Int32>)
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Collections;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+
+        public static void Practice_Problem_Main()
+        {
+            List<Int32> i32 = new List<int>();
+
+            i32.Add(Int32.MaxValue);
+            i32.Add(0);
+
+            Console.WriteLine(i32.Average());
+        }
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Min
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Collections;
+
+namespace C_Sharp_Practice
+{
+    struct S
+    {
+        public static int val = 7;
+        public void Foo()
+        {
+            Console.WriteLine("struct foo");
+        }
+    }
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            List<int> iList = new List<int>() { 6, 1, 2, 5, 4, 8, 9, 7 };
+
+            while(iList.Count > 0)
+            {
+                Console.WriteLine(iList.Min());
+                iList.RemoveAt(0);
+            }
+        }
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+OrderBy
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
@@ -51,44 +123,8 @@ namespace C_Sharp_Practice
     }
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-Min
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using System.Collections;
-
-namespace C_Sharp_Practice
-{
-    struct S
-    {
-        public static int val = 7;
-        public void Foo()
-        {
-            Console.WriteLine("struct foo");
-        }
-    }
-    class Practice_Problem
-    {
-        public static void Practice_Problem_Main()
-        {
-            List<int> iList = new List<int>() { 6, 1, 2, 5, 4, 8, 9, 7 };
-
-            while(iList.Count > 0)
-            {
-                Console.WriteLine(iList.Min());
-                iList.RemoveAt(0);
-            }
-        }
-    }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-Sum
+Sum<int>
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 using System;
 using System.Collections.Generic;
@@ -105,6 +141,35 @@ namespace C_Sharp_Practice
             List<int> iList = new List<int>() {0, 1, 2, 3, 4, 5, 6, 7};
 
             Console.WriteLine(iList.Sum());
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Sum<Nullable<Single>>
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            Nullable<Single> nS = 7;
+
+            List<Nullable<Single>> iList = new List<Nullable<Single>>() { 1, null, 2, 1, 2, null};
+            List<float?> fList = new List<float?>() { 1, null, 2, 1, 2, null};
+
+            Console.WriteLine(iList.Sum());
+            Console.WriteLine(fList.Sum());
         }
     }
 }

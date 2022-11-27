@@ -50,7 +50,7 @@ namespace C_Sharp_Practice
         {
             Console.WriteLine("Deriv class foo");
         }
-        public override void abstract_foo()
+        public override void abstract_foo() // The override keyword lets the compiler know we understand that we're overriding the base class' abstract fn
         {
             Console.WriteLine("Deriv class abstract foo");
         }

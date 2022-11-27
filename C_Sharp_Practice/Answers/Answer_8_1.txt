@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
+using System.Linq;
+using System.Collections;
 
-// "8_1: Create a List of Book Titles {string name}, and then write a query to get the ones that has \"Tutorials\" in them",
 
 namespace C_Sharp_Practice
 {
@@ -11,6 +13,24 @@ namespace C_Sharp_Practice
     {
         public static void Practice_Problem_Main()
         {
+            List<string> sList = new List<string>()
+            {
+                "Tutorials in 7 Habits",
+                "Tut Tut",
+                "Tutorials by a Vampire",
+                "Book Binding 101",
+                "Axes, A Picture Book",
+                "Tutorials for Everything",
+                "Tutorials on Writing Tutorials",
+                "Tutorial Stuff"
+            };
+
+            var q = from s in sList
+                    where s.Contains("Tutorials")
+                    select s;
+
+            foreach(var s in q)
+                Console.WriteLine(s);
         }
     }
 }

@@ -1,54 +1,57 @@
 ﻿using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
 using System.Linq;
-
-// The basics of using Delegates is that we define a function input and output, and then we are able to use that as the placeholder for sending functions as data.
-// Here, we have two classes, a frontend and a backend. The frontend sends delegates to the backend so that we are able to print messages out to the console.
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 
 namespace C_Sharp_Practice
 {
-    class FrontEnd
+
+    //https://tyrrrz.me/blog/fluent-generics
+    // https://tyrrrz.me/blog/return-type-inference
+    public static class DictionaryCreation
     {
-        public static void PrintProfileUsername(int id)
+        public static class WithKeyType<KeyType>
         {
-            BackEndAPI.PrintUsername(id, s => Console.WriteLine(s));
+            public static class WithValueType<ValType>
+            {
+                public static Dictionary<KeyType, ValType> GetDictionary()
+                {
+                    return new Dictionary<KeyType, ValType>();
+                }
+            }
+            public static class WithoutValueType
+            {
+                public static Dictionary<KeyType, string> GetDictionary()
+                {
+                    return new Dictionary<KeyType, string>();
+                }
+            }
         }
 
-        public static void CreateUesr(string name)
+        public abstract class WithoutKeyType
         {
-            BackEndAPI.CreateNewUser((id) => { Console.WriteLine("Welcome user " + name + id + "!"); return name; });
-        }
-    }
-
-    class DB_Instance
-    {
-        public string username;
-        public int userId = -1;
-    }
-
-    class BackEndAPI
-    {
-        private static List<DB_Instance> dbInstance = new List<DB_Instance>();
-
-        public static void CreateNewUser(Func<int, string> newUserCallback)
-        {
-            DB_Instance newDB_Instance = new DB_Instance();
-            if (dbInstance.Count == 0)
-                newDB_Instance.userId = 0;
-            else
-                newDB_Instance.userId = dbInstance[dbInstance.Count-1].userId + 1;
-            newDB_Instance.username = newUserCallback(newDB_Instance.userId);
-            dbInstance.Add(newDB_Instance);
-        }
-        public static void PrintUsername(int id, Action<string> printUsername)
-        {
-            DB_Instance dbI = dbInstance.First(x => x.userId == id);
-
-            if (dbI == null)
-                printUsername("User Not Found");
-            else
-                printUsername(dbI.username);
+            public static class WithValueType<ValType>
+            {
+                public static Dictionary<string, ValType> GetDictionary()
+                {
+                    return new Dictionary<string, ValType>();
+                }
+            }
+            public static class WithoutValueType
+            {
+                public static Dictionary<string, string> GetDictionary()
+                {
+                    return new Dictionary<string, string>();
+                }
+            }
         }
     }
 
@@ -56,12 +59,10 @@ namespace C_Sharp_Practice
     {
         public static void Practice_Problem_Main()
         {
-
-            FrontEnd.CreateUesr("Lester");
-            FrontEnd.PrintProfileUsername(0);
-
-            FrontEnd.CreateUesr("Chester");
-            FrontEnd.PrintProfileUsername(1);
+            Dictionary<double, double> WithKeyWithVal = DictionaryCreation.WithKeyType<double>.WithValueType<double>.GetDictionary();
+            Dictionary<double, string> WithKeyWithoutVal = DictionaryCreation.WithKeyType<double>.WithoutValueType.GetDictionary();
+            Dictionary<string, double> WithoutKeyWithVal = DictionaryCreation.WithoutKeyType.WithValueType<double>.GetDictionary();
+            Dictionary<string, string> WithoutKeyWithoutVal = DictionaryCreation.WithoutKeyType.WithoutValueType.GetDictionary();
         }
     }
 }

@@ -32,6 +32,11 @@ namespace C_Sharp_Practice
                 0, 1, 2, 3, 4, 5, 6, 7 //, null    // We can't put a null directly into an Array like we can with ArrayList
             };
 
+            int?[] canBeNullIntArr = new int?[]
+            {
+                0, null, 2, null, 4, 5, null, 7    // Unless that Array is a nullable value type
+            };
+
             int? intCanBeNull0 = null;
             int? intCanBeNull1 = 7;
             // arr[4] = intCanBeNull1;     // We also can't put in a value that could be null, like an int?
@@ -49,12 +54,7 @@ namespace C_Sharp_Practice
                 Console.WriteLine("Error: " + e.Message);
             }
 
-            // We can creat an Array of int?, which can then take null as a value
-            int?[] canBeNullIntArr = new int?[]
-            {
-                null, 1, null, 3, 4, null
-            };
-            Console.WriteLine("Printing items in canBeNullIntArr. Indeces 0, 2, and 5 are null");
+            Console.WriteLine("Printing items in canBeNullIntArr. Indeces 1, 3, and 6 are null");
             for (int ii = 0; ii < canBeNullIntArr.Length; ++ii)
             {
                 Console.WriteLine(canBeNullIntArr[ii]);

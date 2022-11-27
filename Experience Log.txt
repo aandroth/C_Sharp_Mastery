@@ -1,0 +1,1895 @@
+Time: 70 days
+
+sub-objectives:
+Improve website
+	Visible Wood Part on right
+	Incorrectly placed toolbar
+Get projects onto website
+	Kanban Board
+	VR Gallery
+	Player vs Object Pool
+Improve skills
+	C# Practice     - 70 hours
+	C# Research     - 40 hours
+	Problem Solving - 70 hours
+Send out resumes
+	Apply to 7 jobs a day
+	At the end of 70 days: 490 resumes
+
+Level: 1  > 5  > 10
+Hours: 30 > 40 > 50
+
+C# Practice:
+Level: 1
+________________
+|***********.   |22.75/30 // 
+----------------
+Level 0 - "I will" Mousepad
+
+C# Research:
+Level: 1
+________________
+|*******        |14/30 // 
+----------------
+Level 0 (Completion of Level 1, all categories) - Laptop portable stand
+
+Problem Solving:
+Level: 2
+________________
+|*********.     |19.25/30 // 
+----------------
+
+Level 0 - Ear Buds
+Level 1 - Ergonomic Mouse
+Level 2 - Portable USB hub
+
+Google Sheet: https://docs.google.com/spreadsheets/d/16glU58W8jhcF9jrJAQpBYf52Q_0IQRn2AJSWpXsJnnM/edit#gid=0
+
+///////////////////////////////////////////////////////////
+
+WEEKLY OBJECTIVES:
+
+C# Practice: 1.5
+C# Research: 1.5
+Problem Solving: 7
+Project: 12
+Peeka: 30
+Resumes: 40
+
+DAILY OBJECTIVES:
+
+C# Practice/Research: 0.5
+Problem Solving: 1
+Project/Peeka: 3
+Peeka: 3
+Resumes: 7
+
+///////////////////////////////////////////////////////////
+
+Tuesday Objectives:
+C# Practice       - 0
+Problem Solving   - 1
+C# Research       - 1
+Project           - 0
+Peeka             - 1.5
+Resumes           - 0
+
+4/2/22 - NOT ADDED
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+Planning:
+
+4/1/22 - NOT ADDED
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+Planning:
+
+3/31/22 - NOT ADDED
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+Planning:
+
+3/30/22 - NOT ADDED
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+Planning:
+
+3/29/22 - NOT ADDED
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+Planning: DONE
+
+3/28/22
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 1
+Project: 0
+Peeka: 0
+Planning: DONE
+
+/////////////////////////////////////////////////////////////
+3/10/22 - NOT ADDED
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+Planning: DONE
+
+3/9/22 - NOT ADDED
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+Planning: DONE
+
+3/8/22 - NOT ADDED
+Resumes: 0
+C# Practice: 0
+C# Research: 1
+Problem Solving: 1
+Project: 0
+Peeka: 0
+Planning: DONE
+
+3/7/22
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 4
+Project: 0
+Peeka: 0
+Planning: DONE
+
+///////////////////////////////////////////////////////////
+
+Tuesday Objectives:
+C# Practice       - 0
+Problem Solving   - 1
+C# Research       - 1
+Project           - 0
+Peeka             - 1.5
+Resumes           - 0
+
+3/4/22 - NOT ADDED
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+Planning: DONE
+
+3/3/22 - NOT ADDED
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+Planning: DONE
+
+3/2/22
+Resumes: 0
+C# Practice: 0
+C# Research: 1
+Problem Solving: 1
+Project: 0
+Peeka: 0
+Planning: DONE
+
+3/1/22
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 1
+Project: 0
+Peeka: 0
+Planning: DONE
+
+
+///////////////////////////////////////////////////////////
+
+2/1/22
+Resumes: 0
+C# Practice: 0.25
+C# Research: 0
+Problem Solving: 0.25
+Project: 0
+Peeka: 0
+Planning: DONE
+
+
+1/31/22
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0.25
+Project: 0
+Peeka: 4
+Planning: -
+
+//////////////////////////////////////////////////////////////
+
+10/15/21
+Resumes: 7
+C# Practice: 0
+C# Research: 0
+Problem Solving: 2
+Project: 0
+Peeka: 0
+Planning: -
+
+
+10/14/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0.25
+Problem Solving: 2
+Project: 0
+Peeka: 3
+Planning: -
+
+
+10/13/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+Planning: -
+
+
+10/12/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 7
+Planning: -
+
+
+10/11/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0.5
+Problem Solving: 0
+Project: 0
+Peeka: 0
+Planning: Done
+
+
+//////////////////////////////////////
+Week was basically a wash with all of the moving, and just lack of work on pretty much anything.
+This is a bit unfair, as I did work on stuff, but I know that it wasn't what it could have been.
+
+10/10/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+
+10/9/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+10/8/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+
+10/7/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+10/6/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+
+10/5/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+10/4/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 1
+Project: 4
+Peeka: 0
+
+//////////////////////////////////////////
+
+
+10/3/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+10/2/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 8
+
+10/1/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 2
+
+9/30/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 8
+
+9/29/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0.5
+Project: 0
+Peeka: 2
+
+9/28/21
+Resumes: 0
+C# Practice: 0
+C# Research: 1
+Problem Solving: 0
+Project: 0
+Peeka: 8
+
+9/27/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 6
+
+Notes:
+Vacation and Pax were fun
+
+Issues to resolve:
+Time to buckle down and get some shit done
+
+Accomplished:
+Having a good time
+
+
+9/26/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 1
+
+9/25/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 2
+
+9/24/21
+Resumes: 1
+C# Practice: 0
+C# Research: 0
+Problem Solving: 5
+Project: 0
+Peeka: 1
+
+9/23/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 1
+Peeka: 7
+
+9/22/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 8
+Peeka: 0
+
+9/21/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 2
+Peeka: 6
+
+9/20/21
+Resumes: 1
+C# Practice: 0
+C# Research: 0.25
+Problem Solving: 0.5
+Project: 5
+Peeka: 2
+
+Major falloff from here due to just not participating in this.
+Coming back strong with a new schedule, and looking forward to putting in the hours.
+
+9/11/21
+Resumes: 0
+C# Practice: 1
+C# Research: 0
+Problem Solving: 0
+Project: 2.5
+Peeka: 0
+
+9/10/21
+Resumes: 0
+C# Practice: 0
+C# Research: 1.5
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+9/9/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 2
+
+9/8/21
+Resumes: 0
+C# Practice: 0
+C# Research: 2
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+9/7/21
+Resumes: 1
+C# Practice: 2
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+Notes:
+Vacation and Pax were fun
+
+Issues to resolve:
+Time to buckle down and get some shit done
+
+Accomplished:
+Having a good time
+
+
+8/31/21
+Resumes: 5
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 1
+
+8/21/21
+Resumes: 7
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0.25
+Project: 3
+Peeka: 0
+
+8/20/21
+Resumes: 0 
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0 
+Project: 0 
+Peeka: 0           
+
+8/19/21
+Resumes: 0
+C# Practice: 0.5
+C# Research: 0    
+Problem Solving: 0 
+Project: 5         
+Peeka: 0           
+
+8/18/21
+Resumes: 0
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 2.5
+
+8/17/21
+Resumes: 1
+C# Practice: 1
+C# Research: 1
+Problem Solving: 0
+Project: 4
+Peeka: 0
+
+8/16/21
+Resumes: 0
+C# Practice: 1
+C# Research: 0
+Problem Solving: 1
+Project: 0.25
+Peeka: 3
+
+Notes:
+This week got above half, but is still fairly lacking. This is actually due to not getting the smaller reqs in, like C# practice and research, and problem solving.
+I actually did really well on Peeka and Project hours though. 
+
+Issues to resolve:
+Not putting in hours.
+Solution: Focus on micro-habits. Once I've fallen behind, keep to the schedule by completing shorter time periods of each task.
+
+Accomplished:
+Got the VR up and running.
+Got the last of my donation/recyclables out
+The Kanban Board still has features I would 
+
+
+8/15/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 0
+Project: 5
+Peeka: 0
+Resumes: 0
+
+8/14/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 6
+Peeka: 1
+Resumes: 0
+
+8/13/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 0
+Project: 4
+Peeka: 1
+Resumes: 0
+
+8/12/21
+C# Practice: 1
+C# Research: 0.5
+Problem Solving: 0
+Project: 3.5
+Peeka: 0
+Resumes: 7
+
+8/11/21
+C# Practice: 0
+C# Research: 0.5
+Problem Solving: 0
+Project: 0
+Peeka: 5
+Resumes: 4
+
+8/10/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 2
+Resumes: 4
+
+8/9/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 5
+Resumes: 0
+
+Notes:
+This week was an almost total wash. This is mainly due to getting progress on moving stuff out of the living room and to Jessica's.
+I have reassessed the situation as far as getting a job, and starting next week, I'll be shooting out resumes and applying to positions that I think will actually get me a job.
+
+Issues to resolve:
+Still have stuff in my living room, but Jessica will be leaving on a trip for a week. Should I just force her stuff out and into a storage unit?
+
+Accomplished:
+Got about a third of Jessica's stuff out.
+
+8/8/21
+C# Practice: 0.5
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 5
+
+8/7/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 3
+Peeka: 2
+
+8/6/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 1.5
+Project: 0
+Peeka: 1.5
+
+8/5/21
+C# Practice: 0.5
+C# Research: 0
+Problem Solving: 0
+Project: 2
+Peeka: 1
+
+8/4/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 2
+
+8/3/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+8/2/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 3
+Project: 0
+Peeka: 1.5
+
+Notes:
+I did spend a lot of time on Problem Solving this week, though that is due to being stuck on the same damn Hackerrank challenge.
+Seeing how obsessed I can become with an unfinished problem like this, I need to put the Problem Solving last.
+This is tough since it's arguably the most important, but maybe in putting it last, I can schedule two hours per day to focus on just that.
+Due to spending copius amounts of time bashing my head against this problem, I di not nearly make my goals of Peeka or Project hours.
+I probably under-reportd the amount of time spent on that challenge as well since the actual number would just make me feel even dumber than I do now.
+
+Issues to resolve:
+Too much time spent on Problem Solving
+Solution: Try scheduling Problem Solving last in each day
+
+Accomplished:
+Exceeded goals for Problem Solving and C# Practice
+
+8/1/21 - NOT ADDED
+C# Practice: 1
+C# Research: 0
+Problem Solving: 3
+Project: 0
+Peeka: 1.5
+
+7/31/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 1
+Project: 1.5
+Peeka: 0
+
+7/30/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 1
+Project: 0
+Peeka: 0
+
+Canned Air - DONE!
+7/29/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 1
+Project: 3
+Peeka: 1.5
+
+7/28/21
+C# Practice: 1.25
+C# Research: 0
+Problem Solving: 1
+Project: 0
+Peeka: 4
+
+7/27/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 4
+Project: 1
+Peeka: 1
+
+7/26/21
+C# Practice: 1.25
+C# Research: 1
+Problem Solving: 0.75
+Project: 0
+Peeka: 1
+
+Notes:
+I did not do well this week as I only got a little over half of my intended hours.
+Part of that was taking a full day off, with zero hours.
+I have definitely noticed that once I get into something, I seem to just keep going, whether it's Peeka, Project, or Problem solving.
+This isn't a bad thing in and of itself. I really find the fun when I get into the groove of what I'm working on.
+Maybe if I set a timer for the time when I should have definitely stopped by (especially for when I'm at DESC), it will help me shift gears to a new thing.
+Also, I'm thinking that Problem Solving C# Practice should be cornerstones of my day. As in the day doesn't actually begin until these have been done.
+I will plan out this coming week as best I can, but I know that things will go awry as I may be meeting up with Uncle George, and as I get a storage unit for Jessica's stuff.
+I have planned out my coming week, and actually overscheduled myself, so I have a window in which to get my hours, to help make sure that I do hit my goals.
+
+Issues to resolve:
+ - Not switching to a new task when I should
+I'll reset all of the alarms on my phone and have just two for when I should have definitely switched what I'm doing.
+ - Not reading books
+I am listening to good youtube videos by Jordan B Peterson, Improvement Pill, and others.
+I'll use this time to instead listen to Seven Habits or to Micro Habits
+I've added 7 Habits to my Bookmarks in Chrome for easy access
+
+Accomplished:
+Got the bike seat fixed, and am now riding to the gym!
+Got three Starting Strength workouts done!
+Got in a good amount of time on both the Kanban Board and Peeka
+
+7/25/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 4
+Peeka: 0
+
+7/24/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 3
+
+Go to Home Depot and get the bolts to rebend the seat onto the spokes. - DONE!
+7/23/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 6.5
+Peeka: 0
+
+7/22/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 6
+
+7/21/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+Attend the IGDA bar meetup and have fun! - DONE!
+7/20/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 5
+
+Bike Seat
+7/19/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4.5
+
+Notes:
+I was still about 15 hours off of my 49 hour goal, but this week did seem to go well.
+My biggest weakness is still that I'm getting home and then just watching Adventure Time.
+This in itself isn't bad, but it's cutting into the time I should be working.
+To help this, I've scheduled time to watch the show starting today (Monday).
+I missed the IGDA picnic thing, but I've scheduled the bar meetup, and will be attending that on Tuesday.
+
+Issues to resolve:
+ - Watching Adventure Time when I need to get in hours
+Scheduled time to watch the show
+   - Bike is still down
+I can get the bolts needed to rebend the seat at Home Depot, and it should be up by the end of Monday.
+ - Need to be invested in the day
+I've scheduled out the major blocks, but left the minutia for scheduling on that particular day.
+
+
+Bike Tire - DONE!, Bike Seat
+7/18/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 2
+Peeka: 3.5
+
+Bike Tire, Batteries, Butter, Bottle, Ben and Jerries - DONE!
+7/17/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 4
+Peeka: 0
+
+Bike Tire
+7/16/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 2
+Project: 0
+Peeka: 0
+
+Bike gears - DONE!
+7/15/21
+C# Practice: 0
+C# Research: 1
+Problem Solving: 0
+Project: 0
+Peeka: 5
+
+Bike gears
+7/14/21
+C# Practice: 0
+C# Research: 0.25
+Problem Solving: 0
+Project: 0
+Peeka: 5
+
+Day might be disprupted by Jessica Room time. MIGHT. It wasn't...
+7/13/21
+C# Practice: 1.5
+C# Research: 0.25
+Problem Solving: 0
+Project: 0
+Peeka: 6
+
+Day might be disprupted by Jessica Room time. MIGHT. It wasn't.
+7/12/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 4
+Project: 0
+Peeka: 0.5
+
+Notes:
+I really think that at least part of this week's dismal hours count is due to poor reporting,
+but I have to admit that I just didn't work on things too.
+I know that I have been putting good progress into the Kanban project, and those hours are probably
+higher than reported, but that doesn't justify not putting hours into the other categories too.
+The Peeka book is almost nearly finished, so I've shifted time away from that, but I have promised those hours
+to the company, so I can, and WILL, spend those on the backend, for both the team and my own education.
+
+Issues to resolve:
+ - Need to put in the Peeka hours
+Putting time into Peeka is imperitive. Going forward, I will adjust my Google calendar for the coming week,
+and assign my non-DESC days to putting in my Peeka hours. I will try that this coming week, and next week I
+can switch the script, and try doing Peeka hours only during DESC shifts, and then report back what worked 
+better.
+  - Need to find time for C# Practice and Research
+I will still plan on putting these into non-DESC days, but I will also modify this next week's Google 
+calendar to show when I'm putting in these hours too.
+  - Need to find time for Problem Solving and Project
+I will put these into DESC days, but I will also modify this next week's Google 
+calendar to this too.
+   - Need to cement in my mind that I will get up and go to the gym first thing
+Bike is still down, but should be up by the end of Monday.
+I can then practice the route to the gym
+ - Not meeting objectives
+I will put the objectives for the week above the daily entries as a reminder
+
+7/11/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 4
+Peeka: 0
+
+7/10/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+7/9/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+7/8/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+7/7/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 1.5
+Project: 0
+Peeka: 0
+
+7/6/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+7/5/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 2
+
+Notes:
+This week wasn't great for hours, but I am seeing a pattern when it comes to my work schedule.
+I only really seem to get anything done when I know just what I'm doing and in what order.
+Starting off with Problem Solving, and then getting into the project seems to work well.
+It does leave off C# Practice and research, but those are much lower priority.
+They can also be done at other times. 
+The biggest thing that I still have to get done are my Peeka hours.
+If I try to add those hours into DESC shifts, it comes out to 10 hours combined with problems 
+and project. I know that I can't plan for any more than six realistically. Part of this is 
+also that I have been using my lunch hours for journaling and sleep. When I establish a better
+schedule for myself, I can use those hours differently too. Then there is the 
+fact that I've been a really lazy bum when I get home, watching Adventure Time on the couch.
+I have been pretty good about planning out my days, and it may be time to start planning 
+out my week so that I can make sure to hit my weekly goals. 
+Getting to binge on Adventure Time also seems like a really good end-of-the-workday reward for
+myself. Maybe also add onto that a snack or something.
+Issues:
+ - Need to find time for Peeka
+Do two hours of Problems, Project, and Peeka. In that order.
+Once the work day is done, go home and finish the last two hours of Peeka, which includes any 
+meetings that day has. This way I can also have the opportunity to use the other laptop for
+3Ds Max work.
+  - Need to find time for C# Practice and Research
+Put these on non-work days where I actually have more time.
+By setting my work days to just three a week, I have about eight hours to put toward this.
+That will be just four if I give myself two days as a weekend.
+   - Need to cement in my mind that I will get up and go to the gym first thing
+Actually practice this process. As soon as the bike is back up and on the road, take a night or
+two where I sleep for an hour, wake up, and ride my bike over to the gym.
+
+
+7/4/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 2
+Project: 4
+Peeka: 0
+
+7/3/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 4
+Peeka: 0
+
+7/2/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+7/1/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+6/30/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 2
+Project: 0
+Peeka: 0
+
+6/29/21
+C# Practice: 0
+C# Research: 1
+Problem Solving: 0
+Project: 0
+Peeka: 3
+
+6/28/21
+C# Practice: 1
+C# Research: 0.25
+Problem Solving: 1
+Project: 0
+Peeka: 4
+
+Notes:
+This week didn't seem too bad, and I believe that pushing for getting even small increments is helping.
+Time into Peeka is also going well, and I feel that I'm hitting my hours, though I need to have a dedicated time or place for them.
+I do feel that I should be making a microhabit out of some reading as well. I did spend a lot of time this week on Youtube again.
+Maybe I can convert this time to reading one of these books.
+It would be great to have this as a monthly challenge too.
+Issues:
+ - Not going over 7 Habits or the atomic habits book
+Idea to Fix:
+Find a way to make it a microhabit. Read instead of going on Youtube
+ - Goofing off at Jessica's
+ Idea to fix:
+ I can't let my time there be wasted. If Jessica says let's work, we work, otherwise I need to be elsewhere.
+ If I'm just waiting...that's tough. Maybe I can sit out on the porch. Anything to escape the pit of laziness that
+ her place seeps into me.
+Accomplished:
+Worked on Peeka and had a good session of problem solving.
+
+6/27/21
+C# Practice: 0.5
+C# Research: 0
+Problem Solving: 4
+Project: 0
+Peeka: 0
+
+6/26/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 3
+Project: 0
+Peeka: 4
+
+6/25/21
+C# Practice: 0
+C# Research: 0.
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+6/24/21
+C# Practice: 0.5
+C# Research: 0.25
+Problem Solving: 3
+Project: 0
+Peeka: 4
+
+6/23/21
+C# Practice: 0.5
+C# Research: 0.25
+Problem Solving: 3
+Project: 0
+Peeka: 4
+
+6/22/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+6/21/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+Notes:
+This week wasn't too bad, but felt really weak. I may be miscalculating my Peeka hours.
+Began to go over 7 Habits of Highly Effective People, but fell off of this.
+I just didn't get myself going on putting in the hours in the areas I want.
+A large part of this may be due to either crunch time at Peeka, or goofing off at Jessica's.
+Issues:
+ - Not going over 7 Habits
+Idea to Fix:
+Find a way to make it a microhabit. Can I listen to it while I cook or clean dishes?
+ - Not putting in hours on other areas
+Idea to Fix:
+Make these microhabits. I can put in at least 15 minutes a day, and use this to keep the habit going.
+ - Goofing off at Jessica's
+ Idea to fix:
+ I can't let my time there be wasted. If Jessica says let's work, we work, otherwise I need to be elsewhere.
+ If I'm just waiting...that's tough. Maybe I can sit out on the porch. Anything to escape the pit of laziness that
+ her place seeps into me.
+Accomplished:
+Worked on Peeka and had a good session of problem solving.
+
+6/20/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+6/19/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 2
+Project: 0
+Peeka: 0
+
+6/18/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 2
+
+6/17/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 5
+
+6/16/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 7
+Project: 0
+Peeka: 0
+
+6/15/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 1
+
+6/14/21
+C# Practice: 0.25
+C# Research: 0.25
+Problem Solving: 0.75
+Project: 0
+Peeka: 2
+
+Notes:
+Week was entirely devoted to Peeka, and even that seems to be lacking, but that may be due to a lack of recording.
+Really want to progress in other areas and see the numbers go up there too.
+Beginning to go over 7 Habits of Highly Effective People, and how to apply these to my own work.
+Issues:
+ - Not adding hours to the learning areas
+Idea to Fix:
+Even if it's just an hour or a half hour, or even 15 minutes, I have to create the HABIT of doing these first and foremost every day.
+ - Not properly recording hours
+Idea to Fix:
+Plan time blocks by the hour, saving progress after each block.  Rewrote the blocks to have these hours first.
+Accomplished:
+Worked on Peeka and pushed a good amount of work.
+
+6/13/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 1
+
+6/12/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+6/11/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+6/10/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+6/9/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 3
+
+6/8/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0.5
+Project: 0
+Peeka: 0
+
+6/7/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0.5
+Project: 0
+Peeka: 1
+
+
+Notes:
+Week wasn't productive, except for Peeka, so my hours are very lacking elsewhere.
+Issues:
+ - No commitment to getting hours first and foremost
+Idea to Fix:
+This month will exclusively focus on getting my hours first and foremost.
+If the hours haven't been met, do not indulge in any free time activities until they are.
+Idea to Fix:
+Review schedule at the start of every shift, and maybe on the bus as well.
+Also, make sure to show up on time so I can keep to that schedule
+Accomplished:
+Still worked on Peeka and pushed a good amount of work.
+
+
+6/5 - 6/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 8
+
+6/4/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 5
+
+6/3/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 11
+
+6/2/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 5
+Project: 0
+Peeka: 0
+
+6/1/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 2
+
+5/31/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+Notes:
+Week wasn't productive, so my hours are very lacking this week. 
+Some time spent on Peeka got me half hours there.
+Issues:
+ - No commitment to getting hours first and foremost
+Idea to Fix:
+This month will exclusively focus on getting my hours first and foremost.
+If the hours haven't been met, do not indulge in any free time activities until they are.
+Idea to Fix:
+Review schedule at the start of every shift, and maybe on the bus as well.
+Also, make sure to show up on time so I can keep to that schedule
+Accomplished:
+Still worked on Peeka.
+Had a great vacation and spent time with family.
+
+5/26-30/21 // Vacation
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+5/25/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 3
+Peeka: 6
+
+
+5/24/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 1
+Project: 0
+Peeka: 3
+
+Notes:
+Week wasn't very productive, so my hours are just lacking this week. 
+Some time spent on apartment projects, mostly the plants, but a lot of time, especially the off-from-work days, seemed to just go towards crashing on the couch feeling unmotivated.
+Putting the drawing pad and D&D book on the couch has pushed me towards working on that. 
+Cooking did get done, but I still have a large amount of veggies from CGC that need to get used up before my trip. 
+I did make it to the Peeka meetings all this week, so staying up has been working.
+Issues:
+ - Severely unmotivated commonly throughout the week.
+Idea to Fix:
+Post the "I will" message on the fridge and by the couch so I can see and read it when I go there.
+ - Lack of hours when at DESC
+ - Lack of diversity in what the hours are spent on
+Idea to Fix:
+Review schedule at the start of every shift, and maybe on the bus as well.
+Also, make sure to show up on time so I can keep to that schedule
+Accomplished:
+Got the "I will" mousepad
+Completed monitor setup by installing VGA cable
+Made it to the Peeka meetings
+
+5/23/21
+C# Practice: 0
+C# Research: 0.25
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+5/22/21
+C# Practice: 1
+C# Research: 4
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+5/21/21
+C# Practice: 0
+C# Research: 4
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+5/20/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 0.5
+Project: 0
+Peeka: 1
+
+5/19/21
+C# Practice: 0
+C# Research: 1.5
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+5/18/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+5/17/21
+C# Practice: 0
+C# Research: 0.25
+Problem Solving: 0
+Project: 0
+Peeka: 2
+
+Notes:
+Week went well. Lots of time spent on apartment projects, mostly the plants, and a bit on the monitor setup. Food became a little bit of an issue later on in the week as I haven't cooked meals yet. 
+I tended to goof off or crash after getting home from a shift.
+Issues:
+Missed Peeka meetings
+Idea to Fix:
+Get sleep afterwards, later in the afternoon/evening. Maybe even schedule work times in the morning for that day, and sleep into the evening.
+Need a better cool-down routine for when I get home. 
+Idea to Fix:
+Maybe drawing, or listening to music or a podcast/webcast. Or both. If the issue is that I feel lonely, maybe this is a good time to reach out on social media, or read a biography to feel connected. 
+Afterwards, a workout and shower at this time so I go to bed clean.
+Accomplished:
+Got cigarette from Dion
+Sent back bad cables
+Ordered "I Will" mousepad
+Did three Starting Strength workouts
+
+5/16/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+5/15/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 2
+Peeka: 0
+
+5/14/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 4
+Peeka: 1
+
+5/13/21
+C# Practice: 0.5
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4.5
+
+5/12/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 3
+
+5/11/21
+C# Practice: 0
+C# Research: 3
+Problem Solving: 0
+Project: 0
+Peeka: 3
+
+5/10/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 2
+
+5/9/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 2.5
+
+5/8/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+5/7/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+5/6/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4.5
+
+5/5/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 5
+Project: 0
+Peeka: 
+
+5/4/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 1
+
+5/3/21
+C# Practice: 0
+C# Research: 2.5
+Problem Solving: 0.5
+Project: 0
+Peeka: 3.5
+
+4/28/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 1.5
+Project: 0
+Peeka: 0
+
+4/27/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 2.5
+Project: 0
+Peeka: 0
+
+4/26/21
+C# Practice: 0
+C# Research: 1
+Problem Solving: 1.5
+Project: 0
+Peeka: 0
+
+4/17/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+4/16/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 3
+
+4/15/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 3.5
+
+4/14/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 3.5
+
+4/6/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 3.5
+
+4/5/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 3
+
+4/3/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 1
+
+4/2/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 3
+
+3/30/21
+C# Practice: 1
+C# Research: 2
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+3/29/21
+C# Practice: 1.5
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+3/27/21
+C# Practice: 0.5
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+3/25/21
+C# Practice: 0.5
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+3/24/21
+C# Practice: 0.5
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 1
+
+3/22/21
+C# Practice: 0
+C# Research: 0.5
+Problem Solving: 0
+Project: 0
+Peeka: 6
+
+3/14/21
+C# Practice: 0
+C# Research: 1.5
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+3/13/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 2
+Project: 0
+Peeka: 1
+
+3/11/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 2
+Project: 0
+Peeka: 0
+
+3/3/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 2
+Project: 0
+Peeka: 0
+
+3/2/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 1
+Project: 0
+Peeka: 0
+
+3/1/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 1
+Project: 0
+Peeka: 0
+
+2/27/21
+C# Practice: 1.5
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+2/21/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 1
+Peeka: 3
+
+2/20/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 4
+Peeka: 3
+
+2/15/21
+C# Practice: 0
+C# Research: 1
+Problem Solving: 3
+Project: 0
+Peeka: 0
+
+2/14/21
+C# Practice: 0
+C# Research: 1
+Problem Solving: 0
+Project: 8
+Peeka: 0
+
+2/13/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 2.5
+Project: 0
+Peeka: 0
+
+2/9/21
+C# Practice: 2
+C# Research: 0
+Problem Solving: 1
+Project: 0
+Peeka: 0
+
+2/8/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 8
+Peeka: 0
+
+2/6/21
+C# Practice: 2
+C# Research: 0
+Problem Solving: 1
+Project: 0
+Peeka: 0
+
+2/5/21
+C# Practice: 1
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+2/2/21
+C# Practice: 2.5
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 0
+
+2/1/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 7
+
+1/28/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 0
+Peeka: 4
+
+1/27/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 1
+Project: 0
+Peeka: 0
+
+1/26/21
+C# Practice: 2
+C# Research: 1
+Problem Solving: 1
+Project: 0
+Peeka: 0
+
+1/25/21
+C# Practice: 0
+C# Research: 0.5
+Problem Solving: 0
+Project: 2.5
+Peeka: 2
+
+1/16/21
+C# Practice: 1.5
+C# Research: 0
+Problem Solving: 1.5
+Project: 0
+
+1/15/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 1
+Project: 1
+
+1/12/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 5
+
+1/11/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 2
+
+1/10/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0
+Project: 1
+
+1/9/21
+C# Practice: 2
+C# Research: 0
+Problem Solving: 0.5
+Project: 6
+
+1/8/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 0.5
+
+1/7/21
+C# Practice: 2.5
+C# Research: 1.5
+Problem Solving: 2.5
+
+1/6/21
+C# Practice: 1
+C# Research: 1
+Problem Solving: 0
+
+
+1/5/21
+C# Practice: 0
+C# Research: 1
+Problem Solving: 0
+
+1/4/21
+C# Practice: 0
+C# Research: 0
+Problem Solving: 2
+
+Prior
+C# Practice: 7
+C# Research: 2
+Problem Solving: 5

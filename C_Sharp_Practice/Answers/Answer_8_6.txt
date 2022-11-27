@@ -1,0 +1,4 @@
+﻿SELECT Order.OrderId, (OrderDetails.Units * OrderDetails.Price) 
+FROM Order, OrderDetails 
+INNER JOIN Orders.OrderId=OrderDetails.OrderId
+WHERE Orders.OrderDate is 'October 2017' AND (OrderDetails.Units * OrderDetails.Price) >= 10000;
