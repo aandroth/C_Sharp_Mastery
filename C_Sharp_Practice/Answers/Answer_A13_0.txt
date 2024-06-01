@@ -1,82 +1,52 @@
-﻿
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
 
-    // Abstract Factory Pattern is a Creational Pattern
-    // It abstracts the factory that the customer needs to call, making it able to deliver different product variants
-    // based on who the customer is and what they require
-    // So here we are just using the AbstractFactory class,
-    // which is then responsible for calling the creation members in the specific Embla and Enginola classes
 
-    // https://sourcemaking.com/design_patterns/abstract_factory/java/1
+// Factory Method Pattern is a Creational Pattern
+// In class-based programming, the factory method pattern is a creational pattern that uses factory methods to deal with the problem of creating objects without 
+// having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory method—either specified in an interface and implemented by child classes, 
+// or implemented in a base class and optionally overridden by derived classes—rather than by calling a constructor.
 
-    abstract class CPU { }
+// https://sourcemaking.com/design_patterns/factory_method/java/1
 
-    class EmberCPU : CPU { }
-    class EnginolaCPU : CPU { }
+abstract class ComputerChip { public bool isPluggedIn = false; public void StatusMessage() { Console.WriteLine("I am " + (isPluggedIn ? "" : "not") + " pluggedIn in"); } }
 
-    abstract class MMU { }
 
-    class EmberMMU : MMU {}
-    class EnginolaMMU : MMU { }
-
-    class EmberToolkit : AbstractFactory
+class EmberToolkitFactory
+{
+    public class EmberCPU : ComputerChip { public void Message() { Console.WriteLine("I am an Ember CPU"); } }
+    public class EmberMMU : ComputerChip { public void Message() { Console.WriteLine("I am an Ember MMU"); } }
+    public EmberCPU CreateCPU()
     {
-        public override CPU CreateCPU()
-        {
-            Console.WriteLine("Creating an Ember CPU");
-            return new EmberCPU();
-        }
-        public override MMU CreateMMU()
-        {
-            Console.WriteLine("Creating an Ember MMU");
-            return new EmberMMU();
-        }
+        Console.WriteLine("Creating an Ember CPU");
+        return new EmberCPU();
     }
-
-    class EnginolaToolkit : AbstractFactory
+    public EmberMMU CreateMMU()
     {
-        public override CPU CreateCPU()
-        {
-            Console.WriteLine("Creating an Enginola CPU");
-            return new EnginolaCPU();
-        }
-        public override MMU CreateMMU()
-        {
-            Console.WriteLine("Creating an Enginola MMU");
-            return new EnginolaMMU();
-        }
+        Console.WriteLine("Creating an Ember MMU");
+        return new EmberMMU();
     }
+}
 
-    enum ARCHITECTURE { EMBER, ENGINOLA}
 
-    abstract class AbstractFactory
+class Practice_Problem
+{
+    public static void Practice_Problem_Main()
     {
-        private static EmberToolkit EMBER_TOOLKIT = new EmberToolkit();
-        private static EnginolaToolkit ENGINOLA_TOOLKIT = new EnginolaToolkit();
-
-        public static AbstractFactory getFactory(ARCHITECTURE architecture)
-        {
-            AbstractFactory factory = null;
-            switch (architecture)
-            {
-                case ARCHITECTURE.ENGINOLA:
-                    factory = ENGINOLA_TOOLKIT;
-                    break;
-                case ARCHITECTURE.EMBER:
-                    factory = EMBER_TOOLKIT;
-                    break;
-            }
-            return factory;
-        }
-
-        public abstract CPU CreateCPU();
-        public abstract MMU CreateMMU();
+        EmberToolkitFactory emberFactory = new EmberToolkitFactory();
+        EmberToolkitFactory.EmberCPU emberCpu = emberFactory.CreateCPU();
+        EmberToolkitFactory.EmberMMU emberMmu = emberFactory.CreateMMU();
+        emberCpu.Message();
+        emberMmu.Message();
     }
-    
-    class Practice_Problem
-    {
-        public static void Practice_Problem_Main()
-        {
-            AbstractFactory abFac = AbstractFactory.getFactory(ARCHITECTURE.EMBER);
-            CPU cpu = abFac.CreateCPU();
-        }
-    }
+}

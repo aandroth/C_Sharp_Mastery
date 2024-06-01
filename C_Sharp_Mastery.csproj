@@ -6,4 +6,8 @@
     <StartupObject>C_Sharp_Practice.Program</StartupObject>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
+  </ItemGroup>
+
 </Project>

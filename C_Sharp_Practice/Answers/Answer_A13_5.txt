@@ -1,0 +1,85 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+
+namespace C_Sharp_Practice
+{
+    class GameController
+    {
+        private int m_data;
+        private static GameController m_instance = null;
+        public static GameController GetInstance()
+        {
+            if (m_instance == null)
+                m_instance = new GameController();
+
+            return m_instance;
+        }
+
+        private GameController() // We must have this to prevent other instances being created
+        {
+
+        }
+
+        public void ChangeData(int _data)
+        {
+            m_data = _data;
+        }
+
+        public int GetData()
+        {
+            return m_data;
+        }
+    }
+
+    class Player
+    {
+        public GameController m_gameController;
+
+        public Player()
+        {
+            m_gameController = GameController.GetInstance();
+        }
+    }
+
+    class Boss
+    {
+        public GameController m_gameController;
+
+        public Boss()
+        {
+            m_gameController = GameController.GetInstance();
+        }
+    }
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            Player player1 = new Player();
+            Player player2 = new Player();
+            Boss boss = new Boss();
+
+            player1.m_gameController.ChangeData(4);
+            Console.WriteLine(player1.m_gameController.GetData());
+            boss.m_gameController.ChangeData(8);
+            Console.WriteLine(player1.m_gameController.GetData());
+            player1.m_gameController.ChangeData(7);
+            Console.WriteLine(boss.m_gameController.GetData());
+
+            player2.m_gameController.ChangeData(0);
+            Console.WriteLine(player1.m_gameController.GetData());
+            Console.WriteLine(boss.m_gameController.GetData());
+        }
+    }
+}

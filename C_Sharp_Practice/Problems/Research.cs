@@ -238,28 +238,70 @@ namespace C_Sharp_Practice
     {
         public static void Research_Main()
         {
-            ClunkerCarBuilder clunkerBuilder = new ClunkerCarBuilder();
-            LuxeryCarBuilder sportyBuilder = new LuxeryCarBuilder();
-            Car clunkerSUV = CarAndCarManualDirector.makeSUV(clunkerBuilder);
-            Car clunkerSporty = CarAndCarManualDirector.makeSportsCar(clunkerBuilder);
-            Car luxSUV = CarAndCarManualDirector.makeSUV(sportyBuilder);
-            Car luxSporty = CarAndCarManualDirector.makeSportsCar(sportyBuilder);
+            int[] coins = { 1, 3, 5 };
+            int m = coins.Length;
+            for (int V = 1; V <= 11; ++V)
+            {
+                Console.WriteLine("Minimum coins required is " + minCoins(coins, m, V));
+                Console.WriteLine("");
+            }
+        }
 
-            CarManualBuilder carManualBuilder = new CarManualBuilder();
-            CarManual SUVManual = new CarManual();
-            CarManual sportsCarManual = new CarManual();
-            CarManual clunkerManual = CarAndCarManualDirector.makeSUVCarManual(carManualBuilder);
-            CarManual sportyManual = CarAndCarManualDirector.makeSUVCarManual(carManualBuilder);
 
-            clunkerSUV.printCarDetails();
-            clunkerSporty.printCarDetails();
-            luxSUV.printCarDetails();
-            luxSporty.printCarDetails();
+        // m is size of coins array
+        static int minCoins(int[] coins,
+                            int coinsLength, int target)
+        {
+            bool reportZero = true;
+            for (int j = 0; j < coins.Length; ++j)
+                if (coins[j] <= target)
+                    reportZero = false;
 
-            SUVManual.printCarDetails();
-            sportsCarManual.printCarDetails();
-            clunkerManual.printCarDetails();
-            sportyManual.printCarDetails();
+            if (reportZero)
+                return 0;
+
+            // table[i] will be storing
+            // the minimum number of coins
+            // required for i value. So
+            // table[target] will have result
+            int[] table = new int[target + 1];
+
+            // Base case (If given
+            // value V is 0)
+            table[0] = 0;
+
+            // Initialize all table
+            // values as Infinite
+            for (int i = 1; i <= target; i++)
+                table[i] = int.MaxValue;
+
+            // Compute minimum coins
+            // required for all
+            // values from 1 to V
+            for (int i = 1; i <= target; i++)
+            {
+                // Go through all coins
+                // smaller than i
+                for (int j = 0; j < coinsLength; j++)
+                {
+                    Console.WriteLine($"Checking if {coins[j]} <= {i}");
+                    if (coins[j] <= i)
+                    {
+                        int sub_res = table[i - coins[j]];
+                        Console.WriteLine($"Checking if table[i - coins[j]] != maxValue && table[i - coins[j]] < table[i] (table[i])");
+                        Console.WriteLine($"Checking if table[{i} - coins[{j}]] != maxValue && table[{i} - coins[{j}]] < table[{i}] (table[{i}])");
+                        Console.WriteLine($"Checking if table[{i} - {coins[j]}] != maxValue && table[{i} - {coins[j]}] < table[{i}] ({table[i]})");
+                        Console.WriteLine($"Checking if table[{i - coins[j]}] != maxValue && table[{i - coins[j]}] < table[{i}] ({table[i]})");
+                        if (sub_res != int.MaxValue && sub_res + 1 < table[i])
+                        {
+                            Console.WriteLine($"Setting table[{i}] = table[{i} - {coins[j]}] + 1 ({table[i - coins[j]]} + 1)");
+                            table[i] = sub_res + 1;
+                        }
+                    }
+                }
+            }
+
+            return table[target];
         }
     }
 }

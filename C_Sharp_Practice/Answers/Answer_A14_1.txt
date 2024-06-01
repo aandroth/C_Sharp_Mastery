@@ -1,0 +1,53 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            int[] numbers = new int[] { 3, 2, 6, 5, 0, 3 };
+
+
+            for (int ii = 0; ii <= 11; ++ii)
+            {
+                int[] summingPair = FindPair(numbers, ii);
+
+                Console.WriteLine($"Target: {ii}");
+                for (int jj = 0; jj < summingPair.Length; ++jj)
+                {
+                    Console.WriteLine(summingPair[jj]);
+                }
+            }
+        }
+
+        public static int[] FindPair(int[] numbers, int target)
+        {
+            Dictionary<int, int> map = new Dictionary<int, int>();
+
+            for (int jj = 1; jj < numbers.Length; ++jj)
+            {
+                if (map.ContainsKey(numbers[jj]))
+                {
+                    return new int[] { map[numbers[jj]], numbers[jj] };
+                }
+
+                map[target - numbers[jj]] = numbers[jj];
+            }
+
+            return new int[] {-1};
+        }
+    }
+}

@@ -1,0 +1,87 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+
+namespace C_Sharp_Practice
+{
+    class Server
+    {
+        public string m_name = "Server0";
+        public bool m_serverIsActive = false;
+
+        public Server(string _name) { m_name = _name; }
+    }
+    class ObjectPool
+    {
+        List<Server> m_serverList = new List<Server>();
+
+        public ObjectPool(int _serverCount = 4)
+        {
+            InstantiateServers(_serverCount);
+        }
+
+        public void InstantiateServers(int _serverCount)
+        {
+            for(int ii=0; ii<_serverCount; ++ii)
+            {
+                m_serverList.Add(new Server("Server" + ii));
+            }
+        }
+
+        /// <summary>
+        /// Returns a Server OR it returns null
+        /// </summary>
+        /// <returns>Server OR null</returns>
+        public Server AcquireServer()
+        {
+            foreach(Server s in m_serverList)
+            {
+                if (!s.m_serverIsActive)
+                {
+                    Console.WriteLine($"Acquired server {s.m_name}.");
+                    s.m_serverIsActive = true;
+                    return s;
+                }
+            }
+            Console.WriteLine("All servers are busy.");
+            return null;
+        }
+
+        public void ReleaseServer(string _name)
+        {
+            foreach (Server s in m_serverList)
+            {
+                if (s.m_name == _name)
+                {
+                    s.m_serverIsActive = false;
+                    Console.WriteLine($"Released server {s.m_name}.");
+                }
+            }
+        }
+    }
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            ObjectPool op = new ObjectPool();
+
+            for (int ii = 0; ii < 5; ++ii)
+            {
+                op.AcquireServer();
+            }
+
+            op.ReleaseServer("Server1");
+            op.AcquireServer();
+        }
+    }
+}

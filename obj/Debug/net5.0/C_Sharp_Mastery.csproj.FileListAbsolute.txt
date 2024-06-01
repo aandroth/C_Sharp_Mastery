@@ -14,3 +14,8 @@ C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\obj\Debug\net5.0\ref
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\obj\Debug\net5.0\C_Sharp_Mastery.pdb
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\obj\Debug\net5.0\C_Sharp_Mastery.genruntimeconfig.cache
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\obj\Debug\net5.0\C_Sharp_Mastery.csproj.AssemblyReference.cache
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\System.Net.Http.Formatting.dll
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\System.Web.Http.dll
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\obj\Debug\net5.0\C_Sharp_Mastery.csproj.CopyComplete

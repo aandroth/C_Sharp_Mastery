@@ -1,0 +1,143 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+// https://www.google.com/search?q=partition+to+k+equal+sum+subsets&rlz=1C1CHBF_enUS838US838&oq=Partition+to+K+Equal+Sum+Subsets&gs_lcrp=EgZjaHJvbWUqBwgAEAAYgAQyBwgAEAAYgAQyBwgBEAAYgAQyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyCAgFEAAYFhgeMgoIBhAAGIYDGIoFMgYIBxBFGDzSAQgxMjAyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:f8a7b2f3,vid:mBk4I0X46oI
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            Console.WriteLine($"{SumsCanBeNumberOfSubsets_O_k_2n(new int[] { 6, 4, 5, 4, 1, 1, 10, 1, 7, 6, 4, 2, 10, 1, 3, 5 }, 10)}");
+            //Console.WriteLine($"{SumsCanBeNumberOfSubsets_O_k_2n(new int[] { 129, 17, 74, 57, 1421, 99, 92, 285, 1276, 218, 1588, 215, 369, 117, 153, 22 }, 3)}");
+            //Console.WriteLine($"{SumsCanBeNumberOfSubsets_O_k_2n(new int[] { 4, 4, 6, 2, 3, 8, 10, 2, 10, 7 }, 4)}");
+            //Console.WriteLine($"{SumsCanBeNumberOfSubsets_O_k_2n(new int[] { 4, 4, 4, 2, 1 }, 3)}");
+        }
+
+        public static bool SumsCanBeNumberOfSubsets_O_n2(int[] nums, int numberOfSubsets)// O(n^2)
+        {
+            if (nums.Length < numberOfSubsets)
+                return false;
+
+            List<int> numsL = nums.ToList();
+
+            if (numsL.Sum() % numberOfSubsets != 0)
+                return false;
+            int target = numsL.Sum() / numberOfSubsets;
+
+            numsL = numsL.OrderByDescending(x => x).ToList(); // The sorting that makes this work, also makes it O(n^2)
+            foreach (int i in numsL)
+            {
+                Console.WriteLine($"{i}");
+            }
+            if (numsL[0] > target)
+                return false;
+
+            int[] targetSums = new int[numberOfSubsets];
+
+            foreach(int i in numsL)
+            {
+                Console.WriteLine($"Trying to place {i}");
+
+                   bool numberWasNotPlaced = true;
+                for (int ii = 0; ii < numberOfSubsets; ++ii)
+                {
+                    if (targetSums[ii] + i <= target)
+                    {
+                        targetSums[ii] = targetSums[ii] + i;
+                        numberWasNotPlaced = false;
+                        break;
+                    }
+                    Console.WriteLine($"Could not add {i} to {targetSums[ii]}");
+                }
+                if (numberWasNotPlaced)
+                {
+                    Console.WriteLine($"{i} could not be placed");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool SumsCanBeNumberOfSubsets_O_k_2n(int[] nums, int numberOfSubsets)// O(k*2^n)
+        {
+            if (nums.Length < numberOfSubsets)
+                return false;
+
+            if (nums.Sum() % numberOfSubsets != 0)
+                return false;
+
+            List<int> numsL = nums.ToList(); 
+            numsL = numsL.OrderByDescending(x => x).ToList();
+            int target = numsL.Sum() / numberOfSubsets;
+
+            for(int n=0; n<numsL.Count; ++n)
+                Console.Write($"{numsL[n]}{(n<numsL.Count-1?", ":"")}");
+            Console.WriteLine("");
+            return SumsCanBeNumberOfSubsets_O_k_2n_Process(numsL.ToArray(), target, 0, numberOfSubsets, 0, new int[nums.Length]);
+        }
+
+        public static bool SumsCanBeNumberOfSubsets_O_k_2n_Process(int[] nums, int target, int idx, int partitions, int currSum, int[] usedNums)// O(k*2^n)
+        {
+            Console.WriteLine("");
+            for (int n = 0; n < nums.Length; ++n)
+                Console.Write($"{nums[n]}{(n < nums.Length - 1 ? ", " : "")}");
+            Console.WriteLine("");
+            Console.WriteLine($"idx: {idx}");
+            Console.WriteLine($"partitions: {partitions}");
+            Console.WriteLine($"currSum: {currSum}");
+
+            if (partitions == 0)
+                return true;
+
+            if (currSum == target)
+            {
+                Console.WriteLine($"Filled this bucket");
+                if (SumsCanBeNumberOfSubsets_O_k_2n_Process(nums, target, 0, partitions - 1, 0, usedNums))
+                    return true;
+            }
+
+            for(int jj=0; jj<nums.Length; ++jj)
+            {
+                if (usedNums[jj] == 1 || currSum + nums[jj] > target)
+                    continue;
+
+                usedNums[jj] = 1;
+                Console.WriteLine($"Taking {nums[jj]}");
+
+                if (SumsCanBeNumberOfSubsets_O_k_2n_Process(nums, target, jj, partitions, currSum + nums[jj], usedNums))
+                    return true;
+
+                usedNums[jj] = 0;
+
+                // Explanation:
+				// If subSets[j] = 0, it means this is the first time adding values to that subset.
+				// If the backtrack search fails when adding the values to subSets[j] and subSets[j] remains 0, it will also fail for all subSets from subSets[j+1:].
+				// Because we are simply going through the previous recursive tree again for a different j+1 position.
+				// So we can effectively break from the for loop or directly return False.
+                // Given [10,1,10,9,6,1,9,5,9,10,7,8,5,2,10,8], k = 11
+                // The result is that we have two 9s, and only one 2, 
+                // so we continue to search for a solution when there won't be one
+                // By seeing that a bucket is still empty after trying to add all other numbers to our
+                // existing options, we know that we are on a bad branch
+
+                if (currSum == 0)
+                    break;
+            }
+
+            return false;
+        }
+    }
+}

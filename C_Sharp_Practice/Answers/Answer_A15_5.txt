@@ -1,0 +1,55 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+
+        public static void Practice_Problem_Main()
+        {
+            Console.WriteLine($"LongestValidParentheses: {LongestValidParentheses("()")}");
+            Console.WriteLine($"LongestValidParentheses: {LongestValidParentheses("(()")}");
+            Console.WriteLine($"LongestValidParentheses: {LongestValidParentheses(")()())")}");
+            Console.WriteLine($"LongestValidParentheses: {LongestValidParentheses("()(())")}");
+            Console.WriteLine($"LongestValidParentheses: {LongestValidParentheses("()(()")}");
+        }
+        public static int LongestValidParentheses(string s)
+        {
+            Stack<int> stack = new Stack<int>();
+            stack.Push(-1);
+            int[] dp = new int[s.Length];
+            int longestValid = 0;
+
+            for (int ii = 0; ii < s.Length; ++ii)
+            {
+                if(s[ii] == ')')
+                {
+                    if(ii >=1 && s[ii-1] == '(')
+                    {
+                        dp[ii] = ((ii >= 2) ? dp[ii - 2] : 0) + 2;
+                    }
+                    else if(ii >= 2 && (ii - dp[ii-1]) > 0 && s[ii - dp[ii-1] - 1] == '(')
+                    {
+                        dp[ii] = dp[ii-1] + ((ii - dp[ii - 1])>=2 ? dp[ii - dp[ii - 1] - 2] : 0) + 2;
+                    }
+                }
+            }
+            for (int ii = 0; ii < dp.Length; ++ii)
+            {
+                longestValid = longestValid < dp[ii] ? dp[ii] : longestValid;
+            }
+            return longestValid;
+        }
+    }
+}

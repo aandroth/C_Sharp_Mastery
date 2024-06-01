@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{
+    public static void Practice_Problem_Main()
+    {
+        Console.WriteLine($"MaxRepeating(ababc, ab): {MaxRepeating("ababc", "ab")}"); // 2
+        Console.WriteLine($"MaxRepeating(ababc, ba): {MaxRepeating("ababc", "ba")}"); // 1
+        Console.WriteLine($"MaxRepeating(ababc, ac): {MaxRepeating("ababc", "ac")}"); // 0
+        Console.WriteLine($"MaxRepeating(a, a): {MaxRepeating("a", "a")}"); // 1
+        Console.WriteLine($"MaxRepeating(aaabaaaabaaabaaaabaaaabaaaabaaaaba, aaaba): {MaxRepeating("aaabaaaabaaabaaaabaaaabaaaabaaaaba", "aaaba")}"); // 5
+    }
+
+    public static int MaxRepeating(string sequence, string word)
+    {
+        int count = 0;
+        for(int ii=0; ii<sequence.Length;++ii)
+        {
+            int subCount = 0;
+            if (sequence[ii] == word[0])
+            {
+                int jj = 0;
+                int kk = ii;
+                while ((jj+kk) < sequence.Length && sequence[kk + jj] == word[jj])
+                {
+
+                    if (jj == word.Length - 1)
+                    {
+                        ++subCount;
+                        kk += jj+1;
+                        jj = -1;
+                    }
+                    ++jj;
+                }
+                ii += subCount > 1 ? (subCount - 1) * word.Length : 0;
+                count = (subCount > count) ? subCount : count;
+            }
+            if (ii + word.Length >= sequence.Length)
+                break;
+        }
+        return count;
+    }
+}

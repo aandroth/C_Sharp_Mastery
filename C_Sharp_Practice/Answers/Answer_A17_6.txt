@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static Dictionary<string, int> dp;
+        static int[] sums;
+        static string alice = "Alice";
+        static string bob = "Bob";
+
+        public static void Practice_Problem_Main()
+        {
+            Console.WriteLine(StoneGame(new int[] { 5, 4, 4, 5 })); // 10
+            Console.WriteLine(StoneGame(new int[] { 3, 7, 2, 3 })); // 10
+            Console.WriteLine(StoneGame(new int[] { 5, 100, 3 })); // 105
+            Console.WriteLine(StoneGame(new int[] { 2, 7, 9, 4, 4 })); // 10
+            Console.WriteLine(StoneGame(new int[] { 2, 5, 9 })); // 7
+            Console.WriteLine(StoneGame(new int[] { 86, 11, 7, 6, 46, 37, 72, 67, 33, 25, 54, 45 })); // 273
+        }
+
+        public static int StoneGame(int[] piles)
+        {
+            dp = new Dictionary<string, int>();
+            sums = new int[piles.Length+1];
+
+            for (int ii = piles.Length - 1; ii >= 0; --ii)
+                sums[ii] = sums[ii+1] + piles[ii];
+
+            int best = StoneGame2Recurse(piles, 0, 1, true);
+            return best;
+        }
+
+        public static int StoneGame2Recurse(int[] piles, int ii, int M, bool aliceMoves)
+        {
+            if (ii >= piles.Length)
+                return 0;
+
+            if (ii + (2 * M) >= piles.Length)
+            {
+                Console.WriteLine($"Returning sums[{ii}]: {sums[ii]}");
+                return sums[ii];
+            }
+
+            if (dp.ContainsKey($"{ii},{M}"))
+            {
+                Console.WriteLine($"{(aliceMoves ? alice : bob)} knows the best value from {ii} with {2*M} options is {dp[$"{ii},{M}"]}");
+                return dp[$"{ii},{M}"];
+            }
+
+            int max = int.MaxValue;
+            for(int kk=1; kk<=2*M && (ii+kk-1)<piles.Length; ++kk)
+            {
+                Console.WriteLine($"{(aliceMoves ? alice : bob)} is at {ii}, and takes: {kk} piles, allowing for {2* Math.Max(M, kk)} piles to be taken next");
+                max = Math.Min(StoneGame2Recurse(piles, ii + kk, Math.Max(M, kk), !aliceMoves), max);
+
+                Console.WriteLine($"Calculated: max is now {max}");
+                //Console.WriteLine($"{(aliceMoves ? alice : bob)} is at {ii}, and has: {max}, from taking {kk} piles");
+            }
+
+            //Console.WriteLine($"left: {left}, right: {right}");
+
+            dp[$"{ii},{M}"] = sums[ii] - max;
+            Console.WriteLine($"The max at: {ii}, {M} is {sums[ii] - max}, based on {(aliceMoves ? alice : bob)}'s turn");
+            return dp[$"{ii},{M}"];
+        }
+    }
+}

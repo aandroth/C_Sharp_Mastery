@@ -1,0 +1,75 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            //Console.WriteLine($"IsMatch: {IsMatch("aa", "a")}");
+            //Console.WriteLine($"IsMatch: {IsMatch("mississippi", "mis*is*p*.")}");
+            //Console.WriteLine($"IsMatch: {IsMatch("ab", ".*c")}");
+            //Console.WriteLine($"IsMatch: {IsMatch("aa", "a*")}");
+            Console.WriteLine($"IsMatch: {IsMatch("aaba", "ab*a*c*a")}");
+            //Console.WriteLine($"IsMatch: {IsMatch("aaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*c")}");
+            Console.WriteLine($"IsMatch: {IsMatch("aab", "a*a*c")}");
+        }
+        public static bool IsMatch(string s, string p)
+        {
+            Dictionary<string, bool> cache = new Dictionary<string, bool>();
+
+            return IsSequenceMatch(ref s, ref p, 0, 0, ref cache);
+        }
+        public static bool IsSequenceMatch(ref string s, ref string p, int ii, int jj, ref Dictionary<string, bool> c)
+        {
+            // We can get a speed-up to the solutin by caching previous answers
+            // It seems that what happens is without this, we follow branches of the decision tree we already know lead to dead ends
+
+            if (c.ContainsKey((ii).ToString() + "|" + (jj).ToString()))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Comparing s[{ii}]: {(ii < s.Length ? s[ii] : '/')} and p[{jj}]: {(jj < p.Length ? p[jj] : '/')}");
+                return c[((ii).ToString() + "|" + (jj).ToString())];
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($"Comparing s[{ii}]: {(ii < s.Length ? s[ii] : '/')} and p[{jj}]: {(jj < p.Length ? p[jj] : '/')}");
+            }
+
+            if (ii >= s.Length && jj >= p.Length)
+                return true;
+
+            if (jj >= p.Length)
+                return false;
+
+            bool match = ii<s.Length && (s[ii] == p[jj] || p[jj] == '.');
+            if (jj+1 < p.Length && p[jj+1] == '*')
+            {
+                c[((ii).ToString() + "|" + (jj).ToString())] = (match && IsSequenceMatch(ref s, ref p, ii + 1, jj, ref c)) ||
+                                                                        (IsSequenceMatch(ref s, ref p, ii, jj + 2, ref c));
+                return c[((ii).ToString() + "|" + (jj).ToString())];
+            }
+            if(match)
+            {
+
+                c[((ii).ToString() + "|" + (jj).ToString())] = IsSequenceMatch(ref s, ref p, ii+1, jj+1, ref c);
+                return c[((ii).ToString() + "|" + (jj).ToString())];
+            }
+
+            c[((ii).ToString() + "|" + (jj).ToString())] = false;
+            return false;
+        }
+    }
+}

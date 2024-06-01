@@ -1,0 +1,61 @@
+﻿using System;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+using System.Web.Http;
+using System.Net.Http.Headers;
+using System.Numerics;
+
+namespace C_Sharp_Practice
+{
+    class LL_Node<T>
+    {
+        public T data;
+        public LL_Node<T> next = null;
+    }
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            LL_Node<int> n = new LL_Node<int>();
+            n.data = 7;
+            InsertAtTheEnd<int>(n, 77);
+            InsertAtTheEnd<int>(n, 777);
+            InsertAtTheEnd<int>(n, 7777);
+
+            LL_Node<int> nPtr = n;
+            while (nPtr != null)
+            {
+                Console.WriteLine($"{nPtr.data}");
+                nPtr = nPtr.next;
+            }
+        }
+        public LL_Node<T> InsertAtTheEnd<T>(LL_Node<T> head, T data)
+        {
+            LL_Node<T> newNode = new LL_Node<T>();
+            newNode.data = data;
+            newNode.next = null;
+
+            LL_Node<T> ptr = head;
+            while (ptr.next != null)
+            {
+                ptr = ptr.next;
+            }
+
+            ptr.next = newNode;
+            return head;
+        }
+    }
+}

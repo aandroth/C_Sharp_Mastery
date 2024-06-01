@@ -5,7 +5,7 @@
 namespace C_Sharp_Practice.Problems
 {
     /*
-     * In c#, polymorphism provides an ability for the classes to implement different methods that are called through the same name 
+     * In c#, polymorphism provides an ability for the classes to implement different methods that are called through the same name
      * and it also provides an ability to invoke the methods of a derived class through base class reference during runtime based on our requirements.
      */
 

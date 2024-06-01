@@ -1,0 +1,84 @@
+﻿using System;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+using System.Web.Http;
+using System.Net.Http.Headers;
+using System.Numerics;
+
+namespace C_Sharp_Practice
+{
+    class LL_Node<T>
+    {
+        public T data;
+        public LL_Node<T> next = null;
+    }
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            char[] a = { 'a', 'b', 'c', 'd'};
+            char[] b = { 'b', 'c', 'c', 'd', 'd' };
+            //RotateAray(a, 1);
+            Console.WriteLine($"1 << abcd");
+            PrintArray(RotateArrayLeft(a, 1));
+            Console.WriteLine($"1 >> abcd");
+            PrintArray(RotateArrayRight(a, 1));
+            Console.WriteLine($"2 >> abcd");
+            PrintArray(RotateArrayRight(a, 2));
+            Console.WriteLine($"1 >> bccdd");
+            PrintArray(RotateArrayRight(b, 1));
+            Console.WriteLine($"3 >> bccdd");
+            PrintArray(RotateArrayRight(b, 3));
+        }
+
+        public static T[] RotateArrayLeft<T>(T[] _arr, int rotateValue)
+        {
+            T[] arr = new T[_arr.Length];
+            Array.Copy(_arr, arr, arr.Length);
+            int pivotIndex = arr.Length - rotateValue - 1;
+
+            ReverseArray(arr, 0, arr.Length - 1);
+            ReverseArray(arr, 0, pivotIndex);
+            ReverseArray(arr, pivotIndex + 1, arr.Length-1);
+
+            return arr;
+        }
+
+        public static T[] RotateArrayRight<T>(T[] _arr, int rotateValue)
+        {
+            T[] arr = new T[_arr.Length];
+            Array.Copy(_arr, arr, arr.Length);
+            ReverseArray(arr, 0, arr.Length - 1);
+            ReverseArray(arr, 0, rotateValue-1);
+            ReverseArray(arr, rotateValue, arr.Length-1);
+
+            return arr;
+        }
+
+        public static T[] ReverseArray<T>(T[] arr, int startIndex, int endIndex)
+        {
+            if (endIndex >= arr.Length) endIndex = arr.Length - 1;
+            while(startIndex < endIndex)
+            {
+                T temp = arr[startIndex];
+                arr[startIndex] = arr[endIndex];
+                arr[endIndex] = temp;
+                ++startIndex;
+                --endIndex;
+            }
+            return arr;
+        }
+}

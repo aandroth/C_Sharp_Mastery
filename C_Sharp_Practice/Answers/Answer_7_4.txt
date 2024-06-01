@@ -25,7 +25,6 @@ namespace C_Sharp_Practice
             {
                 arr[ii] = (int)arrA[ii];
             }
-            Console.WriteLine("arr:");
             for (int ii = 0; ii < arr.Length; ++ii)
             {
                 Console.WriteLine(arr[ii]);
@@ -35,6 +34,16 @@ namespace C_Sharp_Practice
             {
                 Console.WriteLine(arrA[ii]);
             }
+
+            string[] strArr = { "a", "b", "c" };
+            ArrayList arrList = new ArrayList();
+
+            foreach (string s in strArr)
+            {
+                arrList.Add(s);
+            }
+            Console.WriteLine("arr:");
+
         }
     }
 }

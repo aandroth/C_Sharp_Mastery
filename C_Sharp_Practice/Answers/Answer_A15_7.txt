@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            CountSubstrings("aba", "baba"); // Ans: 6
+            CountSubstrings("ab", "bb"); // Ans: 3
+        }
+
+        // The trick here is to first solve the problem of finding the count of all matching substrings, and then finding the ones that differ by one character
+        public static int CountSubstrings(string s, string t)
+        {
+            int[,] dp_match = new int[s.Length+1, t.Length+1];
+            int[,] dp_diff = new int[s.Length+1, t.Length+1];
+            int count = 0;
+
+
+            for (int ii = 1; ii <= s.Length; ++ii)
+            {
+                for (int jj = 1; jj <= t.Length; ++jj)
+                {
+                    if (s[ii - 1] == t[jj - 1]) {
+                        dp_match[ii, jj] = 1 + dp_match[ii - 1, jj - 1];
+                        dp_diff[ii, jj] = dp_diff[ii - 1, jj - 1];
+                    }
+                    else
+                        dp_diff[ii, jj] = 1 + dp_match[ii - 1, jj - 1];
+                    count += dp_diff[ii,jj];                    
+                }
+                Console.WriteLine("Matching:");
+                PrintGrid(dp_match, s.Length+1, t.Length+1);
+                Console.WriteLine("Diff:");
+                PrintGrid(dp_diff, s.Length+1, t.Length+1);
+                Console.WriteLine("");
+            }
+            Console.WriteLine(count);
+
+            return 0;
+        }
+    }
+}

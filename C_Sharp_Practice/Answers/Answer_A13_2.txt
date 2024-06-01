@@ -1,0 +1,165 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+
+namespace C_Sharp_Practice
+{
+    class House
+    {
+        public int m_walls, m_windows, m_towers;
+        public string m_stain;
+    }
+    interface I_Builder
+    {
+        public void BuildWalls(int walls = 4);
+        public void AddWindows(int windows = 0);
+        public void StainWalls(string color);
+        public void AddTowers(int towers);
+        public void PrintDescription();
+    }
+
+    class WoodBuilder : I_Builder
+    {
+        private House m_House = new House();
+        public void BuildWalls(int walls = 4)
+        {
+            walls = walls > 2 ? walls : 3;
+            m_House.m_walls = walls;
+        }
+        public void AddWindows(int windows = 0)
+        {
+            m_House.m_windows = windows;
+        }
+        public void StainWalls(string color) 
+        {
+            m_House.m_stain = color;
+        }
+        public void AddTowers(int towers) { }
+        public void PrintDescription()
+        {
+            Console.WriteLine("A wooden house with "+ m_House.m_walls + " walls, stained "+m_House.m_stain+", and " + m_House.m_windows + " windows.");
+        }
+    }
+
+    class StoneBuilder : I_Builder
+    {
+        private House m_House = new House();
+        public void BuildWalls(int walls = 4)
+        {
+            walls = walls > 0 ? walls : 1;
+            m_House.m_walls = walls;
+        }
+        public void AddWindows(int windows = 0)
+        {
+            m_House.m_windows = windows;
+        }
+        public void StainWalls(string color) {}
+        public void AddTowers(int towers) 
+        {
+            m_House.m_towers = towers;
+        }
+        public void PrintDescription()
+        {
+            if(m_House.m_walls > 2)
+                Console.WriteLine("A stone house with "+ m_House.m_walls + ", "+m_House.m_towers+"towers, and " + m_House.m_windows + " windows.");
+            else
+                Console.WriteLine("A stone house with " + m_House.m_walls + " cicular wall"+(m_House.m_walls > 1?"s":"")+", " + m_House.m_towers + " towers, and " + m_House.m_windows + " windows.");
+        }
+    }
+
+    class HouseBuilderDirector
+    {
+        public enum BuildType {SIMPLE, WOOD, STONE}
+
+        public BuildType m_BuildType = BuildType.SIMPLE;
+
+        public static I_Builder BuildHouseOfType(BuildType _buildType = BuildType.SIMPLE, int walls = 4, int windows = 0, string stain = "red", int towers = 0)
+        {
+            House house = new House();
+            I_Builder builder = new StoneBuilder();
+            switch (_buildType)
+            {
+                case BuildType.STONE:
+                    builder.BuildWalls(walls);
+                    builder.AddWindows(windows);
+                    builder.AddTowers(towers);
+                    break;
+                case BuildType.WOOD:
+                    builder = new WoodBuilder();
+                    builder.BuildWalls(walls);
+                    builder.AddWindows(windows);
+                    builder.StainWalls(stain);
+                    break;
+                default: //BuildType.SIMPLE
+                    builder = new WoodBuilder();
+                    builder.BuildWalls(walls);
+                    builder.AddWindows(windows);
+                    builder.StainWalls("with nothing");
+                    break;
+            }
+            return builder;
+        }
+        public static I_Builder BuildHouseOfType(BuildType _buildType = BuildType.SIMPLE, int walls = 4, int windows = 0, int towers = 0)
+        {
+            House house = new House();
+            I_Builder builder = new StoneBuilder();
+            switch (_buildType)
+            {
+                case BuildType.STONE:
+                    builder.BuildWalls(walls);
+                    builder.AddWindows(windows);
+                    builder.AddTowers(towers);
+                    break;
+                case BuildType.WOOD:
+                    builder = new WoodBuilder();
+                    builder.BuildWalls(walls);
+                    builder.AddWindows(windows);
+                    builder.StainWalls("with nothing");
+                    break;
+                default: //BuildType.SIMPLE
+                    builder = new WoodBuilder();
+                    builder.BuildWalls(walls);
+                    builder.AddWindows(windows);
+                    builder.StainWalls("with nothing");
+                    break;
+            }
+            return builder;
+        }
+        public static I_Builder BuildHouseOfType()
+        {
+            House house = new House();
+            I_Builder builder = new WoodBuilder();
+            builder.BuildWalls(4);
+            builder.AddWindows(2);
+            builder.StainWalls("with nothing");
+            return builder;
+        }
+    }
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            List<I_Builder> houseList = new List<I_Builder>();
+            houseList.Add(HouseBuilderDirector.BuildHouseOfType());
+            houseList.Add(HouseBuilderDirector.BuildHouseOfType(HouseBuilderDirector.BuildType.WOOD, 5, 4, "blue"));
+            houseList.Add(HouseBuilderDirector.BuildHouseOfType(HouseBuilderDirector.BuildType.STONE, 0, 7, 7));
+
+
+            foreach(I_Builder builder in houseList)
+            {
+                builder.PrintDescription();
+            }
+        }
+    }
+}

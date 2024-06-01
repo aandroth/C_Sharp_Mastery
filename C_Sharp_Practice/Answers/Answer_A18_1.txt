@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+
+// Here Geek class contains three methods
+// Now we want to add two more new methods in it 
+// Without re-compiling this class
+class Geek
+{
+
+    // Method 1
+    public void M1()
+    {
+        Console.WriteLine("This is M1");
+    }
+
+    // Method 2
+    public void M2()
+    {
+        Console.WriteLine("This is M2");
+    }
+
+    // Method 3
+    public void M3()
+    {
+        Console.WriteLine("This is M3");
+    }
+
+}
+
+namespace MyExtensionMethods
+{
+    static class MyExtensions
+    {
+        public static void M4(this Geek g)
+        {
+            Console.WriteLine("This is M4");
+        }
+        public static void M5(this Geek g)
+        {
+            Console.WriteLine("This is M5");
+        }
+    }
+}
+
+namespace C_Sharp_Practice
+{
+    using MyExtensionMethods;
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            Geek g = new Geek();
+            g.M3();
+            g.M4();
+            g.M5();
+        }
+    }
+}

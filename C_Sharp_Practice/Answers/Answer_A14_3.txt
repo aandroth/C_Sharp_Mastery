@@ -1,0 +1,48 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+// https://www.google.com/search?q=partition+to+k+equal+sum+subsets&rlz=1C1CHBF_enUS838US838&oq=Partition+to+K+Equal+Sum+Subsets&gs_lcrp=EgZjaHJvbWUqBwgAEAAYgAQyBwgAEAAYgAQyBwgBEAAYgAQyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyCAgFEAAYFhgeMgoIBhAAGIYDGIoFMgYIBxBFGDzSAQgxMjAyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:f8a7b2f3,vid:mBk4I0X46oI
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        static int[][] envelopesD = new int[][] { new int[] { 5, 4 }, new int[] { 6, 7 }, new int[] { 6, 4 }, new int[] { 2, 3 }, new int[] { 5, 7 } };
+        public static void Practice_Problem_Main()
+        {
+            List<List<int>> envelopes = new List<List<int>>();
+            for (int ii=0; ii<envelopesD.Length; ++ii)
+            {
+                envelopes.Add(envelopesD[ii].ToList());
+            }
+
+            envelopes = envelopes.OrderByDescending(x => x[1]).ToList();
+            envelopes = envelopes.OrderBy(x => x[0]).ToList();
+
+            foreach(List<int> l in envelopes)
+            {
+                Console.WriteLine($"({l[0]}, {l[1]})");
+            }
+
+            int nestedEnvs = 1;
+            for (int ii = 0; ii < envelopes.Count-1; ++ii)
+            {
+                if(envelopes[ii][1] < envelopes[ii+1][1])
+                {
+                    ++nestedEnvs;
+                }
+            }
+            Console.WriteLine($"nestedEnvs: {nestedEnvs}");
+        }
+    }
+}

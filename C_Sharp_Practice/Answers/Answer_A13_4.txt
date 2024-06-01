@@ -1,0 +1,78 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+// To be a Prototype, all classes should have a common interface that makes it possible to copy objects even if their concrete classes are unknown.
+// Prototype objects can produce full copies since objects of the same class can access each other's private fields.
+
+namespace C_Sharp_Practice
+{
+    class Item
+    {
+        public string m_name { get; set; }
+        public int m_value { get; set; }
+
+        public Item(string _name, int _value){ m_name = _name; m_value = _value; }
+    }
+    class Soldier : ICloneable
+    {
+        public Item m_armor { get; set; }
+        public Item m_weapon { get; set; }
+
+        public Soldier()
+        {
+            m_armor = new Item("No", 0);
+            m_weapon = new Item("No", 0);
+        }
+        public Soldier(Item _armor, Item _weapon)
+        {
+            m_armor = _armor;
+            m_weapon = _weapon;
+        }
+        public override string ToString()
+        {
+            return ($"A soldier wearing {m_armor.m_name} armor and weilding {m_weapon.m_name} weapon.");
+        }
+
+        public object Clone()
+        {
+            return new Soldier(m_armor, m_weapon);
+        }
+    }
+
+    class ClassWithSoldier
+    {
+        public Soldier m_soldier = new Soldier();
+    }
+
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            ClassWithSoldier someClass = new ClassWithSoldier();
+
+            Console.WriteLine(someClass.m_soldier.ToString());
+            var clone0 = someClass.m_soldier.Clone();
+            someClass.m_soldier.m_armor = new Item("Webbing", 1);
+
+            var clone1 = someClass.m_soldier.Clone();
+
+            someClass.m_soldier.m_weapon = new Item("Small Stick", 1);
+            Console.WriteLine(someClass.m_soldier.ToString());
+            var clone2 = someClass.m_soldier.Clone();
+            Console.WriteLine("Clone0 is: "+clone0.ToString());
+            Console.WriteLine("Clone1 is: " + clone1.ToString());
+            Console.WriteLine("Clone2 is: " + clone2.ToString());
+        }
+    }
+}

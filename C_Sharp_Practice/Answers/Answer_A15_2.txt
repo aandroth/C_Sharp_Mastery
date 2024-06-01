@@ -1,0 +1,64 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+// https://www.google.com/search?q=partition+to+k+equal+sum+subsets&rlz=1C1CHBF_enUS838US838&oq=Partition+to+K+Equal+Sum+Subsets&gs_lcrp=EgZjaHJvbWUqBwgAEAAYgAQyBwgAEAAYgAQyBwgBEAAYgAQyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyCAgFEAAYFhgeMgoIBhAAGIYDGIoFMgYIBxBFGDzSAQgxMjAyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:f8a7b2f3,vid:mBk4I0X46oI
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            string[] A = GenerateParenthesis(3);
+            PrintArray(A);
+        }
+
+        public static string[] GenerateParenthesis(int n)
+        {
+            return AddParantheses("(", n, 1, 0).ToArray();
+        }
+
+        public static List<string> AddParantheses(string s, int n, int lUsed, int rUsed)
+        {
+            List<string> lStr = new List<string>();
+            if (lUsed == n && rUsed == n)
+            {
+                lStr.Add(s);
+                return lStr;
+            }
+
+            if (lUsed < n)
+                lStr.AddRange(AddParantheses(s + '(', n, lUsed + 1, rUsed));
+            if (rUsed < lUsed)
+                lStr.AddRange(AddParantheses(s + ')', n, lUsed, rUsed+1));
+
+            //PrintList(lStr);
+
+            return lStr;
+        }
+
+        public static void PrintArray(string[] A)
+        {
+            for (int ii = 0; ii < A.Length; ++ii)
+                Console.Write($"{A[ii]}{((ii < A.Length - 1) ? ", " : "")}");
+            Console.WriteLine("");
+        }
+
+        public static void PrintList(List<string> A)
+        {
+            for (int ii = 0; ii < A.Count; ++ii)
+                Console.Write($"{A[ii]}{((ii < A.Count - 1) ? ", " : "")}");
+            Console.WriteLine("");
+        }
+    }
+}

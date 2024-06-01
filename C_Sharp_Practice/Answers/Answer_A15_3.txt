@@ -1,0 +1,45 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            Console.WriteLine($"maxSoFar: {MaxSubArray(new int[] { 4, -1, -1, -1, -1, -1, 7})}");
+        }
+        public static int MaxSubArray(int[] nums)
+        {
+
+
+            int maxSoFar = int.MinValue;
+            int maxEndHere = 0;
+            for (int ii=0; ii<nums.Length; ++ii)
+            {
+                maxEndHere += nums[ii];
+                if (maxSoFar < maxEndHere)
+                {
+                    maxSoFar = maxEndHere;
+                }
+                if (maxEndHere < 0)
+                {
+                    maxEndHere = 0;
+                }
+                Console.WriteLine($"maxSoFar: {maxSoFar}, maxEndHere: {maxEndHere}");
+            }
+
+            return maxSoFar;
+        }
+    }
+}

@@ -1,0 +1,82 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            int limit = 11;
+            int[] table = new int[limit];
+            for(int ii=1; ii<limit; ++ii)
+                table[ii] = int.MaxValue;
+
+            int[] coins = { 1, 2, 4 };
+            int m = coins.Length;
+            for (int V = 1; V <= limit; ++V)
+            {
+                Console.WriteLine("Target is " + V);
+                Console.WriteLine("Minimum coins required is " + minCoins(coins, m, V));
+                Console.WriteLine("");
+            }
+        }
+
+
+        // m is size of coins array
+        static int minCoins(int[] coins,
+                            int coinsLength, int target)
+        {
+            // table[i] will be storing
+            // the minimum number of coins
+            // required for i value. So
+            // table[target] will have result
+            int[] table = new int[target + 1];
+
+            // Base case (If given
+            // value V is 0)
+            table[0] = 0;
+
+            // Initialize all table
+            // values as Infinite
+            for (int i = 1; i <= target; i++)
+                table[i] = int.MaxValue;
+
+            // Compute minimum coins
+            // required for all
+            // values from 1 to V
+            for (int i = 1; i <= target; i++)
+            {
+                // Go through all coins
+                // smaller than i
+                for (int j = 0; j < coins.Length; j++)
+                {
+                    Console.WriteLine($"Checking if {coins[j]} <= {i}");
+                    if (coins[j] <= i)
+                    {
+                        int sub_res = table[i - coins[j]]; // We check to see if there is a single coin that we can add to an already known value that sums to our target value
+                        Console.WriteLine($"Checking if table[{i - coins[j]}] != maxValue && table[{i - coins[j]}] < table[{i}] ({table[i]})");
+                        if (sub_res != int.MaxValue && sub_res + 1 < table[i])
+                        {
+                            Console.WriteLine($"Setting table[{i}] = table[{i} - {coins[j]}] + 1 ({table[i - coins[j]]} + 1)");
+                            table[i] = sub_res + 1;
+                        }
+                    }
+                }
+            }
+
+            return table[target];
+        }
+    }
+}

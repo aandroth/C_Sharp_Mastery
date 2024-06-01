@@ -40,14 +40,14 @@ namespace C_Sharp_Practice
                 new List<string>() // Basic initialization
                 {
                 "0_0: Create a string array initialized with 4 empty elements",
-                "0_1: Create a string array initialized with the strings \"axes\", \"swords\", and \"spears\", but not the \"new\" or \"String\" keywords",
+                "0_1: Create a string array initialized with the strings \"axes\", \"swords\", and \"spears\", but not the \"new\" or \"String\" keywords on the right-hand side",
                 "0_2: Create a string array initialized with the strings \"axes\", \"shields\", \"swords\", and \"spears\", using the new keyword, but only using the String keyword on the left-hand side",
                 "0_3: Create a string array initialized with the strings \"axes\", \"shields\", \"swords\", and \"spears\", using [] and {} in the new string array",
-                "0_4: Create a 2d string array initialized with the strings \"axes\", \"shields\", \"swords\", and \"spears\", using [] and {} in the new string array"
+                "0_4: Create a 2d string array initialized with the strings \"axes\", \"shields\", \"bows\", \"swords\", \"spears\", and \"slings\", using [] and {} in the new string array"
                 },
                 new List<string>() // Interfaces
                 {
-                "1_0: Create two template (aka generic) interfaces, one with an add method (aka push), one with a get method, and a generic class that uses a list to implement both to add and get. Make sure that it has a get safe from having zero arguments, and out of range index",
+                "1_0: Create two template (aka generic) interfaces, one with an add method (aka push), one with a get(int index) method, and a generic class that uses a list to implement both to add and get. Make sure that it has a get safe from having zero arguments, and out of range index",
                 "1_1: Create an interface with two non-default methods and a class that overrides both. One must be marked as public, and the other is not",
                 "1_2: Create two interfaces each with a default method that take two parameters and a class that implements and uses both of these methods in the same instance",
                 "1_3: Create two interfaces each with a default method that has the same name and a class that implements both. Execute both of these methods in the main fn",
@@ -75,7 +75,7 @@ namespace C_Sharp_Practice
                 "4_1: Create and use an abstract class, Undead with a variable and abstract fn, which are then used by the classes Skeleton and Ghost",
                 "4_2: Define an abstract class, and its closest match to a class in C++, then create an abstract class with an abstract and two non-abstract fns, and a child class that overrides the abstract and one of the non-abstract fns",
                 "4_3: Create a sealed abstract class",
-                "4_4: Create a parent class with an abstract fn and a virtual fn, and a child class that uses both",
+                "4_4: Create a parent class with an abstract fn and two virtual fns, and a child class that overrides the abstract fn and one virtual fn",
                 },
                 new List<string>() // Structs
                 {
@@ -90,7 +90,7 @@ namespace C_Sharp_Practice
                 "6_0: Create a class inside of a namespace and use the using keyword to make it available. Use that class inside a different namespace",
                 "6_1: Create an alias for a specific library from inside of a namespace",
                 "6_2: Create a function that makes use of the Dispose interface with the Dispose keyword, and write a try-catch block to show that the variable has been disposed",
-                "6_3: Create a fn that reads from two StringReaders that has automatic garbage cleanup",
+                "6_3: Create a fn that reads from two StringReaders that has automatic garbage cleanup, instead of the StringReader existing for the entire scope of the function",
                 "6_4: Create a fn that reads from a StringReader with a try block to read lines and a finally block to dispose of the StringReader",
                 },
                 new List<string>() // Array and ArrayList
@@ -144,75 +144,80 @@ namespace C_Sharp_Practice
                 "12_3: Create and implement a class with two different generic variables",
                 "12_4: Implement a fluent interface design pattern with generics to create Dictionaries that take a type or default to string for their keys and values",//https://tyrrrz.me/blog/fluent-generics https://tyrrrz.me/blog/return-type-inference
                 },
-                new List<string>() // Creational Design Pattern: Abstract Factory
+                new List<string>()
                 {
-                "13_0: Creational Design Pattern: Abstract Factory. Define and write an example that creates the CPU and MMU for the companies Embla and Enginola.",
-                //"13_1: Creational Design Pattern: Builder",
-                //"13_2: Creational Design Pattern: Factory Method",
-                //"13_3: Creational Design Pattern: Object Pool",
-                //"13_4: Creational Design Pattern: Prototype",
-                //"13_5: Creational Design Pattern: Singleton",
+                "13_0: Creational Design Pattern: Factory Method. Create a factory method that creates a Soldier from the Inventory, Movable, and Humanoid classes",
+                "13_1: Creational Design Pattern: Abstract Factory. Define and write an example that creates the CPU and MMU for the companies Embla and Enginola.",
+                "13_2: Creational Design Pattern: Builder. Create two builders, controlled by a director through the I_Builder Interface, that build wood and stone houses.",
+                "13_3: Creational Design Pattern: Object Pool. Create an Object Pool that handles servers with Acquire and Release functions. It must be able to reject a request if all servers are busy.",
+                "13_4: Creational Design Pattern: Prototype. Create a class that fulfills the prototype pattern using the IClonable interface.",
+                "13_5: Creational Design Pattern: Singleton. Create a Singleton class, and at least two instances of another class that access that Singleton class.",
                 },
-                //new List<string>() // Dynamic Programming
-                //{
-                //"13_0: Creational Design Pattern: Abstract Factory",
-                //"13_1: Creational Design Pattern: Builder",
-                //"13_2: Creational Design Pattern: Factory Method",
-                //"13_3: Creational Design Pattern: Object Pool",
-                //"13_4: Creational Design Pattern: Prototype",
-                //"13_5: Creational Design Pattern: Singleton",
-                //},
+                new List<string>() // Dynamic Programming Beginner http://www.topcoder.com/thrive/articles/Dynamic%20Programming:%20From%20Novice%20to%20Advanced
+                {
+                "14_0: Given a list of n coins, their values (1, 3, 5), and their total sum, find the minimum number of coins to add up to the target sums, 1 through 11, inclusive.",
+                "14_1: Given a list of numbers and a target value, find a pair that sums to the target in linear, O(n) time, or better.",
+                "14_2: Write a Fibonacci sequence function with a memoized approach",
+                "14_3: Given envelopes static int[][] envelopesD = new int[][] { new int[] { 5, 4 }, new int[] { 6, 7 }, new int[] { 6, 4 }, new int[] { 2, 3 }, new int[] { 5, 7 }};, write a function that returns the max number of envelopes that can be nested inside each other (width and height must be less than the next bigger envelope)",
+                "14_4: Knapsack Problem: Given a set of items, each with a weight and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible",
+                "14_5: Given a table composed of N x M cells, each having a certain quantity of apples. You start from the upper-left corner. At each step you can go down or right one cell. Find the maximum number of apples you can collect",
+                },
+                new List<string>() // Dynamic Programming Med-Hard http://www.topcoder.com/thrive/articles/Dynamic%20Programming:%20From%20Novice%20to%20Advanced
+                {
+                "15_0: Given an integer array, nums, and an integer, k, return true if it is possible to divide this array into k non-empty subsets whose sums are all equal.",
+                "15_1: Given a string, find the longest palindrome",
+                "15_2: Print all permutations of n correctly combined parentheses, such as ((())), (()()), (())(), ()(()), and ()()(), for n == 3",
+                "15_3: Given an array of numbers, find the sum of the greatest continuous subarray",
+                "15_4: Given two strings, one of random characters, and one that pattern matches the first string, '.' can replace any character, and '*' means zero or more of the preceding character, return true if the pattern matches. So (\"aa\", \"a\") is false, (\"aa\", \"a*\") is true, (\"ab\", \".*\") is true",
+                "15_5: Given a string of open and closed parantheses, find the greatest length of valid matching opena and closes",
+                "15_6: Print out all Full binary Trees for n number of nodes",
+                "15_7: Print out all Full binary Trees for n number of nodes",
+                },
+                new List<string>() // Network challenges
+                {
+                "16_0: ",
+                "16_1: Speed of API over DoubleCF.",
+                "16_2: Speed of API over DoubleCF.",
+                "16_3: Speed of API over DoubleCF.",
+                "16_4: Speed of API over DoubleCF.",
+                "16_5: Speed of API over DoubleCF.",
+                "16_6: Create an ASP.NET MemoryCache to mitigate having to call the server back..",
+                },
+                new List<string>() // List Manipulation
+                {
+                "17_0: Linked List: Write a function to insert node in a singly linked list. The node should be inserted at the end of linked list. Node class has integer data and pointer to next Node. The function takes in head node and integer data as parameters. You only need to implement this function and assume Node class exist. Do note that function returns reference to ‘head’ Node after completing insertion.",
+                "17_1: For a list and target sum, write a function that returns zero-based indices of any two distinct elements whose sum is equal to the target sum. If there are no such elements, the function should return null. Example, FindTwoSum(new List<int>() { 2, 5, 3, 6, 12 }, 15) should return a Tuple<int, int> containing any of the following pairs of indices: 2 and 4 (3 + 12 = 15)",
+                "17_2: Write a generic function that takes an array, and rotates it by a given int (as if the last and first index were adjascent), so that a rotation of 1 on [0123] will become [3012].",
+                "17_3: Smashing rocks in unsorted list, smashed rocks result in the difference of their values, find value of last remaining rock (or 0 if no rocks remain).",
+                "17_4: Find the max number of times a word is inside of a sequence, *sequentially*. These must be sequential, so ab is in ababcccccababab, sequentially 3 times.",
+                "17_5: Find the largest number of sequential instances of a substring. So (aaabaaaabaaabaaaabaaaabaaaabaaaaba, aaaba): 5",
+                "17_6: Alice and Bob play a game where they can take up to 2*M piles of stones, starting from the front. Return the max number of stones the first player can get, if both play optimally. M is the max number of piles taken on previous turns (does not decrease)",
+                },
+                new List<string>() // List Manipulation
+                {
+                "18_0: What is an Extension Method? Where are tehy especially useful? What is the difference between a static method and an Extension Method?",
+                "18_1: Create a class called Geek, and then create two extension methods for Geek that can be called from an instance of Geek. One of these must take a string.",
+                "18_2: Create a class called Tricksy with a method called Foo. Override this method with an extension method.",
+                "18_3: Extension Methods Q",
+                "18_4: Extension Methods Q",
+                "18_5: Extension Methods Q",
+                "18_6: Extension Methods Q",
+                },
             };
+
+
             //Design Patterns below are at https://sourcemaking.com/design_patterns
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // CURRENT:
-            // Creational Design Pattern: Abstract Factory, create answers for the Q13 block
+            // Extension Methods
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // Linked List: Write a function to insert node in a singly linked list. The node should be inserted at the end of linked list. Node class has integer data and pointer to next Node. The function takes in head node and integer data as parameters. You only need to implement this function and assume Node class exist. Do note that function returns reference to ‘head’ Node after completing insertion.
-            /*
-             public Node InsertAtTheEnd(Node head, int data) { 
-	            Node newNode;
-	            newNode.data = data;
-	            newNode.next = null;
-	
-	            Node * ptr = head;
-	            while(ptr.next != null){
-		            ptr = ptr.next;
-	            }
 
-	            ptr.next = newNode;
-	            return head // Why return reference to head?
-            }
-             */
-            //List Manipulation: For a list and target sum, write a function that returns zero-based indices of any two distinct elements whose sum is equal to the target sum. If there are no such elements, the function should return null. Example, FindTwoSum(new List<int>() { 2, 5, 3, 6, 12 }, 15) should return a Tuple<int, int> containing any of the following pairs of indices: 2 and 4 (3 + 12 = 15).
-            /*
-             * public Tuple<int, int> FindTwoSum(List<int> input, int number) { 
-
-	            for(int ii=0; ii<input.size(); ++ii){
-		            for(int jj=ii+1; jj<input.size(); ++jj){
-			            if(input[ii] + input[jj] == number){
-				            tuple<int, int> tempTuple;
-				            tempTuple.first = ii;
-				            tempTuple.second = jj;
-				            return tempTuple;
-			            }
-		            }
-	            }
-	            return null;
-            }
-             */
-            // Creational Design Pattern: Abstract Factory
-            // Speed of API over DoubleCF
-            // Creational Design Pattern: Builder
+            // static readonly vs const
             // IEnumerable
-            // Creational Design Pattern: Factory Method
             // Anonymous Fns https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions
-            // Creational Design Pattern: Object Pool
             // Lambda functions
-            // Creational Design Pattern: Prototype
             // Lambda expressions
-            // Creational Design Pattern: Singleton
             // Virtual classes
             // Structural design pattern: Adapter
             // try and catch and finally
@@ -281,6 +286,10 @@ namespace C_Sharp_Practice
             // Volatile keyword
             // "internal" variables
             // Ternary
+            // Result types (see https://www.youtube.com/watch?v=YbuSuSpzee4)
+            // Unity ServiceLocator
+            // git ci
+            // Speed of API over DoubleCF https://mohamed-hendawy.medium.com/boosting-api-performance-and-scalability-best-practices-for-c-asp-net-f2cb07992f01
 
             // Still thinking about this
             //new List<string>() // Research Tasks

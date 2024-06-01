@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// What is an Extension Method? Where are they especially useful? WHat is the difference between extension and static methods?
+//
+// An Extension Method is a way to add functions to a class without creating a new class/
+// They are especially useful for extending basic types like string and int
+// They differ from static methods in that they are a specific type of static method, so all Extention Methods are static, but not all static methods are Extensions.
+// - Namely, Extension methods are static methods that add functionality to an class, so we can use an object of that class, rather than the name of the class itself
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+namespace MyExtensionMethods
+{
+    public static class MyExtensions
+    {
+        public static int WordCount(this string s)
+        {
+            return s.Split(new char[] { ' ', ',', '.', '?', '!', ':', ';' }, StringSplitOptions.RemoveEmptyEntries).Length;
+        }
+    }
+}
+
+namespace C_Sharp_Practice
+{
+    using MyExtensionMethods;
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            string word = "sincere hobbit";
+            Console.WriteLine($"Word count of ({word}): {word.WordCount()}");
+            word = "Roger,Albert,Alice,Bob";
+            Console.WriteLine($"Word count of ({word}): {word.WordCount()}");
+            word = "Excitement!Drama?Action:Go!";
+            Console.WriteLine($"Word count of ({word}): {word.WordCount()}");
+        }
+    }
+}

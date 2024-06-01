@@ -1,0 +1,43 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+namespace C_Sharp_Practice
+{
+
+    class FiboFinder
+    {
+        private List<int> fiboList = new List<int>() { 0, 1, 1 };
+
+        public int FindFiboValue(int index)
+        {
+            if (index < fiboList.Count)
+                return fiboList[index];
+
+            for (int ii = fiboList.Count - 1; ii < index; ++ii)
+            {
+                fiboList.Add(fiboList[ii] + fiboList[ii - 1]);
+            }
+            return fiboList[fiboList.Count - 1];
+        }
+    }
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            FiboFinder ff = new FiboFinder();
+
+            for (int ii = 0; ii < 20; ++ii)
+                Console.WriteLine(ff.FindFiboValue(ii));
+        }
+    }
+}

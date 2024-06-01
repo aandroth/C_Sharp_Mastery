@@ -1,28 +1,107 @@
 ﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
-Average(IEnumerable<Int32>)
+Average()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 using System;
 using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
 using System.Linq;
-using System.Collections;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
 
 namespace C_Sharp_Practice
 {
     class Practice_Problem
     {
-
         public static void Practice_Problem_Main()
         {
-            List<Int32> i32 = new List<int>();
+            List<int> intList = new List<int> { 0, 1, 2, 3, 0, 5, 6, 7};
 
-            i32.Add(Int32.MaxValue);
-            i32.Add(0);
+            Console.WriteLine(intList.Average());
 
-            Console.WriteLine(i32.Average());
+            var qAve0 = (from i in intList
+                        where i < 4
+                        select i).Average();
+
+            var qAve1 = (from i in intList
+                        where i > 4
+                        select i).Average();
+
+            Console.WriteLine(qAve0);
+            Console.WriteLine(qAve1);
+
+            Console.WriteLine(intList.Average(num => 
+                                                    { 
+                                                        if (num < 4) 
+                                                            { return num; } 
+                                                        else 
+                                                            { return 0; } 
+                                                    }
+                                              ));
+
+            Console.WriteLine(intList.Average(num => 
+                                                    { 
+                                                        if (num > 4) 
+                                                            { return num; } 
+                                                        else 
+                                                            { return 0; } 
+                                                    }
+                                              ));
+        }
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Max(IEnumerable<Int32>)
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
+using System.Linq;
+
+namespace C_Sharp_Practice
+{
+
+    class Pet
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+    }
+
+    // Abstract Factory Pattern is a Creational Pattern
+    // It abstracts the factory that the customer needs to call, making it able to deliver different product variants
+    // based on who the customer is and what they require
+    // So here we are just using the AbstractFactory class,
+    // which is then responsible for calling the creation members in the specific Embla and Enginola classes
+
+    // https://sourcemaking.com/design_patterns/abstract_factory/java/1
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+
+            Pet[] pets = { new Pet { Name="Barley", Age=8 },
+                   new Pet { Name="Boots", Age=4 },
+                   new Pet { Name="Whiskers", Age=1 } };
+
+            int max = pets.Max(pet => pet.Age + pet.Name.Length);
+
+            Console.WriteLine(
+                "The maximum pet age plus name length is {0}.",
+                max);
+
+            /*
+             This code produces the following output:
+
+             The maximum pet age plus name length is 14.
+            */
         }
     }
 }
@@ -174,4 +253,74 @@ namespace C_Sharp_Practice
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+ThenBy
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+
+class Practice_Problem
+{
+    class DoubleValue
+    {
+        public int m_age = 0;
+        public string m_name = "Joe";
+
+        public DoubleValue(int _age, string _name) { m_age = _age; m_name = _name; }
+    }
+
+    public static void Practice_Problem_Main()
+    {
+        List<DoubleValue> myList = new List<DoubleValue>() 
+        { 
+            new DoubleValue(1, "A"), new DoubleValue(7, "I"), new DoubleValue(1, "B"), new DoubleValue(7, "H"),
+            new DoubleValue(1, "C"), new DoubleValue(7, "G"), new DoubleValue(1, "D"), new DoubleValue(7, "F")};
+
+        var orderList = myList.OrderBy(s => s.m_age).ThenBy(n => n.m_name);
+
+        foreach(var l in orderList)
+        {
+            Console.WriteLine(l.m_name);
+        }
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+ThenByDescending
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+
+class Practice_Problem
+{
+    class DoubleValue
+    {
+        public int m_age = 0;
+        public string m_name = "Joe";
+
+        public DoubleValue(int _age, string _name) { m_age = _age; m_name = _name; }
+    }
+
+    public static void Practice_Problem_Main()
+    {
+        List<DoubleValue> myList = new List<DoubleValue>() 
+        { 
+            new DoubleValue(1, "A"), new DoubleValue(7, "I"), new DoubleValue(1, "B"), new DoubleValue(7, "H"),
+            new DoubleValue(1, "C"), new DoubleValue(7, "G"), new DoubleValue(1, "D"), new DoubleValue(7, "F")};
+
+        var orderList = myList.OrderBy(s => s.m_age).ThenByDescending(n => n.m_name);
+
+        foreach(var l in orderList)
+        {
+            Console.WriteLine(l.m_name);
+        }
+    }
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

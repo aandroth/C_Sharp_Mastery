@@ -1,0 +1,82 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+// https://www.google.com/search?q=partition+to+k+equal+sum+subsets&rlz=1C1CHBF_enUS838US838&oq=Partition+to+K+Equal+Sum+Subsets&gs_lcrp=EgZjaHJvbWUqBwgAEAAYgAQyBwgAEAAYgAQyBwgBEAAYgAQyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyCAgFEAAYFhgeMgoIBhAAGIYDGIoFMgYIBxBFGDzSAQgxMjAyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:f8a7b2f3,vid:mBk4I0X46oI
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            Console.WriteLine($"{LongestPalindrome("ccc")}");
+            Console.WriteLine($"{LongestPalindrome("babad")}");
+            Console.WriteLine($"{LongestPalindrome("cbbd")}");
+            Console.WriteLine($"{LongestPalindrome("bb")}");
+        }
+        public static string LongestPalindrome(string s)
+        {
+            if (s.Length == 0)
+                return "";
+
+            string lps = s[0].ToString();
+
+            int[,] dp = new int[s.Length,s.Length];
+
+            // Setup fill
+            for (int ii=0; ii<s.Length; ++ii)
+            {
+                dp[ii,ii] = 1;
+                if (ii < s.Length - 1)
+                {
+                    if (s[ii] == s[ii + 1])
+                    {
+                        dp[ii,ii + 1] = 1;
+                        if (lps.Length == 1)
+                            lps = s.Substring(ii, 2);
+                    }
+                    else
+                        dp[ii,ii + 1] = 0;
+                }
+            }
+            // Fill in the rest of the table
+            for (int kk = 2; kk < s.Length; ++kk)
+            {
+                for (int ii = 0, jj = kk+ii; jj < s.Length; ++ii, ++jj)
+                {
+                    dp[ii,jj] = ( s[ii] == s[jj] && dp[ii+1,jj-1] == 1) ? 1 : 0;
+                    if (s[ii] == s[jj] && dp[ii + 1,jj - 1] == 1)
+                    {
+                        dp[ii,jj] = 1;
+                        if (lps.Length < kk+1)
+                            lps = s.Substring(ii, kk+1);
+                    }
+                    else
+                        dp[ii,jj] = 0;
+                    Console.WriteLine($"dp[{ii}][{jj}] set to {dp[ii,jj]}, with letters {s[ii]}, {s[jj]}");
+                }
+            }
+
+            for (int ii=0; ii<s.Length; ++ii)
+            {
+                for (int jj = 0; jj < s.Length; ++jj)
+                {
+                    Console.Write($"{dp[ii,jj]}{(jj < dp.Length - 1 ? ", " : "")}");
+                }
+                Console.WriteLine("");
+            }
+
+            return lps;
+        }
+    }
+}

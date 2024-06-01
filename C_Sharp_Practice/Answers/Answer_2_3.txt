@@ -10,11 +10,22 @@ namespace C_Sharp_Practice
         {
             Console.WriteLine("Can't touch this.");
         }
+
+        public void goo()
+        {
+            Console.WriteLine("Can't touch this.");
+        }
     }
 
     class DerivedClass: BaseClass
     {
         // The derived class cannot find the fn b/c it is marked as private in the base class
+        //public new void foo()
+        //{
+        //    Console.WriteLine("Can touch this.");
+        //}
+
+        // The derived class cannot override the fn b/c it is NOT marked as abstract, virtual, or override in the base class
         //public new void foo()
         //{
         //    Console.WriteLine("Can touch this.");

@@ -1,0 +1,65 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+// https://www.google.com/search?q=partition+to+k+equal+sum+subsets&rlz=1C1CHBF_enUS838US838&oq=Partition+to+K+Equal+Sum+Subsets&gs_lcrp=EgZjaHJvbWUqBwgAEAAYgAQyBwgAEAAYgAQyBwgBEAAYgAQyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyCAgFEAAYFhgeMgoIBhAAGIYDGIoFMgYIBxBFGDzSAQgxMjAyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:f8a7b2f3,vid:mBk4I0X46oI
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            int[,] arr = new int[3, 3];
+            var random = new Random();
+
+            for(int ii=0; ii<3; ++ii)
+            {
+                for (int jj = 0; jj < 3; ++jj)
+                {
+                    arr[ii, jj] = random.Next(9);
+                }
+            }
+
+            for (int ii = 0; ii < 3; ++ii)
+            {
+                for (int jj = 0; jj < 3; ++jj)
+                {
+                    Console.Write($"{arr[ii,jj]}|");
+                }
+                Console.WriteLine($"");
+            }
+            Console.WriteLine($"");
+
+            int[,] arrSum = new int[3, 3];
+            for (int ii=0; ii<3; ++ii)
+            {
+                for (int jj = 0; jj < 3; ++jj)
+                {
+                    arrSum[ii, jj] = arr[ii,jj] + Math.Max( (ii>0?arrSum[ii-1,jj]:0), (jj > 0 ? arrSum[ii, jj-1] : 0));
+                }
+            }
+
+            for (int ii = 0; ii < 3; ++ii)
+            {
+                for (int jj = 0; jj < 3; ++jj)
+                {
+                    Console.Write($"{arrSum[ii,jj]}|");
+                }
+                Console.WriteLine($"");
+            }
+            Console.WriteLine($"");
+
+            Console.WriteLine($"Result: {arrSum[2, 2]}");
+        }
+    }
+}

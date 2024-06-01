@@ -1,0 +1,110 @@
+﻿using System;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+
+namespace C_Sharp_Practice
+{
+    [Serializable]
+    public class TreeNode
+    {
+        public int val;
+        public TreeNode left;
+        public TreeNode right;
+        public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+        {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            IList<TreeNode> _list = new List<TreeNode>();
+            _list = AllPossibleFBT(7);
+            foreach (TreeNode t in _list) PrintTree(t);
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            _list = AllPossibleFBT(5);
+            foreach (TreeNode t in _list) PrintTree(t);
+            Console.WriteLine("");
+            Console.WriteLine("");
+        }
+
+        public static IList<TreeNode> AllPossibleFBT(int n)
+        {
+            Dictionary<int, List<TreeNode>>  dp = new Dictionary<int, List<TreeNode>>();
+            if (n % 2 == 0)
+                return new List<TreeNode>();
+
+            return AllPossibleFBTRecursive(n, dp);
+        }
+
+        public static List<TreeNode> AllPossibleFBTRecursive(int n, Dictionary<int, List<TreeNode>> dp)
+        {
+            if (dp.ContainsKey(n))
+                return dp[n];
+
+            List<TreeNode> _list = new List<TreeNode>();
+            if (n == 1)
+            {
+                _list.Add(new TreeNode());
+                return _list;
+            }
+
+            for(int ii=1; ii < n; ii += 2)
+            {
+                List<TreeNode> l = AllPossibleFBTRecursive(ii, dp);
+                List<TreeNode> r = AllPossibleFBTRecursive(n - ii - 1, dp);
+
+                foreach(TreeNode jj in l)
+                {
+                    foreach(TreeNode kk in r)
+                    {
+                        TreeNode node = new TreeNode();
+                        node.left = jj;
+                        node.right = kk;
+                        _list.Add(node);
+                    }
+                }
+                foreach (TreeNode t in _list) PrintTree(t);
+                Console.WriteLine("");
+            }
+            dp.Add(n, _list);
+            return _list;
+        }
+
+        public static void PrintTree(TreeNode root)
+        {
+            List<TreeNode> listedTree = new List<TreeNode>();
+            listedTree.Add(root);
+
+            for(int ii=0; ii < listedTree.Count; ++ii)
+            {
+                if (listedTree[ii] != null)
+                {
+                    listedTree.Add(listedTree[ii].left);
+                    listedTree.Add(listedTree[ii].right);
+                    Console.Write($"0, ");
+                }
+                else
+                    Console.Write($"n, ");
+            }
+            Console.WriteLine($"");
+        }
+    }
+}

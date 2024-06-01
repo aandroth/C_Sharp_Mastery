@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{
+    class LL_Node<T>
+    {
+        public T data;
+        public LL_Node<T> next = null;
+    }
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            Console.WriteLine(SmashRocks(new int[] { 1 })); // 1
+            Console.WriteLine(SmashRocks(new int[] { 10, 1, 1, 1, 1, 1 }));
+            Console.WriteLine(SmashRocks(new int[] { 2, 7, 4, 1, 8, 1 }));
+            Console.WriteLine(SmashRocks(new int[] { 7, 6, 7, 6, 9 }));
+            Console.WriteLine(SmashRocks(new int[] { 906, 472, 398, 718, 213, 89, 300, 866, 64, 383, 865, 187, 226, 399, 585, 62, 95, 54, 29, 63, 590, 194, 398, 853, 180, 430, 780, 824, 949, 261 })); // 1
+        }
+
+        public static int SmashRocks(int[] rocksList)
+        {
+            if (rocksList.Length == 1) return rocksList[0];
+            if (rocksList.Length == 0) return 0;
+
+            Array.Sort(rocksList);
+            int last = rocksList.Length - 1;
+
+            while (rocksList[last - 1] != 0)
+            {
+                PrintArray(rocksList);
+                Console.WriteLine("");
+                int largestDiff = 0;
+                for (int ii = last; ii >= 1; ii -= 2)
+                {
+                    if (rocksList[ii] == 0 || rocksList[ii-1] == 0 || largestDiff >= rocksList[ii])
+                        break;
+                    rocksList[ii] = rocksList[ii] - rocksList[ii - 1];
+                    rocksList[ii - 1] = 0;
+
+                    if (largestDiff <= rocksList[ii])
+                        largestDiff = rocksList[ii];
+
+                    PrintArray(rocksList);
+                    Console.WriteLine("");
+                }
+                Array.Sort(rocksList);
+            }
+            return rocksList[last];
+        }
+}

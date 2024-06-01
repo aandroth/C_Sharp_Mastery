@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+
+// When calling Foo, we only get the base class Foo
+// Method overriding will not work for Extension Methods
+
+class Tricksy
+{
+
+    // Method 1
+    public void Foo()
+    {
+        Console.WriteLine("This is Foo");
+    }
+
+}
+
+namespace MyExtensionMethods
+{
+    static class MyExtensions
+    {
+        public static void Foo(this Tricksy t)
+        {
+            Console.WriteLine("This is the better Foo"); // Method overriding will not work for Extension Methods
+        }
+    }
+}
+
+namespace C_Sharp_Practice
+{
+    using MyExtensionMethods;
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            Tricksy t = new Tricksy();
+            t.Foo();
+        }
+    }
+}

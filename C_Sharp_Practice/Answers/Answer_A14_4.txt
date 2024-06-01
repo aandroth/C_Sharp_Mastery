@@ -1,0 +1,95 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Text.RegularExpressions;
+
+// https://youtu.be/xOlhR_2QCXY
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        //Given a set of items, each with a weight and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible
+        //{weight, value}
+        static int[][] items = new int[][] { new int[] { 5, 4 }, new int[] { 6, 7 }, new int[] { 6, 4 }, new int[] { 2, 7 }, new int[] { 5, 7 } };
+        public static void Practice_Problem_Main()
+        {
+            int weight = 10;
+
+            Console.WriteLine(KnapsackInto(weight, items));
+        }
+
+        public static int KnapsackInto(int W, int[][] items)
+        {
+            int[,] table = new int[items.Length,W + 1];
+            for (int ii = 0; ii < items.Length; ++ii)
+            {
+                for (int jj = 1; jj <= W; ++jj)
+                {
+                    table[ii, jj] = -1;
+                }
+            }
+
+            for (int ii = 0; ii < items.Length; ++ii)
+            {
+                for (int jj = 0; jj <= W; ++jj)
+                {
+                    Console.Write($"{table[ii, jj]}{(jj < W ? ", " : "")}");
+                }
+                Console.WriteLine("");
+            }
+
+
+            for (int jj = 1; jj < W + 1; ++jj)
+            {
+                table[0, jj] = jj < items[0][0] ? 0 : items[0][1];
+            }
+
+            for (int ii = 1; ii < 5/*items.Length*/; ++ii)
+            {
+                for (int jj = 1; jj < W + 1; ++jj)
+                {
+                    Console.WriteLine($"ii {ii}, jj: {jj}");
+                    table[ii, jj] = KnapsackProcess(W, items, table, jj, ii);
+                }
+            }
+
+            for (int ii = 0; ii < items.Length; ++ii)
+            {
+                for (int jj = 0; jj <= W; ++jj)
+                {
+                    Console.Write($"{table[ii, jj]}{(jj < W ? ", " : "")}");
+                }
+                Console.WriteLine("");
+            }
+
+            Console.WriteLine($"{table[4, 9]}");
+            return table[items.Length-1, W-1];
+        }
+
+        public static int KnapsackProcess(int W, int[][] items, int[,] table, int weightIdx, int itemIdx)
+        {
+            Console.WriteLine($"W: {W}, weightIdx:{weightIdx}, itemIdx: {itemIdx}");
+            Console.WriteLine($"");
+
+            if (itemIdx < 0 || weightIdx <= 0)
+                return 0;
+
+            if (table[itemIdx, weightIdx] != -1)
+                return table[itemIdx, weightIdx];
+
+            if (items[itemIdx][0] > weightIdx)
+                return 0;
+
+            return Math.Max(items[itemIdx][1] + KnapsackProcess(weightIdx - items[itemIdx][0], items, table, weightIdx - items[itemIdx][0], itemIdx-1), table[itemIdx-1, weightIdx]);
+        }
+    }
+}

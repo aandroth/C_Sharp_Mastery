@@ -12,6 +12,10 @@ namespace C_Sharp_Practice
         {
             Console.WriteLine("This is the virtual foo from the Parent class");
         }
+        public virtual void foo_virtual2()
+        {
+            Console.WriteLine("This is the virtual foo2 from the Parent class");
+        }
     }
 
     class Child : Parent
@@ -26,15 +30,18 @@ namespace C_Sharp_Practice
         }
     }
 
-    class Problem_3_0
+
+    class Practice_Problem
     {
-        public static void Problem_3_0_Main()
+        public static void Practice_Problem_Main()
         {
             Child c = new Child();
 
             c.foo_abstract();
 
             c.foo_virtual();
+
+            c.foo_virtual2();
 
         }
     }
