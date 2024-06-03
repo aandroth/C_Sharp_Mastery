@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace MyExtensions
+{
+    static class StringExtensions
+    {
+        public static string AddPeriodIfNeeded(this string s)
+        {
+            char c = s[s.Length - 1];
+            if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'z'))
+                s = $"{s}.";
+
+            return s;
+        }
+    }
+}
+
+namespace C_Sharp_Practice
+{
+    using MyExtensions;
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            string str = "Wow!";
+            Console.WriteLine($"({str}): {str.AddPeriodIfNeeded()}");
+            str = "Boring";
+            Console.WriteLine($"({str}): {str.AddPeriodIfNeeded()}");
+            str = "That is a 4";
+            Console.WriteLine($"({str}): {str.AddPeriodIfNeeded()}");
+            str = "Now, from what I can tell...";
+            Console.WriteLine($"({str}): {str.AddPeriodIfNeeded()}");
+            str = "Topics:";
+            Console.WriteLine($"({str}): {str.AddPeriodIfNeeded()}");
+
+        }
+    }
+}

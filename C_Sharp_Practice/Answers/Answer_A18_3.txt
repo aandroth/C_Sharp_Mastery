@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace MyExtensions
+{
+    static class IntExtensions
+    {
+        public static bool IsGreaterThan(this int i, int o)
+        {
+            return i > o;
+        }
+    }
+}
+
+namespace C_Sharp_Practice
+{
+    using MyExtensions;
+
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            int forty = 40;
+            Console.WriteLine($"(40)IsGreaterThan(100): {forty.IsGreaterThan(100)}");
+            Console.WriteLine($"(40)IsGreaterThan(40): {forty.IsGreaterThan(40)}");
+            Console.WriteLine($"(40)IsGreaterThan(39): {forty.IsGreaterThan(39)}");
+        }
+    }
+}

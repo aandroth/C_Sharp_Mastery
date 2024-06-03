@@ -17,60 +17,52 @@ using System.Web.Http;
 using System.Net.Http.Headers;
 using System.Numerics;
 
-// When calling Foo, we only get the base class Foo
-// Method overriding will not work for Extension Methods
-
-class Tricksy
+namespace MyExtensions
 {
-
-    // Method 1
-    public void Foo()
+    static class StringExtensions
     {
-        Console.WriteLine("This is Foo");
-    }
-
-}
-
-namespace MyExtensionMethods
-{
-    static class MyExtensions
-    {
-        public static void Foo(this Tricksy t)
+        public static string AddPeriodIfNeeded(this string s)
         {
-            Console.WriteLine("This is the better Foo");
+            char c = s[s.Length - 1];
+            if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'z'))
+                s = $"{s}.";
+
+            return s;
         }
     }
 }
 
 namespace C_Sharp_Practice
 {
-    using MyExtensionMethods;
+    using MyExtensions;
     class Practice_Problem
     {
         public static void Practice_Problem_Main()
         {
-            Tricksy t = new Tricksy();
-            t.Foo();
-            
+            string str = "Wow!";
+            Console.WriteLine($"({str}): {str.AddPeriodIfNeeded()}");
+            str = "Boring";
+            Console.WriteLine($"({str}): {str.AddPeriodIfNeeded()}");
+            str = "That is a 4";
+            Console.WriteLine($"({str}): {str.AddPeriodIfNeeded()}");
+            str = "Now, from what I can tell...";
+            Console.WriteLine($"({str}): {str.AddPeriodIfNeeded()}");
+            str = "Topics:";
+            Console.WriteLine($"({str}): {str.AddPeriodIfNeeded()}");
 
-            //IList<IList<string>> list;
-            //string word = "aab";
-            //list = Partition(word);
-            //foreach(List<string> l in list)
-            //{
-            //    PrintList(l);
-            //}
         }
 
-        public static IList<IList<string>> Partition(string s)
+        public static int DistributeCookies(int[] cookies, int k)
         {
-            List<List<string>> list = new List<List<string>>();
-            //list.Add(s.ToList());
+            float bestCase = (cookies.Sum()) / k;
+            int[] cookieSums = new int[k];
 
+            int max = 0;
+            foreach (int c in cookieSums)
+                max = Math.Max(max, c);
 
-            return list as IList<IList<string>>;
+            return max;
         }
-
 
 
         public static void PrintGrid(int[,] grid, int length, int height)
@@ -82,6 +74,15 @@ namespace C_Sharp_Practice
                     Console.Write($"{grid[jj, ii]}, ");
                 }
                 Console.WriteLine($"");
+            }
+            Console.WriteLine($"");
+        }
+
+        public static void PrintIList<T>(IList<T> list) // Works for both Arrays and Lists
+        {
+            foreach(T t in list)
+            {
+                Console.Write($"{t}, ");
             }
             Console.WriteLine($"");
         }

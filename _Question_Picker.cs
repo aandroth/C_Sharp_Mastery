@@ -197,9 +197,9 @@ namespace C_Sharp_Practice
                 {
                 "18_0: What is an Extension Method? Where are tehy especially useful? What is the difference between a static method and an Extension Method?",
                 "18_1: Create a class called Geek, and then create two extension methods for Geek that can be called from an instance of Geek. One of these must take a string.",
-                "18_2: Create a class called Tricksy with a method called Foo. Override this method with an extension method.",
-                "18_3: Extension Methods Q",
-                "18_4: Extension Methods Q",
+                "18_2: Create a class called Tricksy with a method called Foo. Override Foo with an extension method.",
+                "18_3: Create an Extension Method for int, called IsGreaterThan, returns a bool.",
+                "18_4: Create a method for string variables that adds a period to the end, if appropriate. So Boring becomes Boring. and Wow! stays Wow!",
                 "18_5: Extension Methods Q",
                 "18_6: Extension Methods Q",
                 },
