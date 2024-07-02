@@ -213,6 +213,8 @@ namespace C_Sharp_Practice
             // Extension Methods
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+            // bit masking
+            // Powerset
             // static readonly vs const
             // IEnumerable
             // Anonymous Fns https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions
