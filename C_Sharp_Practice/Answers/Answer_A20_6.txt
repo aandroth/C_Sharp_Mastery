@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+    public class TreeNode
+    {
+        public int val;
+        public TreeNode left;
+        public TreeNode right;
+        public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+        {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    public static TreeNode CreateTreeWithValues(int?[] arr)
+    {
+        Queue<TreeNode?> queue = new Queue<TreeNode>();
+        TreeNode root = new TreeNode((int)arr[0]);
+        queue.Enqueue(root);
+        int idxA = 0;
+        int idxT = 1;
+        while (queue.Count > 0)
+        {
+            TreeNode tPtr = queue.Dequeue();
+            ++idxA;
+            if (idxA < arr.Length && arr[idxA] != null)
+            {
+                tPtr.left = new TreeNode((int)arr[idxA]);
+                queue.Enqueue(tPtr.left);
+                ++idxT;
+            }
+            ++idxA;
+            if (idxA < arr.Length && arr[idxA] != null)
+            {
+                tPtr.right = new TreeNode((int)arr[idxA]);
+                queue.Enqueue(tPtr.right);
+                ++idxT;
+            }
+        }
+        return root;
+    }
+
+    public static void Practice_Problem_Main()
+    {
+        int[] nums = new int[] { 2,7,9,3,1 };
+        Console.WriteLine($"{PickHouses(nums)}"); // 12
+
+
+        nums = new int[] { 1,2,3,1 };
+        Console.WriteLine($"{PickHousesCircle(nums)}"); // 4
+
+        
+        TreeNode node = CreateTreeWithValues(new int?[] { 3, 4, 5, 1, 3, null, 1 });
+        Console.WriteLine($"{PickHousesTree(node)}"); // 9
+    }
+
+
+    public static int PickHouses(int[] nums) {
+            int cur;
+            int r1 = 0;
+            int r2 = 0;
+            for (int ii = 0; ii < nums.Length; ii++)
+            {
+                cur = nums[ii];
+                int temp = Math.Max((cur + r1), r2);
+                r1 = r2;
+                r2 = temp;
+            }
+
+            return r2;
+    }
+    public static int PickHousesCircle(int[] nums) {
+            int cur;
+            int r1 = 0;
+            int r2 = 0;
+            for (int ii = 0; ii < nums.Length; ii++)
+            {
+                cur = nums[ii];
+                int temp = Math.Max((cur + r1), r2);
+                r1 = r2;
+                r2 = temp;
+            }
+
+            return r2;
+    }
+
+    public static int PickHousesTree(TreeNode root)
+    {
+        (int, int) RobRecurse(TreeNode n)
+        {
+            (int, int) left = n.left != null ? RobRecurse(n.left) : (0, 0);
+            (int, int) right = n.right != null ? RobRecurse(n.right) : (0, 0);
+            int sub = left.Item1 + right.Item1;
+            int sum = Math.Max(n.val + left.Item2 + right.Item2, sub);
+            return (sum, sub);      
+        }
+        return RobRecurse(root).Item1;
+    }
+}

@@ -1,0 +1,59 @@
+﻿
+8/6/24,  1653: 90 minutes  // Tool was using a count to keep track of how many a's were in the string, and then getting the diff of b's we found <-- What to call this?
+8/6/24,   241: Failed      // Tool was using two dfs on the string, one starting from the left, and the other starting from the right, breaking it down to numbers and operators almost like leaf nodes on a tree
+8/8/24,   712: Failed      // Tool was either using recursion to check either possiblity, better, use a table to carry previous decisions through
+8/9/24    983: Failed      // Tool was to either use a three-choice recursive call, or better, have a rolling check of what each choice's effect would have at that index
+8/10/24   413: 120 minutes // Tool was to have a rolling check of the previous indeces' difference, and have each new match add an additional count because it can fit more subsequences in it
+8/11/24, 3192: Failed      // This one was just super simple too. The tool was just to recognize that going forward through the array we needed to track whether we were in a flipped or not flipped state
+8/13/24, 1578 120 minutes // Tool was sliding window. I screwed up with the description, thinking that a gap meant that the balloons around it weren't consecuative....
+8/15/24, 1035: 120 minutes // Tool was cascading table. I went for dfs, but wasn't cutting branches that way.
+8/15/24,  931: 15 minutes  // SUCCESS!!!! Tool was cascading table, and having each cell choose the best path to it from above.
+8/16/24,  516: Failure     // I tried sliding window, and Tool was cascading table, solving as if just searching for a palindrome
+8/17/24,  583: Success     // Tool was cascading table, solving as if just searching for a palindrome...again. Also, I already had a solution for this?
+8/17/24, 1947: 180 minutes // Tool was...bit masking? I didn't use the speediest solution, and the main problem is solved by a brute force approach...
+8/18/24,  926:  10 minutes // Success! This problem was very similar to a previously encountered one, and the tool was to keep a count of the zero's, and then go through the string to find the best balance point for flipping all out-of-place bits
+8/18/24,   96: 60+ minutes // Failed. Exceeded time. Got really close, but failed to fully consider that I should have been multiplying the branch possibilities, not adding them together.
+8/19/24,   96: 60+ minutes // Exceeded time. Tool was basic recursion, and saving the results for each element of the array.
+8/19/24,  553: Failed      // Fuck this problem. Solution is knowing that any series of numbers divided in order, is the first number divided by the cumlative division of all other numbers: 1st/(2nd/3rd/4th/.../nth)
+8/19/24, 1155: Failed      // Tried solving with math, which didn't pan out. Looking at solution, didn't realize that I needed to mod the result after addition, and not before.
+8/21/24, 1155: 40 minutes  // Fuck this problem too. No actual coding is required. It just requires knowing the biggest product can be achieved threes and up to two twos....
+8/22/24, 1155: 40 minutes  // Cool problem, though the best solution is more math-y. The basic solution is just recursion, based on the specific numbers. The best solution is breaking the numbers into areas, and then building up with those like a Fibo solution.
+8/22/24, 1749: Failed      // The tool here was sliding window, specifically with Kadane's algorithm, which tracks if the preceeding values had a culmulative positive sum, and makes it Zero if not.
+8/22/24, 2002: Failed      // The tool here was bit masking to find each possible subarray of the string, then check that for being a palinrome, and finally, comparing each palindrome against the others, making sure they're disjointed by using the bitmask from before, and brute forcing the largest product.
+8/24/24, 1031: 40 minutes  // The tool here was just saving all possible sums, and then comparing the sums in a double for-loop. Not very dp, but it works.
+8/24/24,  650: 60 minutes  // The tool here was knowing that numbers break down, dividing by their lcd
+8/24/24, 1039: Failed      // The tool here was a little bit of knowing Matrix Chain Multiplication, but for solving the problem, it was just breaking the array into subarrays, where each subarray was the starting idx with the incrementing idx, and then the incrementing idx with the ending idx 
+8/24/24, 1014: 30 minutes  // The tool here was sliding window. My solution was to just cut off a search when it went below zero, but the best solution was sliding window that checked if the most recent value checked was better than the value currently being used.
+8/25/24, 2673: 50 minutes  // The tool here was sliding window with passing values up the tree. It took too long, but I was really happy with my solution that took advantage of the perfect binary tree structure to solve the challenge in a single pass with no recursion, by just passing up the differences for each node to their parent.
+8/25/24, 2110: 30 minutes  // The tool here was sliding window, just getting the length of the subarray, and adding the number of all subarrays to the result.
+8/26/24, 2110: 35 minutes  // The tool here was sliding window, with a greedy algorithm of taking the biggest number, and then smallest number, only stopping when the next number would work against this.
+9/9/24,   152: Failed      // The tool here was to track the max AND the min, which allowed the algorithm to utilize or ignore the first negative number, and get around zeros.
+9/9/24,   174: 15 minutes  // Success!!!! The tool here was to basically the same as optimal route in a pyramid, with the catch that routes with greater than zero results were set to zero so we could just keep track of the minimal health needed.
+9/10/24,  174: 60 minutes  // Failure, but this is because the dp was hard to think about. In the end, it was just exporing branches, and then saving the results.
+9/10/24,  198: Failed      // Failed. This is sliding window, and we just need to keep moving forward the max from two houses before current, and one house before current, and updating those as we go through
+9/10/24,  213: 10 minutes  // Success, but it's hard to count this one. This is the next stage of 198, just with the houses in a circle, so it's exactly the same, but you get the max of going through the houses if you skip the first and compare that with if you skip the last
+9/12/24,  221: 40 minutes  // Tool was using a 2d table of ints to cascade down numbers. I knew from the start what the answer should look like. The char to int conversion tripped me up a bit, but I can't let that happen.
+9/12/24,  264: Failed      // Tool was sliding window, with choosing the minimum of each possible new product, but there was no algorithm to this, it was literally just a comparison between all possible new products
+9/18/24,  313: 30 minutes  // Tool was just finding the min of each possible new entry, and kep track of where that prime was in the list of current entries, incrementing whenever they were used. This is very similar to a previous problem, so feels a little cheap to say I solved it.
+9/18/24,  322: 30 minutes  // Tool was saving previous results and using those again recursively. Better solution was to just use a for loop that built from the bottom up, checking each index as a possible amount we could reach.
+9/19/24,  322: 120 minutes // This was a rough one. THe tool was to sort the envelopes first, but then to find the longest increasing subsequence, a binary search needed to be used. This binary search allows us to cause elements that are not part of the LIS to just replace elements of dp without changing the length, and therefore not changing the count of the LIS.
+9/19/24,  322: 30 minutes  // Tool here was recalling that by taking the factorial of a number, we can get the number of unique combinations. Here we do something very similar, but I need to study it further to fully understand it.
+9/20/24,  368: 40 minutes  // Tool here was to recall that if A is a factor of B, and B is a factor of C, then A is a factor of C. Using this, we only need to check the smallest number in the list of numbers by a potential new element (provided we sort first). We can also reduce down the amount of memory used by having an array of counts, and an array of prev indexes and just following those back till the first one.
+9/22/24,  375: 120 minutes // Tool here was to fill in each length of every possible grouping, but saving those, and then reusing them, so that we saved time. Tricky to get right.
+9/22/24,  376: 30 minutes  // Tool here was to do one pass, marking every up and down, and then another pass going backwards through the array with two variables, one that assumes that starting with highs is better, and the other assumes lows.
+9/22/24,  377: 50 minutes  // Tool here was just like with 375, so filling in each value below the target (starting with the lower numbers) and then we continue filling it up until we reach the target value.
+9/22/24,  396: 50 minutes  // Tool here was know ing that for this particular setup, we can get the next sum by using the formula, f + s - n * nums[n - i], where f is the previouis sum, s is the sum of the base array, and n is nums.Length
+9/23/24,  397: Failed      // Tool here was just a simple recursion or while/queue loop, but for some reason the recursion kept getting a one-off error for specific inputs. This may have been due to overflow though, and needed to use a long.
+9/23/24,  403: Failed      // Tool here was to create a list of jump values at every index
+9/24/24,  403: Failed      // Tool here was to create an array of bools. We would then check each number in nums, starting with the target. If (target - new number from nums) was already found (marked as true in our bool array), we knew that we could use some combination of the numbers to reach the target value.
+9/24/24,  403: Failed      // Tool here was to do a sort on the array of lengths starting positions, and then go through them, taking the shorter of their max. Doing a bad copy of the input screwed me up for an unknown length of time.
+11/10/24  Stack[5]: Failed // This didn't really need a stack... But, I did come up with most of the solution on my own. The thing I was missing was just that the cars needed to be recorded with their finish time as a float and not an int, because finishing after the same time period didn't mean they were one carfleet.
+11/10/24  Stack[6]: Failed // Tool here was to put values back on the stack as a way to keep track of the minimum height up to the current idx.
+11/11/24 Bin Search[0]:Success// Bin search on a 1d array
+11/11/24 Bin Search[1]:Success// Bin search on a 2d array (I just acted as if it were a 1d array, and did the math to find which row the median was in)
+11/11/24 Bin Search[2]:Success// Bin search on a range of possible solutions, grinding down to a best solution rather than a target. Got stuck when not using double caused precision errors.
+
+
+Revisits:
+https://neetcode.io/problems/longest-consecutive-sequence
+https://neetcode.io/problems/largest-rectangle-in-histogram

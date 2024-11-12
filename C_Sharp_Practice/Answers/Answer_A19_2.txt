@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{
+    using MyExtensions;
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            ArrayMasking(new int[] { 6, 2, 4 }, new int[] {0,0,0});
+        }
+
+        public static void ArrayMasking<T>(T[] arr, int[] tempArray, int idx = 0)
+        {
+            if(idx >= arr.Length)
+            {
+                for (int i = 0; i < tempArray.Length-1; i++)
+                {
+                    if(tempArray[i] == 1)
+                        Console.Write($"{arr[i]}, ");
+                }
+                if(tempArray[tempArray.Length-1] == 1)
+                    Console.WriteLine($"{arr[arr.Length-1]}");
+                else
+                    Console.WriteLine($"");
+                return;
+            }
+
+            ArrayMasking<T>(arr, tempArray, idx+1);
+            tempArray[idx] = 1;
+            ArrayMasking<T>(arr, tempArray, idx+1);
+            tempArray[idx] = 0;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{
+        public static void Practice_Problem_Main()
+        {
+            int[] nums = new int[] { 4, 3, 2, 3, 5, 2, 1 };
+            int k = 4;
+
+            Console.WriteLine($"{NumberOfSubarraysForSum(nums, k)}");
+        }
+
+
+
+        public static int NumberOfSubarraysForSum(int[] nums, int k)
+        {
+            int count = 0;
+            int mask = (int)Math.Pow(2, nums.Length);
+
+            while(mask >= 0)
+            {
+                --mask;
+                int temp = 0;
+                for (int ii = 0; ii < nums.Length; ii++)
+                {
+                    if (((mask >> ii) & 1) > 0)
+                        temp += nums[nums.Length - 1 - ii];
+                    if (temp > k)
+                        break;
+                }
+                if (temp == k)
+                {
+                    ++count;
+                }
+            }
+            return count;
+        }
+}

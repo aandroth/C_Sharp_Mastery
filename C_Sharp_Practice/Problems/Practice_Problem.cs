@@ -21,523 +21,502 @@ using System.Numerics;
 
 namespace C_Sharp_Practice
 {
-    class NN_Manager
-    {
-        List<int[]> m_possibleBoards;
-        List<int> m_possibleBoardScores;
-        public List<NN> m_nnList;
-        string m_folderPath = "C:\\Users\\aandr\\OneDrive\\Desktop\\NNs";
-        float m_maxChange = 0.15f;
-
-        public NN_Manager(int[] inputBoard, int nnCount, int[] nodeCounts, float maxChange = 0.15f)
-        {
-            m_maxChange = maxChange;
-            m_nnList = new List<NN>();
-            for (int ii = 0; ii < nnCount; ++ii)
-            {
-                NN nn = new NN(m_folderPath, ii, nodeCounts, m_maxChange);
-                m_nnList.Add(nn);
-            }
-            m_possibleBoards = new List<int[]>();
-            m_possibleBoardScores = new List<int>();
-            CreateAndScoreAllPossibleBoards(inputBoard, new int[inputBoard.Length], 0);
-
-            //int bestBoard = 0;
-            //int bestBoardIdx = 0;
-            //for (int ii = 0; ii < m_possibleBoards.Count; ++ii)
-            //{
-            //    if(bestBoard < m_possibleBoards[ii].Sum())
-            //    {
-            //        bestBoard = m_possibleBoards[ii].Sum();
-            //        bestBoardIdx = ii;
-            //    }
-
-            //    //    for (int jj = 0; jj < m_possibleBoards[ii].Length; ++jj)
-            //    //    {
-            //    //        Console.Write($"{m_possibleBoards[ii][jj]}, ");
-            //    //    }
-            //    //    Console.Write($"score: {m_possibleBoardScores[ii]}");
-            //    //    Console.WriteLine($"");
-            //}
-            //Console.WriteLine($"Best Board is {bestBoardIdx}");
-        }
-
-        public void WriteNns()
-        {
-            foreach (NN nn in m_nnList)
-                nn.WriteToFile();
-        }
-
-        public void PlayGames_AndEvolveNNs()
-        {
-            List<Tuple<int, int>> scores = new List<Tuple<int, int>>();
-
-            // Play the games
-            for (int ii = 0; ii < m_nnList.Count; ++ii)
-            {
-                float bestScore = int.MinValue;
-                int bestBoardIdx = 0;
-                for (int jj = 0; jj < m_possibleBoards.Count; ++jj)
-                {
-                    float value = m_nnList[ii].PlayGame(m_possibleBoards[jj]);
-                    if (bestScore < value)
-                    {
-                        bestScore = value;
-                        bestBoardIdx = jj;
-                    }
-                }
-                scores.Add(new Tuple<int, int>(ii, m_possibleBoardScores[bestBoardIdx]));
-                Console.WriteLine($"NN {ii} got a score of {scores[ii]}");
-            }
-
-            Console.Write($"Top scorers are ");
-            scores = scores.OrderByDescending(x => x.Item2).ToList();
-            for (int ii = 0; ii < scores.Count; ++ii)
-            {
-                Console.Write($"{scores[ii]}, ");
-            }
-            Console.WriteLine($"");
-
-            // Evolve the NNs based on the best half
-            for (int ii = 0; ii < scores.Count * 0.5f; ++ii)
-            {
-                m_nnList[scores[scores.Count - 1 - ii].Item1].RandomizeWeightValuesByNn(m_nnList[scores[ii].Item1], m_maxChange);
-                Console.WriteLine($"Replaced board {scores[scores.Count - 1 - ii].Item1} with a mutation of {scores[ii].Item1}");
-            }
-        }
-
-        public void PlaceNnScore(int[] scores, int nnIdx, List<int> topScores)
-        {
-            if(topScores.Count < m_nnList.Count / 2)
-            {
-                topScores.Add(nnIdx);
-            }
-            else
-            {
-                int lowestScore = int.MaxValue;
-                int lowestScoreIdx = 0;
-                for (int ii = 0; ii < topScores.Count; ++ii)
-                {
-                    if (lowestScore > scores[topScores[ii]])
-                    {
-                        lowestScore = scores[topScores[ii]];
-                        lowestScoreIdx = ii;
-                    }
-                }
-                if (scores[lowestScoreIdx] < scores[nnIdx])
-                    topScores[lowestScoreIdx] = nnIdx;
-            }
-        }
-
-        public void CreateAndScoreAllPossibleBoards(int[] input, int[] mask, int idx)
-        {
-            if(idx >= input.Length)
-            {
-                m_possibleBoards.Add(new int[mask.Length]);
-                for (int ii = 0; ii < mask.Length; ++ii)
-                    m_possibleBoards[m_possibleBoards.Count - 1][ii] = input[ii] * mask[ii];
-                m_possibleBoardScores.Add(m_possibleBoards[m_possibleBoards.Count-1].Sum());
-                //for (int ii = 0; ii < m_possibleBoards[m_possibleBoards.Count-1].Length; ++ii)
-                //    Console.Write($"{m_possibleBoards[m_possibleBoards.Count-1][ii]}, ");
-                //Console.WriteLine($"Board {m_possibleBoards.Count - 1} scored as {m_possibleBoardScores[m_possibleBoardScores.Count-1]}");
-                return;
-            }
-            CreateAndScoreAllPossibleBoards(input, mask, idx+1);
-            mask[idx] = 1;
-            CreateAndScoreAllPossibleBoards(input, mask, idx+1);
-            mask[idx] = 0;
-        }
-    }
-
-    class NN
-    {
-        public int[] m_nodeCounts;
-        public float[][] m_weights;
-        string m_filePath;
-        int m_id;
-
-        public NN(string folderPath, int id, int[] nodeCounts, float maxChange = .5f)
-        {
-            m_id = id;
-            m_filePath = $"{folderPath}\\NN_{id}.txt";
-            bool file_NOT_ReadSuccessfully = true;
-            m_nodeCounts = nodeCounts;
-
-            try
-            {
-                if (File.Exists(m_filePath))
-                {
-                    using (var fileReader = new StreamReader(m_filePath))
-                    {
-                        string[] allWeightsAsStrings = fileReader.ReadToEnd().Split('|');
-                        m_weights = new float[m_nodeCounts.Length][];
-                        if (m_weights.Length == allWeightsAsStrings.Length)
-                        {
-                            for (int ii = 0; ii < allWeightsAsStrings.Length - 1; ++ii)
-                            {
-                                string[] oneRowOfWeightsAsString = allWeightsAsStrings[ii].Split('_');
-                                m_weights[ii] = new float[m_nodeCounts[ii] * m_nodeCounts[ii + 1]];
-
-                                if (m_weights[ii].Length == oneRowOfWeightsAsString.Length)
-                                {
-                                    for (int jj = 0; jj < m_weights[ii].Length; ++jj)
-                                        m_weights[ii][jj] = float.Parse(oneRowOfWeightsAsString[jj]);
-                                }
-                                else
-                                {
-                                    fileReader.Close();
-                                    throw (new Exception());
-                                }
-                            }
-                            int lastElementIdx = m_weights.Length - 1;
-                            m_weights[lastElementIdx] = new float[nodeCounts[lastElementIdx]];
-                            string[] finalRowOfWeightsAsString = allWeightsAsStrings[lastElementIdx].Split('_');
-                            if (m_weights[lastElementIdx].Length == finalRowOfWeightsAsString.Length)
-                            {
-                                for (int jj = 0; jj < finalRowOfWeightsAsString.Length; ++jj)
-                                    m_weights[lastElementIdx][jj] = float.Parse(finalRowOfWeightsAsString[jj]);
-                            }
-                            else
-                            {
-                                fileReader.Close();
-                                throw (new Exception());
-                            }
-                            file_NOT_ReadSuccessfully = false;
-                        }
-                        else
-                        {
-                            fileReader.Close();
-                            throw (new Exception());
-                        }
-                    }
-                }
-                else
-                {
-                    File.Create(m_filePath);
-                    RandomizeWeightValuesByNewNodes(nodeCounts, maxChange);
-                }
-            }
-            catch(Exception e)
-            {
-                if (file_NOT_ReadSuccessfully)
-                {
-                    if (File.Exists(m_filePath))
-                    {
-                        using (var fileWriter = new StreamWriter(m_filePath))
-                        {
-                            fileWriter.Write("");
-                            fileWriter.Close();
-                        }
-                    }
-                    RandomizeWeightValuesByNewNodes(nodeCounts, maxChange);
-                }
-            }
-        }
-        public NN(NN nn, float maxChange)
-        {
-            RandomizeWeightValuesByNn(nn, maxChange);
-
-        }
-
-        public void RandomizeWeightValuesByNn(NN nn, float maxChange)
-        {
-            m_weights = new float[nn.m_weights.Length][];
-            for (int ii = 0; ii < m_weights.Length; ++ii)
-            {
-                int weightCount = nn.m_weights[ii].Length;
-                m_weights[ii] = new float[weightCount];
-                Array.Copy(nn.m_weights[ii], m_weights[ii], weightCount);
-
-                for (int jj = 0; jj < weightCount; ++jj)
-                    m_weights[ii][jj] += RandomMutationNumber(maxChange);
-            }
-        }
-        public void RandomizeWeightValuesByNewNodes(int[] nodeCounts, float maxChange)
-        {
-            m_weights = new float[nodeCounts.Length][];
-            for (int ii = 0; ii < m_weights.Length-1; ++ii)
-            {
-                int weightCount = nodeCounts[ii]*nodeCounts[ii+1];
-                m_weights[ii] = new float[weightCount];
-
-                for (int jj = 0; jj < weightCount; ++jj)
-                    m_weights[ii][jj] = RandomMutationNumber(maxChange);
-            }
-            int finalNodeCount = m_nodeCounts[m_nodeCounts.Length - 1];
-            m_weights[m_weights.Length - 1] = new float[finalNodeCount];
-            for (int ii = 0; ii < finalNodeCount; ++ii)
-            {
-                m_weights[m_weights.Length-1][ii] = RandomMutationNumber(maxChange);
-            }
-        }
-
-        public float RandomMutationNumber(float maxChange)
-        {
-            float randValue = (new Random().Next(0, 200) - 100) * 0.01f; // number between -1 and 1
-            //Console.WriteLine($"randValue: {randValue}");
-            return randValue * maxChange;
-        }
-
-        public void WriteToFile()
-        {
-            //if (!File.Exists(m_filePath))
-            //{
-            //    File.Create(m_filePath);
-            //}
-
-            using ( var fileWriter = new StreamWriter(m_filePath))
-            {
-                string fileContent = "";
-                for (int ii = 0; ii < m_weights.Length; ++ii)
-                {
-                    int innerLength = m_weights[ii].Length;
-                    fileContent += m_weights[ii][0].ToString();
-
-                    for (int jj = 1; jj < innerLength; ++jj)
-                    {
-                        fileContent += $"_{m_weights[ii][jj]}";
-                    }
-
-                    fileContent += $"|";
-                }
-                fileWriter.Write(fileContent);
-                fileWriter.Close();
-            }
-        }
-
-        public float PlayGame(int[] board)
-        {
-            float boardScore = 0;
-
-            float[] inputs = new float[board.Length];
-            board.CopyTo(inputs, 0);
-
-            // For every node layer
-                // For every node in layer
-                    // Sum together each weight for the node into a result to calculate the node's final value
-
-            for (int kk = 1; kk < m_nodeCounts.Length; ++kk)
-            {
-                float[] nodeSums = new float[m_nodeCounts[kk]];
-                float[] result = new float[m_nodeCounts[kk]];
-                for (int ii = 0; ii < m_nodeCounts[kk]; ++ii)
-                {
-                    for (int jj = 0; jj < inputs.Length; ++jj)
-                    {
-                        nodeSums[ii] += m_weights[kk - 1][jj + (inputs.Length*ii)] * inputs[jj];
-                        //if (m_id == 0)
-                        //{
-                        //    Console.WriteLine($"multiplying m_weights[{kk - 1}][{jj + (inputs.Length * ii)}] * inputs[{jj}] for {(m_weights[kk - 1][jj + (inputs.Length * ii)] * inputs[jj])}");
-                        //    Console.WriteLine($"multiplying {m_weights[kk - 1][jj + (inputs.Length * ii)]} * {inputs[jj]} for {(m_weights[kk - 1][jj + (inputs.Length * ii)] * inputs[jj])}");
-                        //}
-                    }
-                    result[ii] = (float)(1 / (1 + Math.Exp((double)(-nodeSums.Sum()))));
-                    //Console.WriteLine($"result[{ii}]: {result[ii]}");
-                }
-                inputs = new float[result.Length];
-                result.CopyTo(inputs, 0);
-            }
-
-            for (int ii = 0; ii < inputs.Length; ++ii)
-            {
-                boardScore += inputs[ii] * m_weights[m_weights.Length-1][ii];
-            }
-            //Console.WriteLine($"final result: {boardScore}");
-            return boardScore;
-        }
-
-        public void PrintNn()
-        {
-            int outerLength = m_weights.Length;
-            for (int ii = 0; ii < outerLength; ++ii)
-            {
-                int innerLength = m_weights[ii].Length;
-                for (int jj = 0; jj < innerLength; ++jj)
-                {
-                    Console.Write($"{m_weights[ii][jj]}, ");
-                }
-                Console.Write($" | ");
-            }
-            Console.WriteLine($"");
-        }
-    }
-
     class Practice_Problem
     {
+        public class TreeNode
+        {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+            {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
+        }
 
-        static Dictionary<int, int> dp_buy;
-        static Dictionary<int, int> dp_sell;
+        public static TreeNode TreeCopy(TreeNode root)
+        {
+            Queue<TreeNode?> queueBase = new Queue<TreeNode>();
+            Queue<TreeNode?> queueNew = new Queue<TreeNode>();
+            queueBase.Enqueue(root);
+            TreeNode newRoot = new TreeNode(root.val);
+            queueNew.Enqueue(newRoot);
+            while (queueBase.Count > 0)
+            {
+                TreeNode tPtrBase = queueBase.Dequeue();
+                TreeNode tPtrNew = queueNew.Dequeue();
+
+                if (tPtrBase.left != null)
+                {
+                    tPtrNew.left = new TreeNode(tPtrBase.left.val);
+                    queueBase.Enqueue(tPtrBase.left);
+                    queueNew.Enqueue(tPtrNew.left);
+                }
+                if (tPtrBase.right != null)
+                {
+                    tPtrNew.right = new TreeNode(tPtrBase.right.val);
+                    queueBase.Enqueue(tPtrBase.right);
+                    queueNew.Enqueue(tPtrNew.right);
+                }
+            }
+            return newRoot;
+        }
+
+        public static TreeNode CreateTreeWithIdxAsValues(int?[] arr)
+        {
+            Queue<TreeNode?> queue = new Queue<TreeNode>();
+            TreeNode root = new TreeNode(0);
+            queue.Enqueue(root);
+            int idxA = 0;
+            int idxT = 1;
+            while (queue.Count > 0)
+            {
+                TreeNode tPtr = queue.Dequeue();
+                ++idxA;
+                if (idxA < arr.Length && arr[idxA] != null)
+                {
+                    tPtr.left = new TreeNode(idxT);
+                    queue.Enqueue(tPtr.left);
+                    ++idxT;
+                }
+                ++idxA;
+                if (idxA < arr.Length && arr[idxA] != null)
+                {
+                    tPtr.right = new TreeNode(idxT);
+                    queue.Enqueue(tPtr.right);
+                    ++idxT;
+                }
+            }
+            return root;
+        }
+        public static TreeNode CreateTreeWithValues(int?[] arr)
+        {
+            Queue<TreeNode?> queue = new Queue<TreeNode>();
+            TreeNode root = new TreeNode((int)arr[0]);
+            queue.Enqueue(root);
+            int idxA = 0;
+            int idxT = 1;
+            while (queue.Count > 0)
+            {
+                TreeNode tPtr = queue.Dequeue();
+                ++idxA;
+                if (idxA < arr.Length && arr[idxA] != null)
+                {
+                    tPtr.left = new TreeNode((int)arr[idxA]);
+                    queue.Enqueue(tPtr.left);
+                    ++idxT;
+                }
+                ++idxA;
+                if (idxA < arr.Length && arr[idxA] != null)
+                {
+                    tPtr.right = new TreeNode((int)arr[idxA]);
+                    queue.Enqueue(tPtr.right);
+                    ++idxT;
+                }
+            }
+            return root;
+        }
+
+        class LL_Node_Manager<T>
+        {
+            public LL_Node<T> head = null;
+            public LL_Node<T> tail = null;
+            public void Enqueue(T t)
+            {
+                LL_Node<T> n = new LL_Node<T>();
+                n.value = t;
+                n.next = tail;
+                if(tail != null) tail.prev = n;
+                tail = n;
+
+                if (head == null)
+                    head = tail;
+                else if (head.prev == null)
+                    head.prev = tail;
+            }
+            public T Unqueue()
+            {
+                if (tail == null) return default;
+                T ret = tail.value;
+                if (head == tail) head = null;
+                tail = tail.next;
+                return ret;
+            }
+            public T Dequeue()
+            {
+                if (head == null) return default;
+                T ret = head.value;
+                if (head == tail) tail = null;
+                head = head.prev;
+                return ret;
+            }
+            public T PeekHead()
+            {
+                if (head == null) return default;
+                return head.value;
+            }
+            public T PeekTail()
+            {
+                if (tail == null) return default;
+                return tail.value;
+            }
+        }
+
+        class LL_Node<T>
+        {
+            public LL_Node<T> prev = null;
+            public LL_Node<T> next = null;
+            public T value;
+        }
+
+        class Person
+        {
+            string m_name;
+            public Person(string name)
+            {
+                m_name = name;
+            }
+        }
+
+        class People : IEnumerable
+        {
+            private Person[] m_people;
+            public People(Person[] people)
+            {
+                m_people = new Person[people.Length];
+                for (int i = 0; i < m_people.Length; i++)
+                    m_people[i] = people[i];
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return (IEnumerator)GetEnumerator();
+            }
+
+            public PeopleEnum GetEnumerator()
+            {
+                return new PeopleEnum(m_people);
+            }
+        }
+
+        class PeopleEnum : IEnumerator
+        {
+            public PeopleEnum(Person[] people)
+            {
+
+            }
+
+            public object Current => throw new NotImplementedException();
+
+            public bool MoveNext()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Reset()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public static void Practice_Problem_Main()
         {
-            //int[] inputs = new int[] { -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1 };
-            int[] inputs = new int[] { 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, 1 };
-            int[] nodes = new int[] { inputs.Length, 10, 6};
-            NN_Manager nnManager = new NN_Manager(inputs, 10, nodes, 0.05f);
-            nnManager.WriteNns();
+            int[] nums = new int[]{ 1, 1, 1, 999999999 };
+            int t = 10;
 
-            while (true)
+            Console.WriteLine(MinEatingSpeed(nums, t));
+
+
+            Console.WriteLine(ClassWithConst.m_constVar);
+            ClassWithReadonly c = new ClassWithReadonly();
+            Console.WriteLine(c.m_readonlyVar);
+            Console.WriteLine(ClassWithStaticReadonly.m_staticReadonly);
+            Console.WriteLine(ClassWithStaticReadonly.s);
+        }
+
+        public static int MinEatingSpeed(int[] piles, int h)
+        {
+            double speed;
+            int i = 1, j = piles.Max();
+
+
+            int TimeToEat(int speed)
             {
-                for (int ii = 0; ii < 1; ++ii)
-                    nnManager.PlayGames_AndEvolveNNs();
-                //nnManager.m_nnList[0].RandomizeWeightValuesByNewNodes(nodes, 0.15f);
-                // Console.WriteLine($"{(float)((new Random().Next(1, (int)(.15f * 200f)) * 0.01f) - .15f)}");
-                Console.ReadLine();
-            }
-
-            //Console.WriteLine($"FasterMaxProfit([ 1, 5 ], 2): {FasterMaxProfit(new int[] { 1, 5 }, 2)}"); // 2
-            //Console.WriteLine($"FasterMaxProfit([ 1, 3, 2, 8, 4, 9 ], 2): {FasterMaxProfit(new int[] { 1, 3, 2, 8, 4, 9 }, 2)}"); // 8
-            //Console.WriteLine($"FasterMaxProfit([ 1, 3, 7, 5, 10, 3 ], 3): {FasterMaxProfit(new int[] { 1, 3, 7, 5, 10, 3 }, 3)}"); // 6
-            //Console.WriteLine($"FasterMaxProfit([ 9,8,7,1,2 ], 3): {FasterMaxProfit(new int[] { 9, 8, 7, 1, 2 }, 3)}"); // 0
-            //Console.WriteLine($"FasterMaxProfit([ 5,7,5,7,6,8 ], 1): {FasterMaxProfit(new int[] { 5, 7, 5, 7, 6, 8 }, 1)}"); // 3
-            //Console.WriteLine($"FasterMaxProfit([ 4,5,2,4,3,3,1,2,5,4 ], 1): {FasterMaxProfit(new int[] { 4, 5, 2, 4, 3, 3, 1, 2, 5, 4 }, 1)}"); // 4
-            //Console.WriteLine($"FasterMaxProfit([ 2,1,4,4,2,3,2,5,1,2 ], 1): {FasterMaxProfit(new int[] { 2, 1, 4, 4, 2, 3, 2, 5, 1, 2 }, 1)}"); // 4
-
-        }
-        public static int FasterMaxProfit(int[] prices, int fee)
-        {
-            int[] buys = new int[prices.Length];
-            int[] sells = new int[prices.Length];
-            buys[0] = -prices[0];
-
-            for (int ii = 1; ii < prices.Length; ++ii)
-            {
-                sells[ii] = Math.Max(sells[ii - 1], buys[ii - 1] + prices[ii] - fee); // If we switch to sell, we take the last value from buy and the price at this index minus the fee
-                buys[ii] = Math.Max(buys[ii - 1], sells[ii - 1] - prices[ii]); // If we switch to buy, we take last value from sell and the negative price at this index
-            }
-            return Math.Max(buys[prices.Length-1], sells[prices.Length-1]);
-        }
-        public static int BetterMaxProfit(int[] prices, int fee)
-        {
-            int buy = -prices[0], sell = 0, lowest = int.MaxValue;
-            foreach(int p in prices)
-            {
-                int temp = buy;
-                buy = Math.Max(buy, sell - p);
-                sell = Math.Max(sell, temp + p - fee);
-                Console.WriteLine($"buy: {buy}, sell: {sell}, temp: {temp}, p: {p}");
-            }
-            return sell;
-        }
-        public static int MaxProfit(int[] prices, int fee)
-        {
-            //dp = new int[prices.Length];
-            dp_buy = new Dictionary<int, int>();
-            dp_sell = new Dictionary<int, int>();
-            return MaxProfitBuy(prices, fee, 0);
-        }
-        public static int MaxProfitBuy(int[] prices, int fee, int idx)
-        {
-            if (idx == prices.Length) return 0;
-            if (dp_buy.ContainsKey(idx))
-                return dp_buy[idx];
-
-            int profit = 0; // -prices[idx];
-
-            Console.WriteLine($"At idx: {idx}, Calling sell: MaxProfitSell(prices, {fee}, {idx + 1}) - {prices[idx]} - {fee}");
-            int buying = MaxProfitSell(prices, fee, idx + 1) - prices[idx] - fee;
-            Console.WriteLine($"At idx: {idx}, Calling buy: MaxProfitBuy(prices, {fee}, {idx + 1})");
-            int notBuying = MaxProfitBuy(prices, fee, idx + 1);
-            profit = Math.Max(buying, notBuying);
-
-            Console.WriteLine($"In Buy, At idx: {idx}, buy: {buying}, sell: {notBuying}, prices: {prices[idx]}, profit: {profit}");
-
-            dp_buy.Add(idx, profit);
-            return profit;
-        }
-        public static int MaxProfitSell(int[] prices, int fee, int idx)
-        {
-            if (idx == prices.Length) return 0;
-            if (dp_sell.ContainsKey(idx))
-                return dp_sell[idx];
-
-            int profit = prices[idx];
-
-            Console.WriteLine($"At idx: {idx}, Calling buy: {profit} + MaxProfitBuy(prices, {fee}, {idx + 1})");
-            int selling = profit + MaxProfitBuy(prices, fee, idx + 1);
-            Console.WriteLine($"At idx: {idx}, Calling sell: MaxProfitSell(prices, {fee}, {idx + 1})");
-            int notSelling = MaxProfitSell(prices, fee, idx + 1);
-            profit = Math.Max(selling, notSelling);
-            Console.WriteLine($"In Sell, At idx: {idx}, buy: {selling}, sell: {notSelling}, prices: {prices[idx]}, profit: {profit}");
-
-            dp_sell.Add(idx, profit);
-            return profit;
-        }
-
-        public static int DistributeCookies(int[] cookies, int k)
-        {
-            int[] total = new int[(1 << cookies.Length)];
-
-
-            for (int ii = 0; ii < (1 << cookies.Length); ++ii)
-            {
-                int current = 0;
-                for (int jj = 0; jj < cookies.Length; ++jj)
+                int total = 0;
+                foreach (int b in piles)
                 {
-                    if(((1 << jj) & ii) > 0)
+                    total += (b+(speed-1))/speed;
+                }
+                return total;
+            }
+            int min = int.MaxValue;
+
+            while (i<=j)
+            {
+                speed = i + j;
+                speed = (int)(speed * 0.5f);
+                //if (min == speed) break;
+                int hoursTaken = TimeToEat((int)speed);
+                if (hoursTaken <= h)
+                {
+                    j = (int)speed-1;
+                    min = (int)speed;
+                }
+                else // if (hoursTaken > h)
+                    i = (int)speed + 1;
+            }
+
+            return min;
+        }
+
+        class ClassWithConst
+        {
+            public const string m_constVar = "constVar";
+            // NOT ALLOWED: public const string m_constVar = ReturnMeTheString();
+
+            public ClassWithConst()
+            {
+                // NOT ALLOWED: m_constVar = "newValue";
+            }
+            public static string ReturnMeTheString()
+            {
+                return "MeTheString";
+            }
+        }
+        class ClassWithReadonly
+        {
+            public readonly string m_readonlyVar = "ReadonlyString";
+
+            public ClassWithReadonly()
+            {
+                m_readonlyVar = "newValue";
+            }
+        }
+        public class ClassWithStaticReadonly
+        {
+            public static string s = "s_on_hold";
+            public static readonly string m_staticReadonly = ReturnMeTheString();// "StaticReadonlyString";
+            static ClassWithStaticReadonly()
+            {
+                m_staticReadonly = "Given in Cstr";
+                s = "s_sliding_in";
+            }
+
+            public static string ReturnMeTheString()
+            {
+                return s;
+            }
+        }
+
+
+        public static int[] DailyTemperatures(int[] temperatures)
+        {
+            int[] res = new int[temperatures.Length];
+
+            Stack<int> idxsToCheck = new Stack<int>();
+
+            for (int ii = 0; ii < temperatures.Length; ii++)
+            {
+                while (idxsToCheck.Count > 0 && temperatures[ii] > temperatures[idxsToCheck.Peek()])
+                {
+                    res[idxsToCheck.Peek()] = ii - idxsToCheck.Peek();
+                    idxsToCheck.Pop();
+                }
+                idxsToCheck.Push(ii);
+            }
+            while (idxsToCheck.Count > 0)
+            {
+                res[idxsToCheck.Pop()] = 0;
+            }
+
+            return res;
+        }
+
+
+
+        public static long findMaximumQuality(List<int> packets, int channels)
+        {
+            Console.WriteLine($"Channels: {channels}, count: {packets.Count}");
+            packets.Sort();
+            for (int ii = 0; ii < channels - 1; ++ii)
+                Console.WriteLine($"{ii}: {packets[(packets.Count - 1) - ii]}");
+            long result = 0;
+
+            for (int ii = 0; ii < channels - 1; ++ii)
+            {
+                result += packets[(packets.Count - 1) - ii];
+                Console.WriteLine($"result: {result}, {ii}: {packets[(packets.Count - 1) - ii]}");
+            }
+            double sum = 0;
+            long remainingPackets = packets.Count - (channels - 1);
+            Console.WriteLine($"remainingPackets: {remainingPackets}");
+            for (int ii = 0; ii < remainingPackets; ++ii)
+            {
+                sum += packets[ii];
+                //Console.WriteLine($"sum: {sum}, {ii}: {packets[ii]}");
+            }
+            sum = sum / remainingPackets;
+            Console.WriteLine($"sum: {sum}, long sum: {(long)sum}");
+            if (sum > (long)sum)
+                ++sum;
+            Console.WriteLine($"sum: {sum}, long sum: {(long)sum}");
+
+            return result + (long)sum;
+        }
+
+        public static int getMaxTotalArea(List<int> sideLengths)
+        {
+            if (sideLengths.Count < 4)
+                return 0;
+
+            sideLengths.Sort();
+            int sum = 0;
+            int ii = sideLengths.Count - 1;
+
+            while (ii > 0)
+            {
+                List<int> sides = new List<int>();
+                for (; ii > 0 && sides.Count < 4; ii--)
+                {
+                    if (sides.Count == 4)
+                        break;
+
+                    if (sideLengths[ii] == sideLengths[ii - 1] || Math.Abs(sideLengths[ii] - sideLengths[ii - 1]) == 1)
                     {
-                        //Console.WriteLine($"(1 << jj) : {(1 << jj) }, ii: {ii}");
-                        current += cookies[jj];
+                        sides.Add(sideLengths[ii]);
+                        sides.Add(sideLengths[ii - 1]);
+                        ii--;
                     }
                 }
-                total[ii] = current;
-            }
-            PrintArray(total);
+                foreach (int i in sides)
+                    Console.WriteLine($"Side {i}");
+                if (sides.Count == 4)
+                    sum += sides[3] * sides[1];
 
-            //return DistributeCookiesRecurse(cookies, k, new int[k], 0);
-            return DistributeCookiesBitMasking((1 << cookies.Length) - 1, 0, k, total);
+            }
+
+            return sum;
         }
 
-        public static int DistributeCookiesBitMasking(int mask, int idx, int k, int[] total)
+        public static List<int> ClosedBoxes(string boxes, int[] startIdxs, int[] endIdxs)
         {
-            if(idx == k)
+            int[] counts = new int[boxes.Length];
+            int[] countsStart = new int[boxes.Length];
+
+            int confirmed = 0;
+            int count = 0;
+            int idx = 0;
+            while (boxes[idx] != '|') ++idx;
+            for (; idx < boxes.Length; idx++)
             {
-                if (mask == 0)
-                    return 0;
-                else
+                if (boxes[idx] == '*')
+                    count++;
+                else // if(boxes[idx] == '|')
                 {
-                    Console.WriteLine($"Return INF");
-                    return int.MaxValue;
+                    confirmed += count;
+                    count = 0;
+                }
+                counts[idx] = confirmed;
+            }
+
+            for (int ii = boxes.Length-1; ii >= 0; ii--)
+            {
+                if (boxes[ii] == '|')
+                    confirmed = counts[ii];
+                countsStart[ii] = confirmed;
+            }
+
+            List<int> results = new List<int>();
+            for (int ii = 0; ii < startIdxs.Length && ii < endIdxs.Length; ii++)
+            {
+                results.Add(counts[endIdxs[ii] - 1] - countsStart[startIdxs[ii] - 1]);
+            }
+
+            return results;
+        }
+
+        public static List<string> processLogs(List<string> logs, int threshold)
+        {
+            Dictionary<string, int> users = new Dictionary<string, int>();
+            for (int ii = 0; ii < logs.Count; ++ii)
+            {
+                HashSet<string> set = new HashSet<string>();
+                string[] transactors = logs[ii].Split(' ');
+                for (int jj = 0; jj < transactors.Length; ++jj)
+                {
+                    set.Add(transactors[jj]);
+                }
+                foreach (string s in set)
+                {
+                    if (!users.ContainsKey(s))
+                        users.Add(s, 0);
+                    users[s] += 1;
+                }
+            }
+            List<string> violators = new List<string>();
+            foreach (string k in users.Keys)
+            {
+                if (users[k] > threshold)
+                    violators.Add(k);
+            }
+            violators = violators.ToArray().OrderBy(x => int.Parse(x)).ToList();
+            return violators;
+        }
+
+        public static int Rob(TreeNode root)
+        {
+            (int, int) RobRecurse(TreeNode n)
+            {
+                (int, int) left = n.left != null ? RobRecurse(n.left) : (0, 0);
+                (int, int) right = n.right != null ? RobRecurse(n.right) : (0, 0);
+                int sub = left.Item1 + right.Item1;
+                int sum = Math.Max(n.val + left.Item2 + right.Item2, sub);
+                return (sum, sub);      
+            }
+            return RobRecurse(root).Item1;
+        }
+
+
+        public static int NumSquares(int n)
+        {
+            int upperSqr = (int)Math.Sqrt(n);
+            Queue<int> dp = new Queue<int>();
+            int count = 0;
+            dp.Enqueue(n);
+            while(dp.Count > 0)
+            {
+                int dpSize = dp.Count;
+                ++count;
+                for (int ii = 0; ii < dpSize; ii++)
+                {
+                    int curr = dp.Dequeue();
+                    for (int jj = upperSqr; jj > 0; jj--)
+                    {
+                        int rem = curr - (jj * jj);
+                        if (rem == 0)
+                            return count;
+                        else if(rem > 0)
+                            dp.Enqueue(rem);
+                    }
                 }
             }
 
-            int current = mask;
-            int highest = int.MaxValue;
-            while (current > 0)
-            {
-                highest = Math.Min(highest, Math.Max(DistributeCookiesBitMasking(mask & (~current), idx + 1, k, total), total[current]));
-                Console.WriteLine($"mask: {mask}, current: {current}, (mask & (~current)): {mask & (~current)}, highest: {highest}");
-                current = (current - 1) & mask;
-            }
-
-            return highest;
+            return count;
         }
 
-        public static int DistributeCookiesRecurse(int[] cookies, int k, int[] given, int idx)
+
+
+        public static void PrintAsBits(int n, int length = 32)
         {
-            if(idx >= cookies.Length)
+            for (int ii = length-1; ii >= 0; ii--)
             {
-                int max = 0;
-                for (int ii = 0; ii < given.Length; ++ii)
-                {
-                    max = Math.Max(given[ii], max);
-                }
-                return max;
+                string s = (((n >> ii) & 1) > 0) ? "1" : "0";
+                Console.Write($"{s}");
             }
-
-            int minimum = int.MaxValue;
-            for(int ii = 0; ii < k; ++ii)
-            {
-                if (given[ii] > (cookies.Sum() / k))
-                    continue;
-
-                given[ii] += cookies[idx];
-                minimum = Math.Min(DistributeCookiesRecurse(cookies, k, given, idx + 1), minimum);
-                given[ii] -= cookies[idx];
-            }
-
-            return minimum;
+            Console.WriteLine("");
         }
-
 
         public static void PrintGrid(int[,] grid, int length, int height)
         {
@@ -781,40 +760,6 @@ namespace C_Sharp_Practice
 
             return one;
         }
-        public static int MinDistance(string word1, string word2)
-        {
-            int[,] dp = new int[word2.Length + 1, word1.Length + 1];
-
-            for (int ii = 0; ii <= word1.Length; ++ii)
-            {
-                dp[0, ii] = ii;
-            }
-            for (int jj = 1; jj <= word2.Length; ++jj)
-            {
-                dp[jj, 0] = jj;
-            }
-
-            PrintTable(dp, word2.Length + 1, word1.Length + 1);
-            Console.WriteLine("");
-
-            for (int jj = 0; jj < word2.Length; ++jj)
-            {
-                for (int ii = 0; ii < word1.Length; ++ii)
-                {
-                    if (word1[ii] == word2[jj])
-                        dp[jj + 1, ii + 1] = dp[jj, ii];
-                    else
-                        dp[jj + 1, ii + 1] = Math.Min(dp[jj, ii + 1], Math.Min(dp[jj, ii], dp[jj + 1, ii])) + 1;
-                    PrintTable(dp, word2.Length + 1, word1.Length + 1);
-                    Console.WriteLine("");
-                }
-
-            }
-
-            return dp[word2.Length, word1.Length];
-        }
-
-
 
         public static void PrintTable(char[,] t, int m, int n)
         {

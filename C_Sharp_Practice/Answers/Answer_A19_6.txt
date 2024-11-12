@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace C_Sharp_Practice
+{
+    public static void Practice_Problem_Main()
+    {
+        int[] nums = new int[] { 1, -1, 24, 36 };
+        int[][] res = IntArrayPowerSet(nums);
+
+        foreach (int[] arr in res)
+        {
+            Console.Write(":");
+            foreach (int i in arr)
+                Console.Write($"{i}, ");
+            Console.WriteLine(":");
+        }
+    }
+
+    public static int[][] IntArrayPowerSet(int[] nums)
+    {
+        int[][] res = new int[(int)Math.Pow(2, nums.Length)][];
+        int b = (int)Math.Pow(2, nums.Length) - 1;
+
+        for(int ii= (int)Math.Pow(2, nums.Length) - 1; ii >= 0; ii--)
+        {
+            res[ii] = ArrayFromBinaryMask(nums, ii);
+        }
+
+        return res;
+    }
+}

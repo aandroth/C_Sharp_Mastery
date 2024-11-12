@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{
+
+        public static void Practice_Problem_Main()
+        {
+            string s = "abcbdbdbbdcdabd";
+            int k = 2;
+            Console.WriteLine(getLongest(s, k)); // Output: bdbdbbd
+        }
+
+        public static string getLongest(string s, int k)
+        {
+            int left = 0, right = 0;
+            string str = "";
+            Dictionary<char, int> set = new Dictionary<char, int>();
+
+            while(right < s.Length)
+            {
+                if(right < s.Length)
+                {
+                    if (set.ContainsKey(s[right]))
+                        set[s[right]] += 1;
+                    else
+                        set[s[right]] = 1;
+                }
+
+                while(set.Count > k)
+                {
+                    set[s[left]] -= 1;
+                    if (set[s[left]] == 0)
+                        set.Remove(s[left]);
+                    ++left;
+                }
+                ++right;
+
+                if (str.Length < ((right) - left))
+                    str = s.Substring(left, ((right) - left));
+            }
+
+            return str;
+        }
+}

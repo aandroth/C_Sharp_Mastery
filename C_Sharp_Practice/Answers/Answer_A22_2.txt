@@ -1,0 +1,6 @@
+﻿static readonly is typically used if the type of the field is not allowed in a const declaration, or when the value is not known at compile time.
+The difference is that the value of a static readonly field is set at run time, and can thus be modified by the containing class, whereas the value of a const field is set to a compile-time constant.
+Are evaluated when code execution hits class reference (i.e.: new instance is created or static method is executed)
+Must have evaluated value by the time the static constructor is done
+You do not want to put ThreadStaticAttribute on these (since the static constructor will be executed in one thread only and it will set value for its thread; all other threads will have this value uninitialized)
+In the static readonly case, the containing class is allowed to modify it only in the variable declaration (through a variable initializer) or in the static constructor (instance constructors, if it's not static)

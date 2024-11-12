@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace MyExtensions
+{
+    static class ClassOne
+    {
+        public static string AddClassName(this string s)
+        {
+            return $"{s}ClassOne";
+        }
+    }
+
+    static class ClassTwo
+    {
+        public static string AddClassName(this string s)
+        {
+            return $"{s}ClassTwo";
+        }
+    }
+
+}
+
+namespace C_Sharp_Practice
+{
+    using MyExtensions;
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            string s = "Start";
+            Console.WriteLine(ClassOne.AddClassName(s));
+            Console.WriteLine(ClassTwo.AddClassName(s));
+        }
+    }
+}

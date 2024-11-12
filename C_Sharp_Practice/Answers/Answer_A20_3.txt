@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{ 
+    public static void Practice_Problem_Main()
+    {
+        int n = 1100;
+        List<string> lS = DigitsExtracted(n);
+        foreach (var str in lS) Console.Write($"{str}, ");
+        Console.WriteLine("");
+        n = 13;
+        lS = DigitsExtracted(n);
+        foreach (var str in lS) Console.Write($"{str}, ");
+        Console.WriteLine("");
+        n = 7474;
+        lS = DigitsExtracted(n);
+        foreach (var str in lS) Console.Write($"{str}, ");
+        Console.WriteLine("");
+    }
+
+    public static List<string> DigitsExtracted(int n)
+    {
+        List<string> retVal = new List<string>();
+        int b = 1;
+        // This while loop is a great way to step through an int
+        while ((n / b) >= 1)
+        {
+            int high = n / b / 10; // gets the higher numbers greater than the single digit we need to consider
+            int low = n % b; // remainder to the higher number numbers and the digit we need to  consider
+            int curr = n / b - (high * 10); // isolates the single digit
+
+            string newEntry = "";
+            if (high > 0) newEntry = $"{high * b * 10} ";
+            newEntry += $"{curr}";
+            if (b > 1) newEntry += $" {low}";
+
+            retVal.Add($"{newEntry}");
+            b *= 10;
+        }
+        retVal.Reverse();
+        return retVal;
+    }
+
+}

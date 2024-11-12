@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{
+
+    public static void Practice_Problem_Main()
+    {
+        int[] nums = new int[] { 0, 3, 2, 5, 4, 6, 1, 1 };
+        int k = 2;
+        Console.WriteLine(AvgMaxMinDiff(nums, k));
+    }
+
+
+    public static int AvgMaxMinDiff(int[] nums, int k)
+    {
+        int max = int.MinValue;
+        int min = int.MinValue;
+
+        int sum = 0;
+        for (int ii = 0; ii < k; ii++)
+        {
+            sum += nums[ii];
+        }
+        min = Math.Min(min, sum);
+        max = Math.Max(max, sum);
+        for (int ii = k; ii < nums.Length; ii++)
+        {
+            sum -= nums[ii - k];
+            sum += nums[ii];
+            min = Math.Min(min, sum);
+            max = Math.Max(max, sum);
+        }
+
+        return (max - min)/2;
+    }
+}

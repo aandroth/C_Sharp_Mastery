@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{     
+        public static void Practice_Problem_Main()
+        {
+            (List<int> listOfInts, int[] arrayOfInts) r = (new List<int>(), new int[0]);
+
+            r.listOfInts.Add(7);
+            r.listOfInts.Add(7);
+            r.listOfInts.Add(7);
+            r.listOfInts.Add(7);
+
+            r.arrayOfInts = new int[] { 7, 7, 7, 7 };
+
+            foreach(int l in r.listOfInts)
+                Console.WriteLine($"{l}, ");
+            Console.WriteLine($"");
+            foreach (int a in r.arrayOfInts)
+                Console.WriteLine($"{a}, ");
+        }
+}

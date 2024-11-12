@@ -1,0 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{     
+        public static void Practice_Problem_Main()
+        {
+            (string s, int i) r = ("this", 7);
+            Console.WriteLine($"{r.s}, {r.i}");
+        }
+}

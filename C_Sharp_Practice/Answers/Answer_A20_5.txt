@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{
+        public static void Practice_Problem_Main()
+        {
+            int n = 1100;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 2
+            n = 13;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 6
+            n = 20;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 12
+            n = 99;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 20
+            n = 200;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 140
+            n = 900;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 280
+            n = 999;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 300
+            n = 1000;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 301
+            n = 1100;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 422
+            n = 2000;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 1600
+            n = 9999;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 4000
+            n = 10000;
+            Console.WriteLine($"{CountDigitOne(n)}"); // 4001
+        }
+
+        public static int CountDigitOne(int n)
+        {
+            int total = 0;
+            int b = 1;
+            // This while loop is a great way to step through an int
+            while ((n / b) >= 1)
+            {
+                int high = n / b / 10; // gets the higher numbers greater than the single digit we need to consider
+                int low = n % b; // remainder to the higher number numbers and the digit we need to  consider
+                int curr = n / b - (high * 10); // isolates the single digit
+
+                if (curr == 1 || curr == 0) total += curr * (low + 1) + high * b;
+                else total += (high + 1) * b;
+
+                b *= 10;
+            }
+            return total;
+        }
+}

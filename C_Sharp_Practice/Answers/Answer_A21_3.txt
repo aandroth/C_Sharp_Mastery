@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{     
+        public static void Practice_Problem_Main()
+        {
+            var r = Combiner("this", 7);
+            Console.WriteLine($"{r.Item1}, {r.Item2}");
+        }
+
+        public static (string, int) Combiner(string a, int b)
+        {
+            (string first, int second) retValue = (a, b);
+            return retValue;
+        }
+}

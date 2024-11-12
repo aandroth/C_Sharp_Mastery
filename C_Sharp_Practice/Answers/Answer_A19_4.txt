@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{
+    using MyExtensions;
+    class Practice_Problem
+    {        
+        public static void Practice_Problem_Main()
+        {
+            int[] numbers = new int[]{ 2, 4, 7, 9 };
+            EveryCombination(numbers);
+        }
+
+        public static void EveryCombination(int[] numbers)
+        {
+            int mask = 0;
+            for (int ii = 0; ii < numbers.Length; ii++)
+            {
+                mask = mask << 1;
+                mask += 1;
+            }
+
+            while (mask >= 0)
+            {
+                Console.Write("{");
+                for (int jj = 0; jj < numbers.Length; jj++)
+                {
+                    if (((mask >> jj) & 1) == 1)
+                    {
+                        Console.Write($"{numbers[jj]}");
+                    }
+                }
+                Console.WriteLine("}");
+                --mask;
+            }
+        }
+    }
+}

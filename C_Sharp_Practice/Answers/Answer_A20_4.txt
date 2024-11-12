@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{
+    public static void Practice_Problem_Main()
+    {
+        int[] nums = new int[] { 2,3,-2,4 };
+        Console.WriteLine($"{MaxProduct(nums)}"); // 6
+        nums = new int[] { -2,0,-1 };
+        Console.WriteLine($"{MaxProduct(nums)}"); // 0
+        nums = new int[] { 4, 3, 2, 3, 5, 2, 1 };
+        Console.WriteLine($"{MaxProduct(nums)}"); // 720
+    }
+    
+    public static int MaxProduct(int[] nums)
+    {
+                int max = 1;
+        int min = 1;
+        int prod = int.MinValue;
+        for (int ii = 0; ii < nums.Length; ii++)
+        {
+            int temp = max;
+            max = Math.Max(nums[ii], Math.Max(nums[ii]*max, nums[ii]*min));
+            min = Math.Min(nums[ii], Math.Min(nums[ii]*temp, nums[ii]*min));
+            prod = Math.Max(prod, max);
+        }
+        return prod;
+    }
+}

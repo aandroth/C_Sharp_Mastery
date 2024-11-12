@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+
+    public static void Practice_Problem_Main()
+    {
+        ClassWithConstReadonlyAndStaticReadonly c = new ClassWithConstReadonlyAndStaticReadonly();
+        Console.WriteLine(ClassWithConstReadonlyAndStaticReadonly.MaxValue);
+        Console.WriteLine(c.MinValue);
+        Console.WriteLine(ClassWithConstReadonlyAndStaticReadonly.Pi);
+    }
+    class ClassWithConstAndReadonlyAndStaticReadonly
+    {
+        // Declare a constant field
+        public const int MaxValue = 100;
+
+        // Declare a readonly field
+        public readonly int MinValue;
+
+        // Declare a static readonly field
+        public static readonly double Pi = 3.14159;
+
+        public ClassWithConstAndReadonlyAndStaticReadonly()
+        {
+            MinValue = 0;
+            // NOT ALLOWED: MaxValue = 42;
+            // NOT ALLOWED: Pi = 99;
+        }
+    }
+}

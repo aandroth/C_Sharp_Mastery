@@ -1,0 +1,13 @@
+﻿Constants are Static by default, Constants are accessed as if they were static fields, and we can’t use static keywords with const.
+The constant cannot be changed in the application anywhere else in the code as this will cause a compiler error.
+Constants must be a value type (byte, short, ushort, int, uint, long, ulong, char, float, double, decimal, or bool), an enumeration.
+String and a reference to null are the two types of reference values that can be determined at compile time. So, any other reference type can be declared const as long as the value you assign to it is null – which turns out to be fairly useless.
+Must have compilation-time value (i.e.: you can have "A"+"B" but cannot have method calls)
+The scope of your constant is limited to just one assembly, class, or smaller unit. To use a constant outside of the class that it is declared in, you must fully qualify it using the class name.
+If the const is used outside the assembly it is defined in, we must be wary! Because the const’s value is substituted at compile time, this means that if the assembly that defines the const changes its value, but the calling assembly isn’t recompiled, then the calling assembly will still see the original value.
+Can be used in attributes
+Are copied into every assembly that uses them (every assembly gets a local copy of values)
+It could be declared within functions
+So const should be used mainly for values that are not subject to change, or free if the scope of the const is limited to the same assembly or smaller.
+Use const when: The constant is a compile-time value, and the constant's domain does not change or is limited in scope to a single assembly, class, or method.
+We can't use const with string.Empty value assigned as it’s evaluated on runtime.

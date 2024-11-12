@@ -9,39 +9,32 @@ namespace C_Sharp_Practice
     {
         public static void Practice_Problem_Main()
         {
-            CountSubstrings("aba", "baba"); // Ans: 6
-            CountSubstrings("ab", "bb"); // Ans: 3
+            Console.WriteLine(MctFromLeafValues(new int[] { 16, 2, 15, 4 })); // 330
+            Console.WriteLine(MctFromLeafValues(new int[] { 6, 2, 4 })); // 32
+            Console.WriteLine(MctFromLeafValues(new int[] { 4, 11 })); // 44
+            Console.WriteLine(MctFromLeafValues(new int[] { 15, 13, 5, 3, 15 })); // 500
         }
 
-        // The trick here is to first solve the problem of finding the count of all matching substrings, and then finding the ones that differ by one character
-        public static int CountSubstrings(string s, string t)
+        public static int MctFromLeafValues(int[] arr)
         {
-            int[,] dp_match = new int[s.Length+1, t.Length+1];
-            int[,] dp_diff = new int[s.Length+1, t.Length+1];
-            int count = 0;
-
-
-            for (int ii = 1; ii <= s.Length; ++ii)
+            Stack<int> stack = new Stack<int>();
+            int total = 0;
+            foreach(int i in arr)
             {
-                for (int jj = 1; jj <= t.Length; ++jj)
+                while (stack.Count > 0 && stack.Peek() <= i)
                 {
-                    if (s[ii - 1] == t[jj - 1]) {
-                        dp_match[ii, jj] = 1 + dp_match[ii - 1, jj - 1];
-                        dp_diff[ii, jj] = dp_diff[ii - 1, jj - 1];
-                    }
+                    int p = stack.Pop();
+                    if(stack.Count > 0)
+                        total += p * Math.Min(stack.Peek(), i);
                     else
-                        dp_diff[ii, jj] = 1 + dp_match[ii - 1, jj - 1];
-                    count += dp_diff[ii,jj];                    
+                        total += p * i;
                 }
-                Console.WriteLine("Matching:");
-                PrintGrid(dp_match, s.Length+1, t.Length+1);
-                Console.WriteLine("Diff:");
-                PrintGrid(dp_diff, s.Length+1, t.Length+1);
-                Console.WriteLine("");
+                stack.Push(i);
             }
-            Console.WriteLine(count);
-
-            return 0;
+            while(stack.Count > 1)
+            {
+                total += stack.Pop() * stack.Peek();
+            }
+            return total;
         }
-    }
 }

@@ -1,0 +1,90 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{
+    class Practice_Problem
+    {
+        public static void Practice_Problem_Main()
+        {
+            // good to evil     law to chaos      meat to veg        tribal to solitary
+            //   11111111        11111111           11111111             11111111
+            // 128 64 32 16 8 4 2 1
+            int orc;
+            orc = ((8 + 4 + 2 + 1) << 24);
+            orc += ((8 + 4 + 2 + 1) << 16);
+            orc += ((128 + 32) << 8);
+            orc += (128 + 64 + 1);
+            int temp = orc;
+            string s = "orc: ";
+            for (int ii = 0; ii < 32; ii++)
+            {
+                if ((temp & 1) > 0)
+                    s = "1" + s;
+                else
+                    s = "0" + s;
+                if ((ii+1) % 8 == 0)
+                    s = " " + s;
+                temp = temp >> 1;
+            }
+            Console.WriteLine($"orc: {s}");
+
+            int ogre;
+            ogre = ((8 + 4 + 2 + 1) << 24);
+            ogre += ((4 + 2 + 1) << 16);
+            ogre += ((128 + 64 + 32 + 16) << 8);
+            ogre += (128 + 4 + 2 + 1);
+            temp = ogre;
+            s = "";
+            for (int ii = 0; ii < 32; ii++)
+            {
+                if ((temp & 1) > 0)
+                    s = "1" + s;
+                else
+                    s = "0" + s;
+                if ((ii + 1) % 8 == 0)
+                    s = " " + s;
+                temp = temp >> 1;
+            }
+            Console.WriteLine($"ogre: {s}");
+
+
+            int elf;
+            elf = ((128 + 64 + 32 + 16) << 24);
+            elf += ((128 + 64 + 2 + 1) << 16);
+            elf += ((32 + 16 + 8 + 4) << 8);
+            elf += (128 + 64 + 32 + 1);
+            temp = elf;
+            s = "";
+            for (int ii = 0; ii < 32; ii++)
+            {
+                if ((temp & 1) > 0)
+                    s = "1" + s;
+                else
+                    s = "0" + s;
+                if ((ii + 1) % 8 == 0)
+                    s = " " + s;
+                temp = temp >> 1;
+            }
+            Console.WriteLine($"elf: {s}");
+
+            Console.WriteLine($"orc and ogre: {IsFriend(orc, ogre, 20)}");
+            Console.WriteLine($"orc and elf: {IsFriend(orc, elf, 20)}");
+        }
+
+        public static bool IsFriend(int a, int b, int threshhold)
+        {
+            int count = 0;
+            for (int ii = 0; ii < 32; ii++)
+            {
+                if ((a & 1) == (b & 1))
+                    ++count;
+                a = a >> 1;
+                b = b >> 1;
+            }
+
+
+            return count >= threshhold;
+        }
+    }
+}
