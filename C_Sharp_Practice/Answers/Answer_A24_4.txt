@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+
+    public static void Practice_Problem_Main()
+    {
+        Creature c = new Creature();
+        Controller controller0 = new Controller(c);
+        c.ReportDeath();
+    }
+    class Creature
+    {
+        public int m_id;
+        public Action<int> m_reportDeathFn;
+            
+        public Creature()
+        {
+            m_id = 7777;
+        }
+
+        public void ReportDeath()
+        {
+            if(m_reportDeathFn is not null)
+                m_reportDeathFn(m_id);
+        }
+    }
+    class Controller
+    {
+        Creature c0 = null;
+
+        public Controller(Creature c = null)
+        {
+            c0 = c;
+            if(c0 is not null) c0.m_reportDeathFn = DeathReported;
+        }
+
+        public void DeathReported(int id)
+        {
+            Console.WriteLine($"Death of {id} has been reported");
+        }
+    }
+}

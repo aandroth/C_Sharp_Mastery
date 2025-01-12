@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("C_Sharp_Mastery")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ddf8393a220fe0cdcda857f8f51230c01555aa2d")]
 [assembly: System.Reflection.AssemblyProductAttribute("C_Sharp_Mastery")]
 [assembly: System.Reflection.AssemblyTitleAttribute("C_Sharp_Mastery")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

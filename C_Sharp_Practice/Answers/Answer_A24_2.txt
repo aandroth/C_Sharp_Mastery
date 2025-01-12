@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+
+    public static void Practice_Problem_Main()
+    {
+        // Func is used when a return value is needed.
+        // We can create an Expression or Statement Lambda.
+        // We CANNOT += to the Func, attempting to do so only replaces it.
+        
+        Func<string, string> anonFnExpression = (s) => $"This is the anonFnExpression, taking {s}";
+        Func<string, string> anonFn = (s) => { return $"This is the anonFn, taking {s}"; };
+        Console.WriteLine(anonFn("a string"));
+
+        anonFn = s => "Now this replaces the fn, NOT adding to it.";
+        Console.WriteLine(anonFn("a string"));
+    }
+}

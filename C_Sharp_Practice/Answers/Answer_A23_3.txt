@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+
+    public static void Practice_Problem_Main()
+    {
+            UseAnIEnumerable();
+    }
+    
+        public static void UseAnIEnumerable()
+        {
+            // Define some data
+            int[] years = { 2_001, 2_002, 2_003, 2_004, 2_0_0_5 };
+
+            // Create an IEnumerable where each number is raised to the power of 3
+            IEnumerable<int> timesTwoQuery = years.Select(y => y * 2);
+
+            // Now let's enumerate our data and see deferred execution in action
+            foreach (int yearCube in timesTwoQuery)
+            {
+                Console.WriteLine(yearCube);
+            }
+        }
+}

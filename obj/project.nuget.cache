@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CsgKKgP5fwJxsqOTbPTUdZ5qBy5pZ18SnL0oFAmN8MUAacEGAH+av/vw9IJyB0kivRiRy0mPzfqDM01Z6amoqg==",
+  "dgSpecHash": "c7L+6a+tiVI=",
   "success": true,
   "projectFilePath": "C:\\Users\\aandr\\source\\repos\\C_Sharp_Mastery\\C_Sharp_Mastery\\C_Sharp_Mastery.csproj",
   "expectedPackageFiles": [
@@ -16,7 +16,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.WebApi.Core",
       "targetGraphs": [
         "net5.0"

@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+
+    public static void Practice_Problem_Main()
+    {
+        Person[] people = new Person[]
+        {
+            new Person("Thuntertuck"),
+            new Person("Drizzt"),
+            new Person("Kenny")
+        };
+
+        People peopleList = new People(people);
+        foreach (Person person in peopleList)
+        {
+            Console.WriteLine(person.m_name);
+        }
+    }
+    
+    class Person
+    {
+        public string m_name;
+        public Person(string name)
+        {
+            m_name = name;
+        }
+    }
+
+    class People : IEnumerable
+    {
+        private Person[] m_people;
+        public People(Person[] people)
+        {
+            m_people = new Person[people.Length];
+            for (int i = 0; i < m_people.Length; i++)
+                m_people[i] = people[i];
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator)GetEnumerator();
+        }
+
+        public PeopleEnum GetEnumerator()
+        {
+            return new PeopleEnum(m_people);
+        }
+    }
+
+    class PeopleEnum : IEnumerator
+    {
+        public Person[] m_people;
+        int m_position = -1;
+        public PeopleEnum(Person[] people)
+        {
+            m_people = people;
+        }
+
+        public bool MoveNext()
+        {
+            m_position++;
+            return (m_position < m_people.Length);
+        }
+
+        public void Reset()
+        {
+            m_position = -1;
+        }
+        object IEnumerator.Current
+        {
+            get { return Current; }
+        }
+
+        public Person Current
+        {
+            get
+            {
+                try
+                {
+                    return m_people[m_position];
+                }
+                catch(IndexOutOfRangeException)
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+        }
+    }
+}

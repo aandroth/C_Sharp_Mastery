@@ -15,7 +15,7 @@ using System.Threading;
 
 
 
-namespace C_Sharp_Practice
+namespace C_Sharp_Mastery
 {
     //class GenericArrayListClass
     //{

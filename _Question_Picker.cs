@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 // TODOs: 
 
@@ -10,7 +11,7 @@ using System.Linq;
 
 // NOTE: to update the Qs, make sure to edit the ActiveQs in both the editor's txt file, and the one in the Debug folder
 
-namespace C_Sharp_Practice
+namespace C_Sharp_Mastery
 {
     class RootNode
     {
@@ -112,7 +113,7 @@ namespace C_Sharp_Practice
                 "8_5: Create a class that has two variables, and sort an array of that class with exactly OrderBy(x => x)",
                 "8_6: Consider two SQL tables. table1: Orders [Columns: OrderId, OrderDate, CustomerId], table2: OrderDetails [Columns: OrderDetailId, OrderId, ProductId, Units, Price]. Write an SQL query to fetch the following - Get all OrderId and corresponding order total price for all orders placed in October 2017 with total order value above 10,000"
                 },
-                new List<string>() // Inline Linq queries
+                new List<string>() // Inline Linq queries, pulls from the text file, Linq_Methods.txt, to complete the challenge
                 {
                 "9_0: Create a fn that uses a single line query with",
                 "9_1: Create a fn that uses a single line query with",
@@ -120,7 +121,7 @@ namespace C_Sharp_Practice
                 "9_3: Create a fn that uses a single line query with",
                 "9_4: Create a fn that uses a single line query with",
                 },
-                new List<string>() // Full Linq queries
+                new List<string>() // Full Linq queries, pulls from the text file, Linq_Methods.txt, to complete the challenge
                 {
                 "10_0: Create a fn that creates a query with",
                 "10_1: Create a fn that creates a query with",
@@ -144,7 +145,7 @@ namespace C_Sharp_Practice
                 "12_3: Create and implement a class with two different generic variables",
                 "12_4: Implement a fluent interface design pattern with generics to create Dictionaries that take a type or default to string for their keys and values",//https://tyrrrz.me/blog/fluent-generics https://tyrrrz.me/blog/return-type-inference
                 },
-                new List<string>()
+                new List<string>() // Creational Design Patterns
                 {
                 "13_0: Creational Design Pattern: Factory Method. Create a factory method that creates a Soldier from the Inventory, Movable, and Humanoid classes",
                 "13_1: Creational Design Pattern: Abstract Factory. Define and write an example that creates the CPU and MMU for the companies Embla and Enginola.",
@@ -171,7 +172,7 @@ namespace C_Sharp_Practice
                 "15_4: Given two strings, one of random characters, and one that pattern matches the first string, '.' can replace any character, and '*' means zero or more of the preceding character, return true if the pattern matches. So (\"aa\", \"a\") is false, (\"aa\", \"a*\") is true, (\"ab\", \".*\") is true",
                 "15_5: Given a string of open and closed parantheses, find the greatest length of valid matching opena and closes",
                 "15_6: Print out all Full binary Trees for n number of nodes",
-                "15_7: Print out all Full binary Trees for n number of nodes",
+                "15_7: From an array of leaf node ints, return the smallest possible total value of all non-leaf nodes in a binary tree, where all non-leaf nodes are the product of the max of each of their roots' leaf node values",
                 },
                 new List<string>() // Network challenges
                 {
@@ -199,9 +200,75 @@ namespace C_Sharp_Practice
                 "18_1: Create a class called Geek, and then create two extension methods for Geek that can be called from an instance of Geek. One of these must take a string.",
                 "18_2: Create a class called Tricksy with a method called Foo. Override Foo with an extension method.",
                 "18_3: Create an Extension Method for int, called IsGreaterThan, returns a bool.",
-                "18_4: Create a method for string variables that adds a period to the end, if appropriate. So Boring becomes Boring. and Wow! stays Wow!",
-                "18_5: Extension Methods Q",
-                "18_6: Extension Methods Q",
+                "18_4: Create a method for string variables that adds a period to the end, if appropriate. So (Boring) becomes (Boring.) and (Wow!) stays (Wow!)",
+                "18_5: Create and two classes that both have an extension method with the same name and input.",
+                },
+                new List<string>() // Bit Masking
+                {
+                "19_0: Test if a number is even by checking the first bit.",
+                "19_1: Create a fn that determines if two groups will be friendly towards each other, based on an int that represents their temperment. They are friendly if they match on at least 20 values.",
+                "19_2: Use bit masking to print out every possible combination of a generic array.",
+                "19_3: Given n people and 100 types of hats labeled from 1 to 100, along with a 2D integer array caps where caps[i] represents the list of caps preferred by the i-th person, the task is to determine the number of ways the n people can wear different caps. Since the number of ways could be large, so return the result modulo 109 + 7",
+                "19_4: Use a bitmask to output every combination of an array of numbers. So {2, 4, 7} masked by 100 would return {2}.",
+                "19_5: Given an array of ints, and a positive int, find whether it's possible to divide this array into k subsets whose sums are all equal, specifically using a bitmask",
+                "19_6: Given an array of ints, return an array as the powerset (all possible subsets, so the powerset of {1, 2} would be {}, {1}, {2}, {1, 2})",
+                },
+                new List<string>() // Sliding Window
+                {
+                "20_0: Find which k seqential numbers in an array will give the greatest sum.",
+                "20_1: Find the difference between the averages of k consecutive numbers in an array.",
+                "20_2: Find the Longest Substring of a String Containing ‘K’ Distinct Characters.",
+                "20_3: Move through an int, and return a list of strings showing the value of the number on either side of each digit without turning the int ionto a string.",
+                "20_4: Find the greatest product of a consecutive subarray of numbers.",
+                "20_5: Count all of the 1's in each number for the range 0 < ii <= n.",
+                "20_6: Find the greatest sum possible from a list if you cannot choose any numbers next to each other. Then the same Q, but in a circle of houses. Then in a binary tree of houses.",
+                },
+                new List<string>() // Dynamic Var
+                {
+                "21_0: Create a single variable with four ints, but not an array of ints.",
+                "21_1: Create a single variable with a string and an int, both with unique names.",
+                "21_2: Create a single variable with a list of ints, and an array of ints.",
+                "21_3: Return a single variable from a fn that has an int and a string.",
+                "21_4: Return a single variable from a fn that has an int, a string, a float, and a char.",
+                },
+                new List<string>() // const vs static readonly
+                {
+                "22_0: Write down three features of const variables.",
+                "22_1: Write down three features of readonly variables.",
+                "22_2: Write down three features of static readonly variables.",
+                "22_3: Create a class with a const, readonly, and static readonly variables.",
+                "22_4: Test assigning a value to a const, readonly, and a static readonly variable using the class constructor.",
+                "22_5: Test assigning a value to a const, readonly, and a static readonly variable using a fn in that class.",
+                },
+                //      IEnumerable
+                //      https://learn.microsoft.com/en-us/dotnet/api/system.collections.ienumerable?view=net-8.0
+                //      https://www.bytehide.com/blog/ienumerable-csharp
+                new List<string>() // IEnumerable
+                {
+                "23_0: Create a People class that has a list of Person, and then make the list usable in a foreach.",
+                "23_1: Create a Wolfpack class that has a list of Wolf, and then make the list usable in a foreach. Also, override the ToString fn to make a Wolf print as {wolf name}(Wolf).",
+                "23_2: Create a Warband class that has a list of members, and then make the list usable in a foreach. The members are different classes that have the member class as a component.",
+                "23_3: Create an IEnumerable<int> that uses a Linq SELECT to multiply all of the elements of a list by two.",
+                "23_4: Create an IEnumerable<int> that uses a Linq SELECT to only print out elements above 5_000 (which means that only those values are touched by the program, saving on resources).",
+                "23_5: Use an IEnumerator methods to loop through an IEnumerator.",
+                },
+                new List<string>() // Anonymous Fns https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions
+                {
+                "24_0: Retrieve the values from a List of ints that are above 4, using an anonymous lambda.",
+                "24_1: Create an anonymous fn variable using a statement lambda.",
+                "24_2: Create an anonymous fn using Func. Add more steps to this basic Func after its intial creation", //https://www.youtube.com/watch?v=XD-1hO9PXDg
+                "24_3: Create an anonymous fn using Action, one as an Expression Lambda, and the other as a Statement Lambda.",
+                "24_4: Create a Controller class and a Creature class. Give the creature class an Action called m_reportDeath that it is invoked (doesn't need to use the Invoke keyword) in the Creature's death fn. Have this be propegated up into the Controller class instance (which has a ptr to the Creature class instance).",
+                "24_5: Create a selection from a list of names, using the Where operator, create cascading lambda functions that will select all names with an S, an a, and <= 3 letters from the list of Sam, Serene, Sarah, and Max.",
+                },
+                new List<string>() // Virtual Classes: https://medium.com/@nirajranasinghe/understanding-virtual-and-abstract-in-c-33cb0a7fcead
+                {
+                "25_0: Create a virtual character class, and a goblin class that derives from it.",
+                "24_1: Create a virtual character class that has a variable with a private Setter. Let the deriving class change that variable on initialization.",
+                "24_2: .",
+                "24_3: .",
+                "24_4: .",
+                "24_5: .",
                 },
             };
 
@@ -210,17 +277,11 @@ namespace C_Sharp_Practice
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // CURRENT:
-            // Extension Methods
+            // Virtual classes https://medium.com/@nirajranasinghe/understanding-virtual-and-abstract-in-c-33cb0a7fcead
+            // 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            // bit masking
-            // Powerset
-            // static readonly vs const
-            // IEnumerable
-            // Anonymous Fns https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions
-            // Lambda functions
-            // Lambda expressions
-            // Virtual classes
+
             // Structural design pattern: Adapter
             // try and catch and finally
             // Structural design pattern: Bridge
@@ -292,7 +353,11 @@ namespace C_Sharp_Practice
             // Unity ServiceLocator
             // git ci
             // Speed of API over DoubleCF https://mohamed-hendawy.medium.com/boosting-api-performance-and-scalability-best-practices-for-c-asp-net-f2cb07992f01
-
+            // object (similar to a class)
+            // Design Pattern: Component - https://gameprogrammingpatterns.com/component.html
+            // Design Pattern: Monad
+            // Chain of Responsibility - https://www.youtube.com/watch?v=5BxHZOKTxt0
+            // Resolvers - https://www.youtube.com/watch?v=HqUTF6lIp-E
             // Still thinking about this
             //new List<string>() // Research Tasks
             //    {

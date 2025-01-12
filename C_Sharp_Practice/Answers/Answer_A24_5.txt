@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+    public static void Practice_Problem_Main()
+    {
+        List<string> names = new List<string> { "Sam", "Serene", "Max", "Sarah" };
+        List<string> chosenNames = names.Where(x => x.StartsWith("S") && x.Contains("a") && x.Length <= 3).ToList();
+        foreach(string s in chosenNames)
+            Console.WriteLine(s);
+    }
+}

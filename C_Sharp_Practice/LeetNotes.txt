@@ -1,13 +1,26 @@
 ﻿
 8/6/24,  1653: 90 minutes  // Tool was using a count to keep track of how many a's were in the string, and then getting the diff of b's we found <-- What to call this?
-8/6/24,   241: Failed      // Tool was using two dfs on the string, one starting from the left, and the other starting from the right, breaking it down to numbers and operators almost like leaf nodes on a tree
+8/6/24,   241: Failed      // Tool was using the operators as dividers, breaking up the expression into left and right value lists, which then have the dividing operator operate on both lists to creat a final list
 8/8/24,   712: Failed      // Tool was either using recursion to check either possiblity, better, use a table to carry previous decisions through
+
+Revisited 12/24/24, Failed (Too long) Time: 60 min
 8/9/24    983: Failed      // Tool was to either use a three-choice recursive call, or better, have a rolling check of what each choice's effect would have at that index
+
+Revisited 12/29/24, Failed to see how the additional matches made the total grow
 8/10/24   413: 120 minutes // Tool was to have a rolling check of the previous indeces' difference, and have each new match add an additional count because it can fit more subsequences in it
+
+Revisited 12/28/24, Success Time: 15 min // Did I really figure this out, or just remember it? Do I care?
 8/11/24, 3192: Failed      // This one was just super simple too. The tool was just to recognize that going forward through the array we needed to track whether we were in a flipped or not flipped state
+
+Revisited 12/31/24, Failed Time: 35 min // Fell for the same bad misconception, but still took too damn long on puttin in the correct implementation
 8/13/24, 1578 120 minutes // Tool was sliding window. I screwed up with the description, thinking that a gap meant that the balloons around it weren't consecuative....
+
+Revisited 1/5/25, Absolute Fail. Tool was to see that this was finding Longest Common Subsequence, which makes this problem trivial. It can be solved with recursion, but better is to use a dp 2d grid. On a match, take 1 + the diagonal. On a mismatch, take the max of the top and bottom
 8/15/24, 1035: 120 minutes // Tool was cascading table. I went for dfs, but wasn't cutting branches that way.
+
 8/15/24,  931: 15 minutes  // SUCCESS!!!! Tool was cascading table, and having each cell choose the best path to it from above.
+
+
 8/16/24,  516: Failure     // I tried sliding window, and Tool was cascading table, solving as if just searching for a palindrome
 8/17/24,  583: Success     // Tool was cascading table, solving as if just searching for a palindrome...again. Also, I already had a solution for this?
 8/17/24, 1947: 180 minutes // Tool was...bit masking? I didn't use the speediest solution, and the main problem is solved by a brute force approach...
@@ -52,6 +65,10 @@
 11/11/24 Bin Search[0]:Success// Bin search on a 1d array
 11/11/24 Bin Search[1]:Success// Bin search on a 2d array (I just acted as if it were a 1d array, and did the math to find which row the median was in)
 11/11/24 Bin Search[2]:Success// Bin search on a range of possible solutions, grinding down to a best solution rather than a target. Got stuck when not using double caused precision errors.
+11/12/24 Bin Search[3]:Success// Bin search on a rotated array, and had to focus on finding the pivot point
+11/12/24 Bin Search[4]: 40+   // Bin search on a rotated array, and had to focus on finding the pivot point
+11/13/24 Revisit 241: Failed  // Tool was using the operators as dividers, breaking up the expression into left and right value lists, which then have the dividing operator operate on both lists to creat a final list
+11/15/24 Revisit 712: Failed  // Tool was to use a table to carry previous decisions through
 
 
 Revisits:

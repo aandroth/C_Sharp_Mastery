@@ -7,7 +7,6 @@ C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\C_S
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\C_Sharp_Mastery.runtimeconfig.json
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\C_Sharp_Mastery.runtimeconfig.dev.json
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\C_Sharp_Mastery.dll
-C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\ref\C_Sharp_Mastery.dll
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\C_Sharp_Mastery.pdb
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\obj\Debug\net5.0\C_Sharp_Mastery.dll
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\obj\Debug\net5.0\ref\C_Sharp_Mastery.dll
@@ -18,4 +17,6 @@ C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\Sys
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\System.Web.Http.dll
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
-C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\obj\Debug\net5.0\C_Sharp_Mastery.csproj.CopyComplete
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\obj\Debug\net5.0\C_Sharp_Mastery.sourcelink.json
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\obj\Debug\net5.0\C_Sharp_.2E0E46B5.Up2Date
+C:\Users\aandr\source\repos\C_Sharp_Mastery\C_Sharp_Mastery\obj\Debug\net5.0\refint\C_Sharp_Mastery.dll

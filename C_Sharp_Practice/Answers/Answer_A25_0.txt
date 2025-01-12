@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+    public static void Practice_Problem_Main()
+    {
+            Character gob = new Goblin();
+            Character gno = new Gnome();
+
+            gob.NatureOfSelf();
+            gno.NatureOfSelf();
+        }
+        public class Character
+        {
+            public virtual int m_willStat { get; set; }
+            public virtual string m_species { get; set; }
+
+            public virtual void NatureOfSelf()
+            {
+                Console.WriteLine($"You feel the urge to commit a {m_species} act.");
+            }
+        }
+
+        public class Goblin : Character
+        {
+            public Goblin()
+            {
+                m_species = "Goblin";
+            }
+            public override void NatureOfSelf()
+            {
+                int willChallenge = new Random().Next(0, 100);
+                if (m_willStat >= willChallenge)
+                    Console.WriteLine($"You resist the urge to play a {m_species} trick on someone.");
+                else
+                    Console.WriteLine($"You play a {m_species} trick on someone.");
+            }
+        }
+
+        public class Gnome : Character
+        {
+            public Gnome()
+            {
+                m_species = "Gnome";
+            }
+        }
+}

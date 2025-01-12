@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+
+    public static void Practice_Problem_Main()
+    {
+        // A statement lambda has a body wrapped in brackets, where an expression lambda does not
+        Action<string> greetExpression = name => Console.WriteLine($"Hello {name}!");
+        
+        greetExpression("World");
+    }
+}

@@ -1,0 +1,99 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+
+    public static void Practice_Problem_Main()
+    {
+            Wolf wolf0 = new Wolf("Lupe", "Tracking Animal");
+            Wolf wolf1 = new Wolf("Bloodhowl", "Tracking Animal");
+            Orc orc0 = new Orc("Gurt", "Frontline Grunt");
+            Orc orc1 = new Orc("Wurt", "Frontline Grunt");
+            Orc orc2 = new Orc("Burt", "Houndmaster");
+            Orc orc3 = new Orc("Hurt", "Captain");
+            Ogre ogre0 = new Ogre("Thrask", "Muscle");
+
+            Warband warband = new Warband("The Urt");
+            warband.m_members = new Member[] { (Member)wolf0, (Member)wolf1, (Member)orc0, (Member)orc1, (Member)orc2, (Member)orc3, (Member)ogre0 };
+
+            Console.WriteLine(warband);
+    }
+    
+        class Wolf
+        {
+            string m_name, m_species = "Wolf";
+            Member m_member = null;
+            public Wolf(string name, string rank = "") { m_name = name; if (rank != "") Recruit(rank); }
+            public void Recruit(string rank) { m_member = new Member(rank, $"{m_name}, ({m_species})"); }
+
+            public static explicit operator Member(Wolf wolf) { return new Member(wolf.m_member); }
+        }
+        class Orc
+        {
+            string m_name, m_species = "Orc";
+            Member m_member = null;
+            public Orc(string name, string rank = "") { m_name = name; if (rank != "") Recruit(rank); }
+            public void Recruit(string rank) { m_member = new Member(rank, $"{m_name}, ({m_species})"); }
+
+            public static explicit operator Member(Orc orc) { return new Member(orc.m_member); }
+        }
+        class Ogre
+        {
+            string m_name, m_species = "Ogre";
+            Member m_member = null;
+            public Ogre(string name, string rank = "") { m_name = name; if (rank != "") Recruit(rank); }
+            public void Recruit(string rank) { m_member = new Member(rank, $"{m_name}, ({m_species})"); }
+
+            public static explicit operator Member(Ogre ogre) { return new Member(ogre.m_member); }
+        }
+
+        class Warband : IEnumerable
+        {
+            public string m_name;
+            public Member[] m_members;
+            public Warband(string name) { m_name = name; }
+            public override string ToString()
+            {
+                string warbandInfo = $"{m_name}{System.Environment.NewLine}";
+                foreach(Member m in m_members)
+                    warbandInfo = $"{warbandInfo}{m}{System.Environment.NewLine}";
+                return warbandInfo;
+            }
+            IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator)GetEnumerator(); }
+            public MemberEnum GetEnumerator() { return new MemberEnum(m_members); }
+        }
+
+        class MemberEnum : IEnumerator
+        {
+            public Member[] m_memberList;
+            public int m_position = -1;
+            public MemberEnum(Member[] memberList) { m_memberList = memberList; }
+            public bool MoveNext() { ++m_position; return (m_position < m_memberList.Length); }
+
+            public void Reset() { m_position = -1; }
+            object IEnumerator.Current { get { return Current; } }
+            public Member Current
+            {
+                get
+                {
+                    try { return m_memberList[m_position]; }
+                    catch (IndexOutOfRangeException) { throw new InvalidOperationException(); }
+                }
+            }
+        }
+
+        class Member
+        {
+            public string m_rank = "";
+            public string m_memberInfo = "";
+
+            public Member(Member M) { if (M != null) { m_rank = M.m_rank; m_memberInfo = M.m_memberInfo; } }
+            public Member(string rank, string info) { m_rank = rank; m_memberInfo = info; }
+
+            public override string ToString()
+            {
+                return $"{m_memberInfo}, rank: {m_rank}";
+            }
+        }
+}

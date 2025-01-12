@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+
+    public static void Practice_Problem_Main()
+    {
+
+            // Define some data
+            int[] years = { 2_001, 2_002, 5_003, 5_004, 5_0_0_5 };
+            IEnumerable iE = UseIEnumerableToGetAbove5_000(years);
+
+            foreach(int i in iE)
+            {
+                Console.WriteLine(i);
+            }
+    }
+    
+
+        public static IEnumerable UseIEnumerableToGetAbove5_000(int[] years)
+        {
+            // Create an IEnumerable where each number is raised to the power of 3
+            return years.Where(y => y >= 5_000);
+        }
+}

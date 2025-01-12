@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace C_Sharp_Practice
+{       
+
+    public static void Practice_Problem_Main()
+    {
+
+            Wolf[] wolves = new Wolf[]
+            {
+                new Wolf("Bloodmaw"),
+                new Wolf("Keensense"),
+                new Wolf("Shadoweye")
+            };
+
+            Wolfpack wolfpack = new Wolfpack(wolves);
+            foreach (Wolf wolf in wolfpack)
+            {
+                Console.WriteLine(wolf);
+            }
+    }
+            class Wolf
+        {
+            public string m_name;
+            public Wolf(string name) { m_name = name; }
+            public override string ToString()
+            {
+                return $"{m_name}(Wolf)";
+            }
+        }
+
+        class Wolfpack : IEnumerable
+        {
+            public Wolf[] m_wolfList;
+            public Wolfpack(Wolf[] wolfList) 
+            {
+                m_wolfList = new Wolf[wolfList.Length]; 
+                Array.Copy(wolfList, m_wolfList, wolfList.Length);
+            }
+            IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator)GetEnumerator(); }
+            public WolfpackEnum GetEnumerator() { return new WolfpackEnum(m_wolfList); }
+        }
+
+        class WolfpackEnum : IEnumerator
+        {
+            public Wolf[] m_wolfList;
+            public int m_position = -1;
+            public WolfpackEnum(Wolf[] wolfList) { m_wolfList = wolfList; }
+            public bool MoveNext() { ++m_position; return (m_position < m_wolfList.Length); }
+
+            public void Reset(){ m_position = -1; }
+            object IEnumerator.Current {get { return Current; }}
+            public Wolf Current { get {
+                    try { return m_wolfList[m_position]; }
+                    catch (IndexOutOfRangeException) { throw new InvalidOperationException(); } }
+            }
+        }
+}
